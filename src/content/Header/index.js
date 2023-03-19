@@ -1,0 +1,234 @@
+import {
+    faHome,
+    faMagnifyingGlass,
+    faPlane,
+    faWalking,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames/bind";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.scss";
+// import logo from "../../assets/logoAtomic.png";
+// import tippy from "tippy.js/headless";
+// import HeadlessTippy from "@tippyjs/react/headless";
+import { memo, useContext, useEffect, useRef, useState } from "react";
+import Form from "../Content/Form";
+import requestAxios from "../../api/axios";
+import useDebounce from "../../hooks/useDebounce";
+import SearchItem from "../../components/SearchItem";
+import HeadlessTippy from "@tippyjs/react/headless";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import { TourContext } from "../../layouts/MainLayout/MainLayout";
+import { UserContext } from "../../App";
+import { async } from "@firebase/util";
+const cx = classNames.bind(styles);
+function Header(props) {
+    const [searchValue, setSearchValue] = useState("");
+    const [formLogin, setFormLogin] = useState(false);
+    const [hideSearch, setHideSearch] = useState(false);
+    const [searchResult, setSearchResult] = useState([]);
+    const [userName, setUserName] = useState("");
+    const [userAvatar, setUserAvatar] = useState("");
+    const debouncedValue = useDebounce(searchValue, 500);
+
+    let formLoginRef = useRef();
+    const userLogin = useContext(UserContext);
+    const tourId = useContext(TourContext);
+    const handleLoginClick = () => {
+        setSearchResult([]);
+        formLogin ? setFormLogin(false) : setFormLogin(true);
+    };
+    useEffect(() => {
+        setHideSearch(false);
+    }, [tourId]);
+    useEffect(() => {
+        if (props.getUser) props.getUser(userLogin);
+        let handle = (e) => {
+            try {
+                if (!formLoginRef.current.contains(e.target))
+                    setFormLogin(false);
+            } catch {}
+        };
+        if (handle) document.addEventListener("mousedown", handle);
+    });
+    useEffect(() => {
+        const fetchData = async () => {
+            await requestAxios
+                .get(`user`)
+                .then((res) => {
+                    setUserName(res.data.user.TenKH);
+                    setUserAvatar(
+                        `${process.env.REACT_APP_API_IMG_URL}${res.data.user.Img}`
+                    );
+                })
+                .catch((err) => console.log("Err get user"));
+        };
+        if (userLogin) fetchData();
+    });
+    useEffect(() => {
+        if (!debouncedValue.trim()) {
+            setSearchResult([]);
+            return;
+        }
+
+        const fetchData = async () => {
+            await requestAxios
+                .get(`tour/search/${debouncedValue}`, {
+                    Sdt: "0799132987",
+                    MatKhau: "trung2001",
+                })
+                .then((res) => {
+                    setFormLogin(false);
+                    setHideSearch(true);
+                    if (res.data.listSearch)
+                        setSearchResult(res.data.listSearch);
+                })
+                .catch(() => console.log("Err"));
+        };
+        fetchData();
+
+        // setSearchResult(result);
+    }, [debouncedValue]);
+    const handleSearch = (e) => {
+        setSearchValue(e.target.value);
+    };
+    const handleHideSearch = () => {
+        setHideSearch(false);
+    };
+    const handleLogOut = async () => {
+        requestAxios
+            .get(`auth/logout`)
+            .then((res) => {
+                window.location.reload();
+            })
+            .catch((err) => console.log("err loi logout"));
+    };
+
+    return (
+        <div className={cx("header")}>
+            <div className={cx("logo")}>
+                <img src={"./"} alt="" />
+            </div>
+            <div className={cx("pages")}>
+                <Link className={cx("home")} to="/">
+                    <FontAwesomeIcon icon={faHome} />
+                    <p>Home</p>
+                </Link>
+                <Link className={cx("tour")} to="/tour">
+                    <FontAwesomeIcon icon={faWalking} />
+                    <p>Tour</p>
+                </Link>
+                <Link className={cx("tour")} to="/tour">
+                    <FontAwesomeIcon icon={faPlane} />
+                    <p>Vé máy bay</p>
+                </Link>
+            </div>
+
+            {/* <div className={cx("clickOutSise")}></div> */}
+            <div className={cx("search")}>
+                <HeadlessTippy
+                    interactive
+                    visible={hideSearch && searchResult.length > 0}
+                    content="Tìm kiếm"
+                    onClickOutside={handleHideSearch}
+                    render={(attrs) =>
+                        hideSearch ? (
+                            <div className={cx("searchResult")}>
+                                <div className={cx("titleSearch")}>
+                                    Kết quả tìm kiếm : {searchValue}
+                                </div>
+                                <div
+                                    className={cx("listSearchResult")}
+                                    tabIndex="-1"
+                                    {...attrs}
+                                >
+                                    {searchResult.length > 0
+                                        ? searchResult.map((item, index) => {
+                                              return (
+                                                  <SearchItem
+                                                      tourId={item.MaTour}
+                                                      img={item.HinhAnh[0]}
+                                                      key={index}
+                                                      title={item.TenTour}
+                                                      price={item.Gia}
+                                                  />
+                                              );
+                                          })
+                                        : "Ko tìm thấy kết quả"}
+                                </div>
+                            </div>
+                        ) : (
+                            ""
+                        )
+                    }
+                >
+                    <input
+                        value={searchValue}
+                        onChange={handleSearch}
+                        onFocus={() => setHideSearch(false)}
+                        className={cx("input")}
+                        placeholder="Search here..."
+                    />
+                </HeadlessTippy>
+                <Tippy content="Tim">
+                    <FontAwesomeIcon
+                        className={cx("iconSearch")}
+                        icon={faMagnifyingGlass}
+                    />
+                </Tippy>
+            </div>
+            <div className={cx("account")}>
+                {userLogin ? (
+                    <>
+                        <HeadlessTippy
+                            interactive
+                            delay={[0, 700]}
+                            offset={[12, 8]}
+                            hideOnClick={false}
+                            render={(attrs) => (
+                                <div
+                                    className={cx("menuUser")}
+                                    tabIndex="-1"
+                                    {...attrs}
+                                >
+                                    <div>Thông tin</div>
+                                    <div onClick={handleLogOut}>Log out</div>
+                                </div>
+                            )}
+                        >
+                            <div className={cx("user")}>
+                                <img
+                                    className={cx("avatarUser")}
+                                    src={userAvatar}
+                                    alt=""
+                                />
+                            </div>
+                        </HeadlessTippy>
+                        {/* <p className={cx("nameUser")}>{userName}</p> */}
+                    </>
+                ) : (
+                    <>
+                        <button
+                            className={cx("btnLogin")}
+                            onClick={handleLoginClick}
+                        >
+                            Login
+                        </button>
+                        {formLogin ? (
+                            <>
+                                <div className={cx("form")} ref={formLoginRef}>
+                                    <Form />
+                                </div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default memo(Header);

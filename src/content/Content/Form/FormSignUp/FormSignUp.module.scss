@@ -1,0 +1,37 @@
+.formSignUp{
+    h2{
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+    .btnSignUp{
+        display: block;
+        margin: 30px auto;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(0, 110, 220);
+        color: #fff;
+    }
+    label{
+        display: block;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px;
+    }
+    .message{
+        font-size: 12px;
+        color: red;
+        flex: 1;
+        text-align: center;
+    }
+    .phoneInput{
+        input{
+            padding: 10px;
+            border: 0.5px solid #aaaaaa;
+            outline: none;
+            border-radius: 5px;
+        }
+        
+    }
+}

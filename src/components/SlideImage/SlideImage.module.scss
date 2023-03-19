@@ -1,0 +1,47 @@
+.slide-container {
+    box-shadow: 1px 3px 3px #7c7c7cb6;
+    * {
+        z-index: 0;
+        border-radius: 5px;
+    }
+    button {
+        padding: 10px;
+    }
+    .imgSlide {
+        width: 100%;
+        object-fit: cover;
+        height: 800px;
+        box-shadow: 1px 1px 3px #b5b5b5c1;
+    }
+    .title {
+        z-index: 1;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 30px;
+        font-size: 60px;
+        text-shadow: 1px 2px 3px #242424;
+        word-spacing: 20px;
+        letter-spacing: 10px;
+        font-family: "Lobster Two", cursive;
+        color: rgb(255, 255, 255);
+        background-image: radial-gradient(
+            rgba(101, 101, 101, 0.732),
+            rgba(90, 90, 90, 0.537),
+            rgba(90, 90, 90, 0),
+            rgba(255, 255, 255, 0)
+        );
+        // box-shadow: 1px 2px 3px #424242;
+
+        // animation-name: example;
+        // animation-duration: 5s;
+        // animation-delay: 0s;
+        // animation-iteration-count:infinite;
+        // @keyframes example {
+        //     0%   {color: transparent;  top:0px;}
+        //     100% {color: rgb(255, 255, 255);  top: 50%;}
+        // }
+    }
+}

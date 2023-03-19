@@ -1,0 +1,17 @@
+.footer{
+    width: 100%;
+    padding: 50px;
+    background-image: linear-gradient(#f8f8f8,#ececec,#e0dfdf);
+    .top{
+        display: flex;
+        justify-content:space-around;
+        .list{
+            display: block;
+        }
+    }
+    .bot{
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 80px;
+    }
+}

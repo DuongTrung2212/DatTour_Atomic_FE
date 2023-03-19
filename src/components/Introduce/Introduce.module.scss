@@ -1,0 +1,22 @@
+.introduce{
+    display: flex;
+    align-items: center;
+    padding: 30px 10px;
+    .icon{
+        font-size: 30px;
+        margin-right: 10px;
+    }
+    .text{
+        
+        .title{
+            font-weight: bold;
+            display:block;
+        }
+        .content{
+            color: rgb(113, 113, 113);
+            display: block;
+        }
+    }
+    
+
+}
