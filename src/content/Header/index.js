@@ -2,6 +2,9 @@ import {
     faHome,
     faMagnifyingGlass,
     faPlane,
+    faSignOut,
+    faTicket,
+    faUser,
     faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +25,27 @@ import "tippy.js/dist/tippy.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
 import { UserContext } from "../../App";
 import { async } from "@firebase/util";
+import MenuItem from "./MenuItem/MenuItem";
 const cx = classNames.bind(styles);
+
+const listMenuItem = [
+    {
+        icon: <FontAwesomeIcon icon={faHome} />,
+        to: "/",
+        title: "Trang chủ",
+    },
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        to: "/infor-user",
+        title: "Thông tin",
+    },
+    {
+        icon: <FontAwesomeIcon icon={faTicket} />,
+        to: "/infor-user/ve",
+        title: "Vé",
+    },
+];
+
 function Header(props) {
     const [searchValue, setSearchValue] = useState("");
     const [formLogin, setFormLogin] = useState(false);
@@ -74,15 +97,13 @@ function Header(props) {
 
         const fetchData = async () => {
             await requestAxios
-                .get(`tour/search/${debouncedValue}`, {
-                    Sdt: "0799132987",
-                    MatKhau: "trung2001",
-                })
+                .get(`tour/search/${debouncedValue}`)
                 .then((res) => {
                     setFormLogin(false);
                     setHideSearch(true);
                     if (res.data.listSearch)
                         setSearchResult(res.data.listSearch);
+                    else setSearchResult([]);
                 })
                 .catch(() => console.log("Err"));
         };
@@ -112,24 +133,23 @@ function Header(props) {
             </div>
             <div className={cx("pages")}>
                 <Link className={cx("home")} to="/">
-                    <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon className={cx("icon")} icon={faHome} />
                     <p>Home</p>
                 </Link>
                 <Link className={cx("tour")} to="/tour">
                     <FontAwesomeIcon icon={faWalking} />
                     <p>Tour</p>
                 </Link>
-                <Link className={cx("tour")} to="/tour">
+                <Link className={cx("tour")} to="/fly">
                     <FontAwesomeIcon icon={faPlane} />
                     <p>Vé máy bay</p>
                 </Link>
             </div>
 
-            {/* <div className={cx("clickOutSise")}></div> */}
             <div className={cx("search")}>
                 <HeadlessTippy
                     interactive
-                    visible={hideSearch && searchResult.length > 0}
+                    visible={hideSearch}
                     content="Tìm kiếm"
                     onClickOutside={handleHideSearch}
                     render={(attrs) =>
@@ -143,19 +163,21 @@ function Header(props) {
                                     tabIndex="-1"
                                     {...attrs}
                                 >
-                                    {searchResult.length > 0
-                                        ? searchResult.map((item, index) => {
-                                              return (
-                                                  <SearchItem
-                                                      tourId={item.MaTour}
-                                                      img={item.HinhAnh[0]}
-                                                      key={index}
-                                                      title={item.TenTour}
-                                                      price={item.Gia}
-                                                  />
-                                              );
-                                          })
-                                        : "Ko tìm thấy kết quả"}
+                                    {searchResult.length > 0 ? (
+                                        searchResult.map((item, index) => {
+                                            return (
+                                                <SearchItem
+                                                    tourId={item.MaTour}
+                                                    img={item.HinhAnh[0]}
+                                                    key={index}
+                                                    title={item.TenTour}
+                                                    price={item.Gia}
+                                                />
+                                            );
+                                        })
+                                    ) : (
+                                        <p>"Ko tìm thấy kết quả"</p>
+                                    )}
                                 </div>
                             </div>
                         ) : (
@@ -168,6 +190,7 @@ function Header(props) {
                         onChange={handleSearch}
                         onFocus={() => setHideSearch(false)}
                         className={cx("input")}
+                        maxLength={30}
                         placeholder="Search here..."
                     />
                 </HeadlessTippy>
@@ -183,7 +206,7 @@ function Header(props) {
                     <>
                         <HeadlessTippy
                             interactive
-                            delay={[0, 700]}
+                            delay={[0, 300]}
                             offset={[12, 8]}
                             hideOnClick={false}
                             render={(attrs) => (
@@ -192,8 +215,29 @@ function Header(props) {
                                     tabIndex="-1"
                                     {...attrs}
                                 >
-                                    <div>Thông tin</div>
-                                    <div onClick={handleLogOut}>Log out</div>
+                                    <div className={cx("userName")}>
+                                        {userName}
+                                    </div>
+                                    {listMenuItem.map((item, index) => {
+                                        return (
+                                            <MenuItem
+                                                to={item.to}
+                                                key={index}
+                                                icon={item.icon}
+                                                title={item.title}
+                                            />
+                                        );
+                                    })}
+                                    <div
+                                        className={cx("logOut")}
+                                        onClick={handleLogOut}
+                                    >
+                                        <FontAwesomeIcon
+                                            className={cx("iconLogOut")}
+                                            icon={faSignOut}
+                                        />
+                                        <p>Log out</p>
+                                    </div>
                                 </div>
                             )}
                         >

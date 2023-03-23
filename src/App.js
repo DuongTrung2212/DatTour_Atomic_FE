@@ -8,32 +8,36 @@ import Cookies from "js-cookie";
 import { createContext } from "react";
 const cx = classNames.bind(styles);
 export const UserContext = createContext();
+export const AdminContext = createContext();
 function App() {
     const User = Cookies.get("access_token") ? true : false;
+    const Admin = Cookies.get("isAdmin") ? true : false;
     console.log(process.env.REACT_APP_API_BASE_URL);
     console.log({ User });
     return (
         <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
             <div className={cx("app")}>
-                <UserContext.Provider value={User}>
-                    <ResetScroll>
-                        <Routes>
-                            {publicRoutes.map((route, index) => {
-                                return (
-                                    <Route
-                                        key={index}
-                                        path={route.path}
-                                        element={
-                                            <MainLayout>
-                                                {route.page}
-                                            </MainLayout>
-                                        }
-                                    />
-                                );
-                            })}
-                        </Routes>
-                    </ResetScroll>
-                </UserContext.Provider>
+                <AdminContext.Provider value={Admin}>
+                    <UserContext.Provider value={User}>
+                        <ResetScroll>
+                            <Routes>
+                                {publicRoutes.map((route, index) => {
+                                    return (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            element={
+                                                <MainLayout>
+                                                    {route.page}
+                                                </MainLayout>
+                                            }
+                                        />
+                                    );
+                                })}
+                            </Routes>
+                        </ResetScroll>
+                    </UserContext.Provider>
+                </AdminContext.Provider>
             </div>
         </BrowserRouter>
     );

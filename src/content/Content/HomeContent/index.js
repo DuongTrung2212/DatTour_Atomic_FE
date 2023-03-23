@@ -13,7 +13,7 @@ import requestAxios from "../../../api/axios";
 import Input from "../../../components/Input";
 import Introduce from "../../../components/Introduce";
 import SlideImage from "../../../components/SlideImage";
-import Tour from "../../../components/Tour";
+import TourItem from "../../../components/TourItem";
 import FormLogin from "../Form/FormLogin";
 import CategoryTour from "./CategoryTour/CategoryTour";
 import styles from "./HomeContent.module.scss";

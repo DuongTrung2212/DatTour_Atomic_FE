@@ -32,16 +32,21 @@
             padding: 10px;
             margin-right: 10px;
         }
-        .titleItem {
-            text-shadow: 0.5px 0.5px #20202030;
-            font-weight: bold;
-            color: rgb(11, 61, 114);
-        }
-        .priceItem {
-            margin-top: 8px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #937d00;
+        .textItem {
+            width: fit-content;
+            .titleItem {
+                text-shadow: 0.5px 0.5px #20202030;
+                font-weight: bold;
+                color: rgb(11, 61, 114);
+            }
+            .priceItem {
+                margin-top: 8px;
+                font-size: 12px;
+                font-weight: bold;
+                width: 100%;
+                text-align: left;
+                color: #937d00;
+            }
         }
     }
 }
