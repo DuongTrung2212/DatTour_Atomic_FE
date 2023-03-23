@@ -1,4 +1,4 @@
-import Tour from "../../../../components/Tour";
+import TourItem from "../../../../components/TourItem";
 import classNames from "classnames/bind";
 import styles from "./CategoryTour.module.scss";
 const cx = classNames.bind(styles);
@@ -9,7 +9,7 @@ function CategoryTour(props) {
             <div className={cx("tourList")}>
                 {props.listTour.map((tour, index) => {
                     return (
-                        <Tour
+                        <TourItem
                             tourId={tour.MaTour}
                             key={index}
                             img={tour.HinhAnh[0]}

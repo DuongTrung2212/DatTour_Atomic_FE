@@ -1,17 +1,17 @@
 @import "normalize.css";
 
-:root{
-    --textColor:#ffffff;
-    --backgroundColor:#c7c7c7;
+:root {
+    --textColor: #ffffff;
+    --backgroundColor: #c7c7c7;
 }
-*{
+* {
     padding: 0;
     margin: 0;
     text-decoration: none;
     box-sizing: border-box;
     list-style: none;
+    color: #000;
 }
-.app{
+.app {
     width: 100%;
-    
 }

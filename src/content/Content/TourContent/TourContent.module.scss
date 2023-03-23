@@ -1,0 +1,18 @@
+.slide {
+    margin: auto;
+    width: 1000px;
+
+    .img {
+        height: 600px;
+    }
+}
+.tourContent {
+    .content {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
