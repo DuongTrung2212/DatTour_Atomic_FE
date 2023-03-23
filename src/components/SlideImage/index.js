@@ -42,7 +42,7 @@ function SlideImage(props) {
     }
 
     return (
-        <div className={cx("slide-container")}>
+        <div className={cx("slide-container", props.className)}>
             <Fade
                 easing={"linear"}
                 pauseOnHover={false}
@@ -52,7 +52,10 @@ function SlideImage(props) {
             >
                 {slides.map((fadeImage, index) => (
                     <div key={index}>
-                        <img className={cx("imgSlide")} src={fadeImage.url} />
+                        <img
+                            className={cx("imgSlide", props.classNameImg)}
+                            src={fadeImage.url}
+                        />
                         <h2 className={cx("title")}>{fadeImage.caption}</h2>
                     </div>
                 ))}

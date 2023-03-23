@@ -42,7 +42,7 @@ function InforTourContent() {
                         },
                         {
                             name: "Giá",
-                            value: res.data.tour.Gia,
+                            value: `${res.data.tour.Gia.toLocaleString()} VND`,
                         },
                         {
                             name: "Ngày bắt đầu",
@@ -54,7 +54,7 @@ function InforTourContent() {
                         },
                         {
                             name: "Sale",
-                            value: res.data.tour.Sale,
+                            value: `${res.data.tour.Sale} %`,
                         },
                         {
                             name: "Số lượng còn",

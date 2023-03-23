@@ -1,8 +1,27 @@
 .menuUser {
-    background-color: aliceblue;
+    background-color: rgba(179, 210, 240, 0.984);
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     top: -10px;
+    .userName {
+        text-align: center;
+        font-weight: bold;
+        font-size: large;
+        padding-bottom: 10px;
+        color: rgb(4, 100, 218);
+    }
+    .logOut {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding-top: 5px;
+        .iconLogOut {
+            padding: 5px;
+        }
+        p {
+            padding: 5px 10px;
+        }
+    }
 }
 .header {
     display: flex;
@@ -23,13 +42,20 @@
     }
     .pages {
         display: flex;
+
         .home,
-        .tour {
+        .tour,
+        .fly {
             display: flex;
             color: var(--textColor);
             padding: 20px;
             align-items: center;
+
+            path {
+                color: var(--textColor);
+            }
             p {
+                color: inherit;
                 margin-left: 10px;
             }
         }
@@ -53,6 +79,8 @@
             overflow: hidden;
             background-color: rgb(242, 242, 242);
             border-radius: 5px;
+            max-width: 500px;
+
             .titleSearch {
                 padding: 10px;
                 font-weight: bold;
@@ -60,10 +88,14 @@
             .listSearchResult {
                 // position: absolute;
                 overflow-y: auto;
-
+                overflow-x: hidden;
                 // left: 0;
                 // top: 100%;
                 max-height: 400px;
+
+                p {
+                    text-align: center;
+                }
 
                 &::-webkit-scrollbar {
                     width: 3px;
@@ -112,15 +144,6 @@
             position: fixed;
             top: 50%;
             left: 50%;
-        }
-        .eventOutSide {
-            z-index: 0;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            background-color: rgba(113, 113, 113, 0.353);
-            height: 100%;
         }
     }
 }
