@@ -10,7 +10,13 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, app, analytics } from "../../../../config/configFirebase";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import { async } from "@firebase/util";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faWarning } from "@fortawesome/free-solid-svg-icons";
+import requestAxios from "../../../../api/axios";
 const cx = classNames.bind(styles);
 
 auth.languageCode = "it";
@@ -61,7 +67,17 @@ function FormSignUp() {
     // });
     var verifier;
     const handleSendOTP = async () => {
-        if (valuePhone.length < 5) return;
+        if (
+            valuePhone.length < 5 ||
+            name == "" ||
+            email == "" ||
+            pass == "" ||
+            pass != rePass
+        )
+            return toast.warn("Vui lòng kiểm tra lại dữ liệu", {
+                icon: <FontAwesomeIcon icon={faWarning} />,
+            });
+
         verifier = new RecaptchaVerifier(
             "recaptcha-container",
             {
@@ -74,29 +90,71 @@ function FormSignUp() {
             auth
         );
 
-        signInWithPhoneNumber(auth, valuePhone, verifier)
-            .then((confirmationResult) => {
-                console.log("OK");
-                window.confirmationResult = confirmationResult;
-                setStep("");
-                setMessage("");
+        const sendOTP = async () => {
+            await signInWithPhoneNumber(auth, valuePhone, verifier)
+                .then((confirmationResult) => {
+                    console.log("OK");
+                    window.confirmationResult = confirmationResult;
+                    setStep("");
+                    setMessage("");
+                })
+                .catch((error) => {
+                    setMessage("Lỗi hệ thống");
+                    console.log("Error" + error);
+                });
+        };
+        await requestAxios
+            .post("auth/checkUser", {
+                Sdt: valuePhone,
             })
-            .catch((error) => {
-                setMessage("Lỗi hệ thống");
-                console.log("Error" + error);
+            .then((res) => {
+                if (res.data.message == "OK") sendOTP();
+                else
+                    return toast(res.data.message, {
+                        icon: <FontAwesomeIcon icon={faPhone} />,
+                    });
+            })
+            .catch((err) => {
+                toast("Lỗi xử lí");
             });
     };
-    const handleValidOTP = () => {
+    const handleValidOTP = async () => {
         window.confirmationResult
             .confirm(otp)
-            .then((result) => {
+            .then(async (result) => {
                 alert("OK");
-                console.log("OK");
+                console.log(result);
+                await requestAxios
+                    .post("auth/signup", {
+                        TenKH: name,
+                        Sdt: valuePhone,
+                        MatKhau: pass,
+                        Email: email,
+                    })
+                    .then((res) => {
+                        toast.success(res.data.message);
+                        console.log(res.data.data);
+                    })
+                    .catch((err) => {
+                        toast.error("Đăng kí không thành công");
+                    });
             })
             .catch((err) => setMessage("Sai OTP"));
     };
     return (
         <div className={cx("formSignUp")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
             <h2>Sign Up</h2>
             {step === "INPUT_PHONE_NUMBER" ? (
                 <>

@@ -26,9 +26,9 @@ function FormLogin() {
             .then((res) => {
                 if (res.data.message == "OK") {
                     window.location.reload();
-                } else alert(res.data.message);
+                } else toast.warn(res.data.message);
             })
-            .catch((err) => alert("Err"));
+            .catch((err) => toast.warn("Err"));
     };
     const handleLogin = () => {
         if (number.trim() != "" && pass.trim() != "") {
