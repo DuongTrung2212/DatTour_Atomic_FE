@@ -90,7 +90,7 @@ function Header(props) {
                 .catch((err) => console.log("Err get user"));
         };
         if (userLogin) fetchData();
-    });
+    }, [userLogin]);
     useEffect(() => {
         if (!debouncedValue.trim()) {
             setSearchResult([]);

@@ -159,9 +159,9 @@ function InforTourContent() {
                 <div className={cx("bookTour")}>
                     <table>
                         <tbody>
-                            {dataBuy.map((item) => {
+                            {dataBuy.map((item, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <th>
                                             <p>{item.name}</p>
                                         </th>

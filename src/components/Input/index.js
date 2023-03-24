@@ -17,7 +17,7 @@ function Input(props) {
         var txt;
         if (props.isNumber) txt = e;
         else {
-            txt = e.target.value.trim();
+            txt = e.target.value;
         }
         setValue(txt);
         if (props.onChangeValue) props.onChangeValue(txt);
@@ -28,7 +28,7 @@ function Input(props) {
                 ? setMessage("")
                 : setMessage("Email chưa hợp lệ");
         } else {
-            props.notNull == true && txt == ""
+            props.notNull == true && txt.trim() == ""
                 ? setMessage("Không được để trống")
                 : setMessage("");
         }

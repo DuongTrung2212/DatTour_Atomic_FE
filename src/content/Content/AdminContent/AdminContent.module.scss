@@ -1,0 +1,27 @@
+.adminContent {
+    padding: 70px 10px 10px 10px;
+    min-height: 700px;
+    .tabs {
+        display: flex;
+    }
+    .tabList {
+        display: block;
+        padding: 15px 10px;
+        cursor: pointer;
+    }
+    ul {
+        margin: 0;
+        li {
+            height: inherit;
+        }
+    }
+    .tabItem {
+        display: flex;
+        align-items: center;
+        .icon {
+        }
+        .title {
+            padding: 0px 10px;
+        }
+    }
+}
