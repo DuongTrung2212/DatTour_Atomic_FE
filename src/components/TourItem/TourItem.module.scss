@@ -32,7 +32,9 @@
             .info {
                 flex: 1;
                 padding-right: 10px;
+
                 p {
+                    min-width: 55px;
                     font-size: 12px;
                 }
             }

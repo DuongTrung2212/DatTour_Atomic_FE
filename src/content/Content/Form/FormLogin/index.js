@@ -2,6 +2,9 @@ import Input from "../../../../components/Input";
 import classNames from "classnames/bind";
 import styles from "./FormLogin.module.scss";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import requestAxios from "../../../../api/axios";
 const cx = classNames.bind(styles);
 function FormLogin() {
@@ -23,7 +26,6 @@ function FormLogin() {
             .then((res) => {
                 if (res.data.message == "OK") {
                     window.location.reload();
-                    alert("Đăng nhập thành công");
                 } else alert(res.data.message);
             })
             .catch((err) => alert("Err"));
@@ -36,6 +38,17 @@ function FormLogin() {
 
     return (
         <div className={cx("formLogin")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <h2>Login</h2>
             <Input
                 onChangeValue={getNumber}
