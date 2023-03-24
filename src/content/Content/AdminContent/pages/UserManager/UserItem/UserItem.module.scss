@@ -1,0 +1,62 @@
+.userItem {
+    position: relative;
+    display: flex;
+    padding: 5px 20px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    width: inherit;
+    background-color: rgba(168, 193, 193, 0.74);
+    border-bottom: 1px solid #bcbcbcc2;
+    p {
+        padding: 10px;
+    }
+    .stt {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: aquamarine;
+        margin-right: 5px;
+    }
+    .img {
+        width: 40px;
+        background-color: rgb(174, 175, 175);
+        border-radius: 50%;
+        height: 40px;
+    }
+    .name {
+        width: 20%;
+    }
+    .sdt {
+        width: 20%;
+    }
+    .email {
+        width: 35%;
+    }
+    .action {
+        display: block;
+        margin-right: 0;
+        display: flex;
+        width: fit-content;
+        button {
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        .edit {
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+        .delete {
+            padding: 5px 10px;
+        }
+    }
+    .showUser {
+        padding: 10px;
+        position: absolute;
+        width: 30%;
+        background-color: rgb(176, 189, 189);
+        top: 0;
+        left: 100%;
+        max-height: 400px;
+    }
+}

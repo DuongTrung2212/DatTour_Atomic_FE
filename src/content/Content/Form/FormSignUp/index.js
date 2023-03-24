@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { async } from "@firebase/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faWarning } from "@fortawesome/free-solid-svg-icons";
+import ReactjsAlert from "reactjs-alert";
 import requestAxios from "../../../../api/axios";
 const cx = classNames.bind(styles);
 
@@ -23,6 +24,8 @@ auth.languageCode = "it";
 
 function FormSignUp() {
     const [valuePhone, setValuePhone] = useState("");
+    const [status, setStatus] = useState(false);
+    const [userName, setUserName] = useState("");
     const [otp, setOtp] = useState("");
     const [recaptcha, setRecaptcha] = useState("");
     const [name, setName] = useState("");
@@ -32,6 +35,7 @@ function FormSignUp() {
     const [step, setStep] = useState("INPUT_PHONE_NUMBER");
     const [result, setResult] = useState("");
     const [message, setMessage] = useState("");
+
     const getValueOTP = (value) => {
         setOtp(value);
     };
@@ -66,6 +70,7 @@ function FormSignUp() {
     //     };
     // });
     var verifier;
+
     const handleSendOTP = async () => {
         if (
             valuePhone.length < 5 ||
@@ -103,6 +108,7 @@ function FormSignUp() {
                     console.log("Error" + error);
                 });
         };
+
         await requestAxios
             .post("auth/checkUser", {
                 Sdt: valuePhone,
@@ -133,6 +139,8 @@ function FormSignUp() {
                     })
                     .then((res) => {
                         toast.success(res.data.message);
+                        setStatus(true);
+                        setUserName(res.data.newUser.TenKH);
                         console.log(res.data.data);
                     })
                     .catch((err) => {
@@ -143,6 +151,18 @@ function FormSignUp() {
     };
     return (
         <div className={cx("formSignUp")}>
+            <ReactjsAlert
+                status={status} // true or false
+                type={"success"} // success, warning, error, info
+                title={`Chào mừng ${userName}`}
+                button={"OK"}
+                quotes={true}
+                quote="Cảm ơn bạn tìm đến chúng tôi"
+                Close={() => {
+                    setStatus(false);
+                    window.location.reload();
+                }}
+            />
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
