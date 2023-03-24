@@ -5,11 +5,14 @@ import {
     faSignOut,
     faTicket,
     faUser,
+    faUserGear,
     faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Header.module.scss";
 // import logo from "../../assets/logoAtomic.png";
 // import tippy from "tippy.js/headless";
@@ -22,9 +25,11 @@ import SearchItem from "../../components/SearchItem";
 import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
-import { UserContext } from "../../App";
-import { async } from "@firebase/util";
+import { AdminContext, UserContext } from "../../App";
 import MenuItem from "./MenuItem/MenuItem";
 const cx = classNames.bind(styles);
 
@@ -57,7 +62,9 @@ function Header(props) {
 
     let formLoginRef = useRef();
     const userLogin = useContext(UserContext);
+    const isAdmin = useContext(AdminContext);
     const tourId = useContext(TourContext);
+
     const handleLoginClick = () => {
         setSearchResult([]);
         formLogin ? setFormLogin(false) : setFormLogin(true);
@@ -66,7 +73,7 @@ function Header(props) {
         setHideSearch(false);
     }, [tourId]);
     useEffect(() => {
-        if (props.getUser) props.getUser(userLogin);
+        // if (props.getUser) props.getUser(userLogin);
         let handle = (e) => {
             try {
                 if (!formLoginRef.current.contains(e.target))
@@ -75,6 +82,7 @@ function Header(props) {
         };
         if (handle) document.addEventListener("mousedown", handle);
     });
+
     useEffect(() => {
         const fetchData = async () => {
             await requestAxios
@@ -228,6 +236,19 @@ function Header(props) {
                                             />
                                         );
                                     })}
+                                    {isAdmin ? (
+                                        <MenuItem
+                                            to={`/admin`}
+                                            icon={
+                                                <FontAwesomeIcon
+                                                    icon={faUserGear}
+                                                />
+                                            }
+                                            title={`Admin`}
+                                        />
+                                    ) : (
+                                        ""
+                                    )}
                                     <div
                                         className={cx("logOut")}
                                         onClick={handleLogOut}
