@@ -38,7 +38,11 @@ function AdminContent() {
                 <TabList>
                     {tab.map((tab, index) => {
                         return (
-                            <Tab key={index} className={cx("tabList")}>
+                            <Tab
+                                selectedClassName={cx("onSelect")}
+                                key={index}
+                                className={cx("tabList")}
+                            >
                                 <div className={cx("tabItem")}>
                                     <div className={cx("icon")}>{tab.icon}</div>
                                     <b className={cx("title")}>{tab.tabList}</b>
