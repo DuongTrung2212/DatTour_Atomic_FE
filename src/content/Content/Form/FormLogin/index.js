@@ -6,9 +6,13 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import requestAxios from "../../../../api/axios";
+import PhoneInput from "react-phone-number-input";
+import ReactjsAlert from "reactjs-alert";
 const cx = classNames.bind(styles);
 function FormLogin() {
+    const [status, setStatus] = useState(false);
     const [number, setNumber] = useState("");
+    const [userName, setUserName] = useState("");
     const [pass, setPass] = useState("");
 
     const getNumber = (value) => {
@@ -25,10 +29,14 @@ function FormLogin() {
             })
             .then((res) => {
                 if (res.data.message == "OK") {
-                    window.location.reload();
-                } else alert(res.data.message);
+                    setStatus(true);
+                    setUserName(res.data.data.TenKH);
+                    // window.location.reload();
+                } else {
+                    toast.warn(res.data.message);
+                }
             })
-            .catch((err) => alert("Err"));
+            .catch((err) => toast.warn("Err"));
     };
     const handleLogin = () => {
         if (number.trim() != "" && pass.trim() != "") {
@@ -38,23 +46,37 @@ function FormLogin() {
 
     return (
         <div className={cx("formLogin")}>
+            <ReactjsAlert
+                status={status} // true or false
+                type={"success"} // success, warning, error, info
+                title={`Chào mừng ${userName}`}
+                button={"OK"}
+                quotes={true}
+                quote="Cảm ơn bạn tìm đến chúng tôi"
+                Close={() => {
+                    setStatus(false);
+                    window.location.reload();
+                }}
+            />
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
-                pauseOnFocusLoss
+                pauseOnFocusLoss={false}
                 draggable
                 pauseOnHover
                 theme="light"
             />
             <h2>Login</h2>
-            <Input
-                onChangeValue={getNumber}
-                notNull={true}
-                label="Số điện thoại"
-                placeholder="Enter your sdt..."
+            <label>Số điện thoại</label>
+            <PhoneInput
+                className={cx("phoneInput")}
+                international
+                defaultCountry="VN"
+                value={number}
+                onChange={setNumber}
             />
             <Input
                 onChangeValue={getPass}
