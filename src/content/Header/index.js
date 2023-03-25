@@ -5,7 +5,10 @@ import {
     faSignOut,
     faTicket,
     faUser,
+<<<<<<< HEAD
     faUserGear,
+=======
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
     faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +26,12 @@ import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
 import "react-toastify/dist/ReactToastify.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
+<<<<<<< HEAD
 import { AdminContext, UserContext } from "../../App";
+=======
+import { UserContext } from "../../App";
+import { async } from "@firebase/util";
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
 import MenuItem from "./MenuItem/MenuItem";
 const cx = classNames.bind(styles);
 
@@ -230,6 +238,7 @@ function Header(props) {
                                             />
                                         );
                                     })}
+<<<<<<< HEAD
                                     {isAdmin ? (
                                         <MenuItem
                                             to={`/admin`}
@@ -243,6 +252,8 @@ function Header(props) {
                                     ) : (
                                         ""
                                     )}
+=======
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
                                     <div
                                         className={cx("logOut")}
                                         onClick={handleLogOut}
