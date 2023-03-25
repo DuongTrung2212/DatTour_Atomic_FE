@@ -12,22 +12,16 @@ export const UserContext = createContext();
 export const AdminContext = createContext();
 function App() {
     const User = Cookies.get("access_token") ? true : false;
-<<<<<<< HEAD
+
     const isAdmin = Cookies.get("isAdmin") ? true : false;
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
-=======
-    const Admin = Cookies.get("isAdmin") ? true : false;
->>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
+
     console.log(process.env.REACT_APP_API_BASE_URL);
     console.log({ publicRoutes });
     return (
         <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
             <div className={cx("app")}>
-<<<<<<< HEAD
                 <AdminContext.Provider value={isAdmin}>
-=======
-                <AdminContext.Provider value={Admin}>
->>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
                     <UserContext.Provider value={User}>
                         <ResetScroll>
                             <Routes>
@@ -44,7 +38,6 @@ function App() {
                                         />
                                     );
                                 })}
-<<<<<<< HEAD
                                 {isAdmin ? (
                                     <Route
                                         path="/admin"
@@ -57,8 +50,6 @@ function App() {
                                 ) : (
                                     ""
                                 )}
-=======
->>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
                             </Routes>
                         </ResetScroll>
                     </UserContext.Provider>
