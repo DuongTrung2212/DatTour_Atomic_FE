@@ -12,8 +12,10 @@ export const UserContext = createContext();
 export const AdminContext = createContext();
 function App() {
     const User = Cookies.get("access_token") ? true : false;
+
     const isAdmin = Cookies.get("isAdmin") ? true : false;
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
+
     console.log(process.env.REACT_APP_API_BASE_URL);
     console.log({ publicRoutes });
     return (
@@ -36,6 +38,7 @@ function App() {
                                         />
                                     );
                                 })}
+
                                 {isAdmin ? (
                                     <Route
                                         path="/admin"

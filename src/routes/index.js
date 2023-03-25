@@ -9,6 +9,7 @@ const publicRoutes = [
     { path: "/tour", page: <Tour /> },
     { path: "/infor-tour/:tourId", page: <InforTour /> },
     { path: "/infor-user", page: <InforUser /> },
+
     // { path: "/admin", page: <Admin /> },
 ];
 export { publicRoutes };
