@@ -5,15 +5,18 @@ import {
     faSignOut,
     faTicket,
     faUser,
+<<<<<<< HEAD
+    faUserGear,
+=======
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
     faWalking,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Header.module.scss";
-// import logo from "../../assets/logoAtomic.png";
-// import tippy from "tippy.js/headless";
-// import HeadlessTippy from "@tippyjs/react/headless";
 import { memo, useContext, useEffect, useRef, useState } from "react";
 import Form from "../Content/Form";
 import requestAxios from "../../api/axios";
@@ -21,10 +24,14 @@ import useDebounce from "../../hooks/useDebounce";
 import SearchItem from "../../components/SearchItem";
 import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import "react-toastify/dist/ReactToastify.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
+<<<<<<< HEAD
+import { AdminContext, UserContext } from "../../App";
+=======
 import { UserContext } from "../../App";
 import { async } from "@firebase/util";
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
 import MenuItem from "./MenuItem/MenuItem";
 const cx = classNames.bind(styles);
 
@@ -57,7 +64,9 @@ function Header(props) {
 
     let formLoginRef = useRef();
     const userLogin = useContext(UserContext);
+    const isAdmin = useContext(AdminContext);
     const tourId = useContext(TourContext);
+
     const handleLoginClick = () => {
         setSearchResult([]);
         formLogin ? setFormLogin(false) : setFormLogin(true);
@@ -66,7 +75,7 @@ function Header(props) {
         setHideSearch(false);
     }, [tourId]);
     useEffect(() => {
-        if (props.getUser) props.getUser(userLogin);
+        // if (props.getUser) props.getUser(userLogin);
         let handle = (e) => {
             try {
                 if (!formLoginRef.current.contains(e.target))
@@ -75,6 +84,7 @@ function Header(props) {
         };
         if (handle) document.addEventListener("mousedown", handle);
     });
+
     useEffect(() => {
         const fetchData = async () => {
             await requestAxios
@@ -88,7 +98,7 @@ function Header(props) {
                 .catch((err) => console.log("Err get user"));
         };
         if (userLogin) fetchData();
-    });
+    }, [userLogin]);
     useEffect(() => {
         if (!debouncedValue.trim()) {
             setSearchResult([]);
@@ -228,6 +238,22 @@ function Header(props) {
                                             />
                                         );
                                     })}
+<<<<<<< HEAD
+                                    {isAdmin ? (
+                                        <MenuItem
+                                            to={`/admin`}
+                                            icon={
+                                                <FontAwesomeIcon
+                                                    icon={faUserGear}
+                                                />
+                                            }
+                                            title={`Admin`}
+                                        />
+                                    ) : (
+                                        ""
+                                    )}
+=======
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
                                     <div
                                         className={cx("logOut")}
                                         onClick={handleLogOut}
