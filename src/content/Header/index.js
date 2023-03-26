@@ -232,6 +232,7 @@ function Header(props) {
                                             />
                                         );
                                     })}
+<<<<<<< HEAD
                                     {isAdmin ? (
                                         <MenuItem
                                             to={`/admin`}
@@ -245,6 +246,8 @@ function Header(props) {
                                     ) : (
                                         ""
                                     )}
+=======
+>>>>>>> e168df4e6480efc6b21e7ff30a6a6bce9655b8ac
                                     <div
                                         className={cx("logOut")}
                                         onClick={handleLogOut}
