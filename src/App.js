@@ -38,7 +38,7 @@ function App() {
                                         />
                                     );
                                 })}
-<<<<<<< HEAD
+
                                 {isAdmin ? (
                                     <Route
                                         path="/admin"
