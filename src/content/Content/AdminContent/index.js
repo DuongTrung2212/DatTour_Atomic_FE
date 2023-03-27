@@ -35,13 +35,13 @@ function AdminContent() {
     return (
         <div className={cx("adminContent")}>
             <Tabs className={cx("tabs")} direction="ltr">
-                <TabList>
+                <TabList className={cx("tabList")}>
                     {tab.map((tab, index) => {
                         return (
                             <Tab
                                 selectedClassName={cx("onSelect")}
                                 key={index}
-                                className={cx("tabList")}
+                                className={cx("tab")}
                             >
                                 <div className={cx("tabItem")}>
                                     <div className={cx("icon")}>{tab.icon}</div>

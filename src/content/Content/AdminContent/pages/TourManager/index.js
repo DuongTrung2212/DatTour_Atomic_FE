@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { async } from "@firebase/util";
 import requestAxios from "../../../../../api/axios";
+import CreateTour from "./CreateTour/CreateTour";
 
 const cx = classNames.bind(styles);
 function TourManager() {
@@ -49,7 +50,7 @@ function TourManager() {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <p>AAAA</p>
+                    <CreateTour />
                 </TabPanel>
             </Tabs>
             <div></div>

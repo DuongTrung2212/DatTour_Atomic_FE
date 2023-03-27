@@ -9,6 +9,9 @@
         }
     }
     .tabList {
+        height: fit-content;
+    }
+    .tab {
         display: block;
         padding: 15px 10px;
         cursor: pointer;
