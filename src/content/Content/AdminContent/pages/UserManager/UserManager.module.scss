@@ -1,8 +1,11 @@
 .userManager {
     padding-left: 20px;
     width: 150%;
+    position: relative;
     .userList {
-        position: relative;
         width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }

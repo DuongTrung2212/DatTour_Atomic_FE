@@ -1,0 +1,21 @@
+.decriptionForm {
+    padding: 20px;
+    background-color: beige;
+    border-radius: 5px;
+    label {
+        display: block;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px;
+    }
+    .title {
+        display: block;
+    }
+    .file {
+        display: block;
+        margin-bottom: 20px;
+    }
+    .content {
+        display: block;
+    }
+}

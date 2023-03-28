@@ -191,9 +191,9 @@ function InforTourContent() {
 
                     <Input
                         onChangeValue={getValueSoLuong}
-                        minLength={0}
-                        maxLength={dataTour.SoLuong}
-                        isNumber
+                        min={0}
+                        max={dataTour.SoLuong}
+                        type="number"
                         notNull={true}
                         label="Số lượng người"
                         placeholder="SL"

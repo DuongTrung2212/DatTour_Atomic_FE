@@ -3,8 +3,15 @@
     min-height: 700px;
     .tabs {
         display: flex;
+        .onSelect {
+            background-color: rgb(215, 191, 191);
+            border-radius: 5px;
+        }
     }
     .tabList {
+        height: fit-content;
+    }
+    .tab {
         display: block;
         padding: 15px 10px;
         cursor: pointer;

@@ -202,7 +202,7 @@ function FormSignUp() {
                         onChangeValue={getValuePass}
                         notNull={true}
                         label="Password"
-                        fieldPass={true}
+                        type="password"
                         placeholder="Enter your password..."
                     />
                     <Input
@@ -210,6 +210,7 @@ function FormSignUp() {
                         notNull={true}
                         label="Confirm Password"
                         fieldPass={true}
+                        type="password"
                         placeholder="Enter your Repassword..."
                     />
                 </>

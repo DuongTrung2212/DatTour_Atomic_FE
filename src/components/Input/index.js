@@ -38,17 +38,17 @@ function Input(props) {
             <label className={cx("label")}>{props.label || "Input"}</label>
             {!props.isNumber ? (
                 <input
-                    maxLength={props.maxLength}
-                    minLength={props.minLength}
+                    max={props.max}
+                    min={props.min}
                     onChange={checkNull}
                     value={value}
                     className={cx("input")}
-                    type={props.fieldPass ? "password" : "text"}
+                    type={props.type ? props.type : "text"}
                 />
             ) : (
                 <InputNumber
-                    max={props.maxLength}
-                    min={props.minLength}
+                    max={props.max}
+                    min={props.min}
                     onChange={checkNull}
                     defaultValue={1}
                     placeholder={props.placeholder}

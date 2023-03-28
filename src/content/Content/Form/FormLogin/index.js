@@ -82,7 +82,7 @@ function FormLogin() {
                 onChangeValue={getPass}
                 notNull={true}
                 label="Password"
-                fieldPass={true}
+                type="password"
                 placeholder="Enter your password..."
             />
             <button onClick={handleLogin} className={cx("btnLogin")}>
