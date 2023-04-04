@@ -38,16 +38,17 @@ function CreateStaff() {
 
     return (
         <div className={cx("createStaff")}>
-            <h3>Create Nhan vien</h3>
+            <h3>Thêm Nhân viên</h3>
             <div>
                 <Input
                     onChangeValue={getValueName}
                     notNull
                     label={"Tên nhân viên"}
+                    classNameLabel={cx("labelGender")}
                 />
-                <Input onChangeValue={getValueGender} label={"Giới tính"} className={cx("input")}/>
-                <Input onChangeValue={getValuePhone} notNull label={"Sdt"} className={cx("input")}/>
-                <Input onChangeValue={getValueEmail} isEmail label={"Email"} className={cx("input")}/>
+                <Input onChangeValue={getValueGender} label={"Giới tính"} classNameLabel={cx("labelGender")} />
+                <Input onChangeValue={getValuePhone} notNull label={"Sdt"} classNameLabel={cx("labelGender")} />
+                <Input onChangeValue={getValueEmail} isEmail label={"Email"} classNameLabel={cx("labelGender")} />
                 <button onClick={handleSubmit}>Xác Nhận</button>
             </div>
         </div>

@@ -13,10 +13,10 @@ function Footer() {
                             <Link>Chúng tôi</Link>
                         </li>
                         <li>
-                            <Link>AAA</Link>
+                            <Link>Lớp 19CT2</Link>
                         </li>
                         <li>
-                            <Link>AAA</Link>
+                            <Link>Kiến trúc Đà Nẵng</Link>
                         </li>
                     </ul>
                 </div>
@@ -45,14 +45,14 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div className={cx("logo")}>
                     <h3>ĐƯỢC CHỨNG NHẬN</h3>
-                    <img />
+                    <img src="https://webmedia.com.vn/images/2021/09/logo-da-thong-bao-bo-cong-thuong-mau-xanh.png" width={150}/>
                 </div>
             </div>
             <div className={cx("bot")}>
                 <div>
-                    <p>asdasds</p>
+                    <p>@@@atomic.com</p>
                     <p>adasdsad</p>
                     <p>asdad</p>
                 </div>

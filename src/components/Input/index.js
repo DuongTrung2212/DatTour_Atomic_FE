@@ -11,6 +11,7 @@ function Input({
     isEmail,
     defaultValue,
     onChangeValue,
+    classNameLabel,
     ...props
 }) {
     const [value, setValue] = useState("");
@@ -44,7 +45,7 @@ function Input({
     }, [props.value]);
     return (
         <div className={cx("field", props.className)}>
-            <label className={cx("label")}>{label}</label>
+            <label className={cx("label",classNameLabel)}>{label}</label>
             {!props.isNumber ? (
                 <input
                     {...props}

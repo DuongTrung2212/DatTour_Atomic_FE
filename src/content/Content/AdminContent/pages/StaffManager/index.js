@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function StaffManager() {
     return (
         <div className={cx("staffManager")}>
-            <h1>StaffManager</h1>
+            <h1>Quản Lí Nhân Viên</h1>
             <Tabs>
                 <TabList>
                     <Tab>HD viên</Tab>
