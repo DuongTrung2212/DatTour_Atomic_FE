@@ -1,0 +1,14 @@
+.infoItem {
+    background-color: rgb(173, 220, 220);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    div {
+        font-size: 30px;
+        padding: 5px 20px 5px 0px;
+    }
+}

@@ -5,6 +5,8 @@ import { Button } from "antd";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
 const cx = classNames.bind(styles);
 function DecriptionForm(props) {
     const [title, setTitle] = useState("");
@@ -21,16 +23,37 @@ function DecriptionForm(props) {
         setContent(e.target.value);
     };
     const handleClickBtn = () => {
-        const dataDecription = {
-            title,
-            file,
-            content,
-        };
-
-        if (props.onSubmit) props.onSubmit({ dataDecription });
+        if (
+            title.trim().length < 5 ||
+            file.length <= 0 ||
+            content.length < 20
+        ) {
+            toast("Vui lòng nhập đầy đủ");
+            return;
+        } else {
+            const dataDecription = {
+                title,
+                file,
+                content,
+            };
+            console.log(dataDecription);
+            if (props.onSubmit) props.onSubmit({ dataDecription });
+        }
     };
     return (
         <div className={cx("decriptionForm")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
             <Input
                 onChangeValue={handleTitle}
                 className={cx("title")}

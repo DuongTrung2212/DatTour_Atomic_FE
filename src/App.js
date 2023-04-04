@@ -7,6 +7,7 @@ import ResetScroll from "./ResetScroll/ResetScroll";
 import Cookies from "js-cookie";
 import { createContext } from "react";
 import Admin from "./pages/Admin";
+import InforUser from "./pages/InforUser";
 const cx = classNames.bind(styles);
 export const UserContext = createContext();
 export const AdminContext = createContext();
@@ -45,6 +46,18 @@ function App() {
                                         element={
                                             <MainLayout>
                                                 <Admin />
+                                            </MainLayout>
+                                        }
+                                    />
+                                ) : (
+                                    ""
+                                )}
+                                {User ? (
+                                    <Route
+                                        path="/infor-user"
+                                        element={
+                                            <MainLayout>
+                                                <InforUser />
                                             </MainLayout>
                                         }
                                     />

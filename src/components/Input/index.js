@@ -5,7 +5,14 @@ import useDebounce from "../../hooks/useDebounce";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 import { InputNumber } from "antd";
 const cx = classNames.bind(styles);
-function Input(props) {
+function Input({
+    label,
+    notNull,
+    isEmail,
+    defaultValue,
+    onChangeValue,
+    ...props
+}) {
     const [value, setValue] = useState("");
     const [message, setMessage] = useState("");
     const valueDebounced = useDebounce(value, 1000);
@@ -13,31 +20,34 @@ function Input(props) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
-    const checkNull = (e) => {
-        var txt;
-        if (props.isNumber) txt = e;
-        else {
-            txt = e.target.value;
-        }
-        setValue(txt);
-        if (props.onChangeValue) props.onChangeValue(txt);
 
-        if (props.fieldEmail) {
+    const checkNull = (e) => {
+        var txt = e.target.value;
+        setValue(txt);
+        if (onChangeValue) {
+            onChangeValue(txt);
+        }
+
+        if (isEmail) {
             if (!valueDebounced) return;
             validateEmail(txt)
                 ? setMessage("")
                 : setMessage("Email chưa hợp lệ");
         } else {
-            props.notNull == true && txt.trim() == ""
+            notNull == true && txt.trim() == ""
                 ? setMessage("Không được để trống")
                 : setMessage("");
         }
     };
+    useEffect(() => {
+        if (props.value) setValue(props.value);
+    }, [props.value]);
     return (
         <div className={cx("field", props.className)}>
-            <label className={cx("label")}>{props.label || "Input"}</label>
+            <label className={cx("label")}>{label}</label>
             {!props.isNumber ? (
                 <input
+                    {...props}
                     max={props.max}
                     min={props.min}
                     onChange={checkNull}
@@ -50,7 +60,7 @@ function Input(props) {
                     max={props.max}
                     min={props.min}
                     onChange={checkNull}
-                    defaultValue={1}
+                    defaultValue={defaultValue || 1}
                     placeholder={props.placeholder}
                     value={value}
                 />

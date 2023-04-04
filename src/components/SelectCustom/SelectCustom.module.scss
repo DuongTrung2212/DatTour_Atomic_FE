@@ -1,0 +1,31 @@
+.field {
+    width: 300px;
+    .select {
+        width: 300px;
+        height: fit-content;
+        display: block;
+        .ant-select-selection-search {
+            position: absolute;
+            display: inline-block;
+            width: 50px;
+        }
+    }
+    .label {
+        display: block;
+        font-weight: bold;
+        font-size: 15px;
+        padding: 5px;
+    }
+    // .select {
+    //     width: 100%;
+    //     padding: 10px;
+    //     border: 0.5px solid #aaaaaa;
+    //     outline: none;
+    //     border-radius: 5px;
+    //     .select-items {
+    //         padding: 10px;
+    //         outline: none;
+    //         border-radius: 5px;
+    //     }
+    // }
+}
