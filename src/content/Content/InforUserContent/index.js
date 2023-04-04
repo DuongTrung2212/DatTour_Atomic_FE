@@ -22,6 +22,8 @@ function InforUserContent() {
     const [user, setUser] = useState({});
     const [verified, setVerified] = useState(false);
     const [showVerify, setShowVerify] = useState(false);
+    const [change, setChange] = useState(0);
+
     const verifyPassRef = useRef();
     const fetchDataUser = async () => {
         await requestAxios
@@ -42,7 +44,22 @@ function InforUserContent() {
     });
     useEffect(() => {
         fetchDataUser();
-    }, []);
+    }, [change]);
+    const hanldeChangeFile = async (files) => {
+        let formData = new FormData();
+        formData.append("Img", files[0]);
+        await requestAxios
+            .patch("user", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((res) => {
+                setChange(change + 1);
+                console.log("OK");
+            })
+            .catch((err) => console.log("Err update avatar at infor user"));
+    };
     return (
         <div className={cx("inforUserContent")}>
             {showVerify && !verified ? (
@@ -55,7 +72,7 @@ function InforUserContent() {
             <img
                 draggable={false}
                 className={cx("background")}
-                src={`${process.env.REACT_APP_API_IMG_URL}/${user.Img}`}
+                src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
                 <div className={cx("introduce")}>
@@ -95,7 +112,10 @@ function InforUserContent() {
                         }}
                         className={cx("editAvatar")}
                     >
-                        <Files>
+                        <Files
+                            accepts={["image/*"]}
+                            onChange={hanldeChangeFile}
+                        >
                             <FontAwesomeIcon icon={faEdit} />
                         </Files>
                     </div>

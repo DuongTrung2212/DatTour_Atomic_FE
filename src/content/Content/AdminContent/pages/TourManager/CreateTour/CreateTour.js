@@ -28,6 +28,7 @@ function CreateTour() {
     const [dataOptionsNhanVien, setDataOptionsNhanVien] = useState([]);
     const [ngayKT, setNgayKT] = useState("");
     const [ngayBD, setNgayBD] = useState("");
+    const [showBtn, setShowBtn] = useState(true);
 
     const fetchDataStaff = async () => {
         await requestAxios
@@ -115,6 +116,7 @@ function CreateTour() {
         setDecriptionForm(false);
     };
     const handleSubmit = async () => {
+        setShowBtn(false);
         let formData = new FormData();
         // console.log(imgSlide);
         const dateBD = ngayBD.split("-");
@@ -148,10 +150,11 @@ function CreateTour() {
             })
             .then((res) => {
                 toast.success("OK");
-                console.log(res.data);
+                setShowBtn(true);
             })
             .catch((err) => {
                 console.log("Err asdad");
+                setShowBtn(true);
             });
     };
     return (
@@ -258,7 +261,7 @@ function CreateTour() {
                     label={"Ngày kết thúc"}
                 />
 
-                <button onClick={handleSubmit}>Submit</button>
+                {showBtn ? <button onClick={handleSubmit}>Submit</button> : ""}
             </div>
         </div>
     );
