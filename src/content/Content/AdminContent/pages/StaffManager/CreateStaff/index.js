@@ -45,9 +45,9 @@ function CreateStaff() {
                     notNull
                     label={"Tên nhân viên"}
                 />
-                <Input onChangeValue={getValueGender} label={"Giới tính"} />
-                <Input onChangeValue={getValuePhone} notNull label={"Sdt"} />
-                <Input onChangeValue={getValueEmail} isEmail label={"Email"} />
+                <Input onChangeValue={getValueGender} label={"Giới tính"} className={cx("input")}/>
+                <Input onChangeValue={getValuePhone} notNull label={"Sdt"} className={cx("input")}/>
+                <Input onChangeValue={getValueEmail} isEmail label={"Email"} className={cx("input")}/>
                 <button onClick={handleSubmit}>Xác Nhận</button>
             </div>
         </div>
