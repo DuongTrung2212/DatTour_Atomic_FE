@@ -1,2 +1,36 @@
 .createStaff {
+    padding: 10px;
+    margin-top: 10px;
+    h3{
+        font-size: 29px;
+        font-weight: bold;
+        text-align: center;
+        color: rgb(4, 99, 120);
+        padding: 8px;
+
+    }
+    div{
+        .labelGender{
+            font-size: 18px;
+            color: rgb(56, 56, 56);
+        }
+        button{
+            padding: 10px;
+            background-color: rgb(0, 141, 173);
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-top: 20px;
+            box-shadow: 2px 2px 6px 2px rgb(140, 140, 140);
+            &:hover{
+                background-color: rgb(8, 113, 22);
+            }
+        }
+        
+    }
+    
 }
+

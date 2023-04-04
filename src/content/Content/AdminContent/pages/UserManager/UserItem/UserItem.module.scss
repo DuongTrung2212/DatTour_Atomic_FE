@@ -18,6 +18,7 @@
         border-radius: 5px;
         background-color: aquamarine;
         margin-right: 5px;
+        font-weight: bold;
     }
     .img {
         width: 40px;
@@ -27,12 +28,15 @@
     }
     .name {
         width: 20%;
+        font-weight: bold;
     }
     .sdt {
         width: 20%;
+        font-weight: bold;
     }
     .email {
         width: 35%;
+        font-weight: bold;
     }
     .action {
         display: block;
@@ -47,9 +51,15 @@
         .edit {
             padding: 5px 10px;
             margin-right: 5px;
+            background-color: rgb(6, 156, 64);
+            font-weight: bold;
+            color: white;
         }
         .delete {
             padding: 5px 10px;
+            background-color: rgb(255, 0, 38);
+            font-weight: bold;
+            color: white;
         }
     }
     .showUser {

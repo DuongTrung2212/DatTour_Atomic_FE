@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faWarning } from "@fortawesome/free-solid-svg-icons";
 import ReactjsAlert from "reactjs-alert";
 import requestAxios from "../../../../api/axios";
+import { memo } from "react";
 const cx = classNames.bind(styles);
 
 auth.languageCode = "it";
@@ -35,6 +36,7 @@ function FormSignUp() {
     const [step, setStep] = useState("INPUT_PHONE_NUMBER");
     const [result, setResult] = useState("");
     const [message, setMessage] = useState("");
+    const [signUpClickAble, setSignUpClickAble] = useState(true);
 
     const getValueOTP = (value) => {
         setOtp(value);
@@ -72,16 +74,19 @@ function FormSignUp() {
     var verifier;
 
     const handleSendOTP = async () => {
+        setSignUpClickAble(false);
         if (
             valuePhone.length < 5 ||
             name == "" ||
             email == "" ||
             pass == "" ||
             pass != rePass
-        )
+        ) {
+            setSignUpClickAble(true);
             return toast.warn("Vui lòng kiểm tra lại dữ liệu", {
                 icon: <FontAwesomeIcon icon={faWarning} />,
             });
+        }
 
         verifier = new RecaptchaVerifier(
             "recaptcha-container",
@@ -114,22 +119,24 @@ function FormSignUp() {
                 Sdt: valuePhone,
             })
             .then((res) => {
-                if (res.data.message == "OK") sendOTP();
-                else
+                if (res.data.message == "OK") {
+                    setSignUpClickAble(true);
+                    sendOTP();
+                } else
                     return toast(res.data.message, {
                         icon: <FontAwesomeIcon icon={faPhone} />,
                     });
             })
             .catch((err) => {
+                setSignUpClickAble(true);
                 toast("Lỗi xử lí");
             });
     };
     const handleValidOTP = async () => {
+        setSignUpClickAble(false);
         window.confirmationResult
             .confirm(otp)
             .then(async (result) => {
-                alert("OK");
-                console.log(result);
                 await requestAxios
                     .post("auth/signup", {
                         TenKH: name,
@@ -144,10 +151,14 @@ function FormSignUp() {
                         console.log(res.data.data);
                     })
                     .catch((err) => {
+                        setSignUpClickAble(true);
                         toast.error("Đăng kí không thành công");
                     });
             })
-            .catch((err) => setMessage("Sai OTP"));
+            .catch((err) => {
+                setSignUpClickAble(true);
+                setMessage("Sai OTP");
+            });
     };
     return (
         <div className={cx("formSignUp")}>
@@ -194,23 +205,23 @@ function FormSignUp() {
                     />
                     <Input
                         onChangeValue={getValueEmail}
-                        fieldEmail
+                        isEmail
+                        type="email"
                         label="Email"
                         placeholder="Enter your email..."
                     />
                     <Input
                         onChangeValue={getValuePass}
                         notNull={true}
-                        label="Password"
                         type="password"
+                        label="Password"
                         placeholder="Enter your password..."
                     />
                     <Input
+                        type="password"
                         onChangeValue={getValueRePass}
                         notNull={true}
                         label="Confirm Password"
-                        fieldPass={true}
-                        type="password"
                         placeholder="Enter your Repassword..."
                     />
                 </>
@@ -222,19 +233,23 @@ function FormSignUp() {
                 />
             )}
             <p className={cx("message")}>{message}</p>
-            <button
-                onClick={
-                    step === "INPUT_PHONE_NUMBER"
-                        ? handleSendOTP
-                        : handleValidOTP
-                }
-                className={cx("btnSignUp")}
-            >
-                {step === "INPUT_PHONE_NUMBER" ? "Send OTP" : "Xác nhận"}
-            </button>
+            {signUpClickAble ? (
+                <button
+                    onClick={
+                        step === "INPUT_PHONE_NUMBER"
+                            ? handleSendOTP
+                            : handleValidOTP
+                    }
+                    className={cx("btnSignUp")}
+                >
+                    {step === "INPUT_PHONE_NUMBER" ? "Send OTP" : "Xác nhận"}
+                </button>
+            ) : (
+                ""
+            )}
             <div id="recaptcha-container"></div>
         </div>
     );
 }
 
-export default FormSignUp;
+export default memo(FormSignUp);

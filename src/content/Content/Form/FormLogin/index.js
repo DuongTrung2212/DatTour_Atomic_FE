@@ -14,6 +14,7 @@ function FormLogin() {
     const [number, setNumber] = useState("");
     const [userName, setUserName] = useState("");
     const [pass, setPass] = useState("");
+    const [clickAble, setClickAbel] = useState(true);
 
     const getNumber = (value) => {
         setNumber(value);
@@ -22,6 +23,7 @@ function FormLogin() {
         setPass(value);
     };
     const fetchData = async () => {
+        setClickAbel(false);
         await requestAxios
             .post("auth/login", {
                 Sdt: number,
@@ -29,6 +31,7 @@ function FormLogin() {
             })
             .then((res) => {
                 if (res.data.message == "OK") {
+                    setClickAbel(true);
                     setStatus(true);
                     setUserName(res.data.data.TenKH);
                     // window.location.reload();
@@ -36,11 +39,16 @@ function FormLogin() {
                     toast.warn(res.data.message);
                 }
             })
-            .catch((err) => toast.warn("Err"));
+            .catch((err) => {
+                toast.warn("Vui lòng xem lại TK và MK");
+                setClickAbel(true);
+            });
     };
     const handleLogin = () => {
         if (number.trim() != "" && pass.trim() != "") {
             fetchData();
+        } else {
+            toast.warn("Vui lòng nhập đầy đủ");
         }
     };
 
@@ -85,9 +93,13 @@ function FormLogin() {
                 type="password"
                 placeholder="Enter your password..."
             />
-            <button onClick={handleLogin} className={cx("btnLogin")}>
-                Đăng nhập
-            </button>
+            {clickAble ? (
+                <button onClick={handleLogin} className={cx("btnLogin")}>
+                    Đăng nhập
+                </button>
+            ) : (
+                ""
+            )}
         </div>
     );
 }

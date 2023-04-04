@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./Form.module.scss";
 import FormLogin from "./FormLogin";
 import FormSignUp from "./FormSignUp";
+import { memo } from "react";
 const cx = classNames.bind(styles);
 function Form() {
     const [login, setLogin] = useState(true);
@@ -26,4 +27,4 @@ function Form() {
     );
 }
 
-export default Form;
+export default memo(Form);
