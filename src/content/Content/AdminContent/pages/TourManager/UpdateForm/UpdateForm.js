@@ -9,6 +9,7 @@ import Files from "react-files";
 import requestAxios from "../../../../../../api/axios";
 import Select from "react-select";
 import DecriptionForm from "../DecriptionForm/DecriptionForm";
+import { ToastContainer, toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -50,6 +51,8 @@ function UpdateForm(props) {
     const [dataDecription, setDataDecription] = useState([]);
     const [listStaff, setListStaff] = useState([]);
     const [optionsStaff, setOptionsStaff] = useState([]);
+    const [showBtn, setShowBtn] = useState(true);
+
     const handleSlideFileChange = (files) => {
         let view = [];
         for (let i = 0; i < files.length; i++) {
@@ -204,6 +207,7 @@ function UpdateForm(props) {
         // console.log(newData);
     };
     const handleSubmitUpdate = async () => {
+        setShowBtn(false);
         let formData = new FormData();
         const listLoaiTour = loaiTour[0].split(",");
         if (viewNewMoTa.length > 0) {
@@ -245,12 +249,26 @@ function UpdateForm(props) {
                     "Content-Type": "multipart/form-data",
                 },
             })
-            .then((res) => console.log(res.data))
+            .then((res) => {
+                setShowBtn(true);
+                toast.success("Thành công");
+            })
             .catch((err) => console.log("Err update tour"));
     };
     // console.log(moTa);
     return (
         <div className={cx("updateForm")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <Input
                 onChangeValue={getNameTour}
                 value={nameTour}
@@ -453,7 +471,7 @@ function UpdateForm(props) {
                 )}
             </div>
 
-            <button onClick={handleSubmitUpdate}> Submit</button>
+            <button onClick={showBtn ? handleSubmitUpdate : ""}> Submit</button>
         </div>
     );
 }
