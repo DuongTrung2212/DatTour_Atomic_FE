@@ -4,10 +4,13 @@ import classNames from "classnames/bind";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import requestAxios from "../../../../../../api/axios";
 import Input from "../../../../../../components/Input";
 import DecriptionForm from "../DecriptionForm/DecriptionForm";
 import styles from "./CreateTour.module.scss";
+import Select from "react-select";
+import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
 const cx = classNames.bind(styles);
 function CreateTour() {
     const [imgSlide, setImgSlide] = useState([]);
@@ -21,10 +24,36 @@ function CreateTour() {
     const [loaiTour, setLoaiTour] = useState("");
     const [sale, setSale] = useState("");
     const [diemDon, setDiemDon] = useState("");
-    const [maHDVien, setMaHDVien] = useState("");
+    const [HDVien, setHDVien] = useState({});
+    const [dataOptionsNhanVien, setDataOptionsNhanVien] = useState([]);
     const [ngayKT, setNgayKT] = useState("");
     const [ngayBD, setNgayBD] = useState("");
 
+    const fetchDataStaff = async () => {
+        await requestAxios
+            .get("nhanVien")
+            .then((res) => {
+                if (res.data.listNhanVien) {
+                    const respon = res.data.listNhanVien;
+                    let dataOptions = [];
+                    for (let index = 0; index < respon.length; index++) {
+                        dataOptions.push({
+                            value: respon[index].MaHDVien,
+                            label: respon[index].TenHDVien,
+                        });
+                    }
+
+                    setDataOptionsNhanVien(dataOptions);
+                }
+            })
+            .catch((err) => {
+                console.log("Err get all Staff at creatTour");
+            });
+    };
+
+    useEffect(() => {
+        fetchDataStaff();
+    }, []);
     const onChangeTentour = (value) => {
         setTenTour(value);
     };
@@ -47,7 +76,7 @@ function CreateTour() {
         setDiemDon(value);
     };
     const onChangeMaHDVien = (value) => {
-        setMaHDVien(value);
+        setHDVien(value);
     };
     const onChangeNgayKT = (value) => {
         setNgayKT(value);
@@ -100,6 +129,7 @@ function CreateTour() {
             formData.append("imgMoTa", item.dataDecription.file);
             formData.append("contentMoTa", item.dataDecription.content);
         });
+
         formData.append("TenTour", tenTour);
         formData.append("Gia", gia);
         formData.append("SoLuong", soLuong);
@@ -107,7 +137,7 @@ function CreateTour() {
         formData.append("DiemDon", diemDon);
         formData.append("LoaiTour", loaiTour);
         formData.append("Sale", sale);
-        formData.append("MaHDVien", maHDVien);
+        formData.append("MaHDVien", HDVien.value);
         formData.append("NgayBD", `${dateBD[2]}/${dateBD[1]}/${dateBD[0]}`);
         formData.append("NgayKT", `${dateKT[2]}/${dateKT[1]}/${dateKT[0]}`);
         await requestAxios
@@ -117,6 +147,7 @@ function CreateTour() {
                 },
             })
             .then((res) => {
+                toast.success("OK");
                 console.log(res.data);
             })
             .catch((err) => {
@@ -125,6 +156,18 @@ function CreateTour() {
     };
     return (
         <div className={cx("createTour")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+
             <div>
                 <h3>Ảnh slide</h3>
                 <div className={cx("slideList")}>
@@ -196,11 +239,14 @@ function CreateTour() {
                     notNull={true}
                     label={"Điểm đón"}
                 />
-                <Input
-                    onChangeValue={onChangeMaHDVien}
-                    notNull
-                    label={"Mã HDVien"}
+                <SelectCustom
+                    label={"Hướng dẫn viên"}
+                    options={dataOptionsNhanVien}
+                    onChange={(e) => {
+                        setHDVien(e);
+                    }}
                 />
+
                 <Input
                     onChangeValue={onChangeNgayBD}
                     type="date"

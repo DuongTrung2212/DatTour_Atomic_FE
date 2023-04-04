@@ -1,0 +1,68 @@
+.updateForm {
+    position: relative;
+    width: 800px;
+    .select {
+        width: 300px;
+    }
+    .imgSlide {
+        .action {
+            display: flex;
+            align-items: center;
+            img {
+                display: block;
+                width: 300px;
+                object-fit: cover;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+            .showImgSlide {
+                position: absolute;
+                border-radius: 5px;
+                overflow-y: auto;
+                padding: 10px 20px;
+                top: 0;
+                left: 50%;
+                background-color: rgb(187, 187, 168);
+                max-height: 400px;
+            }
+        }
+    }
+
+    .decription {
+        .decriptionForm {
+            width: 400px;
+            display: block;
+        }
+        .action {
+            display: flex;
+            align-items: center;
+
+            img {
+                display: block;
+                width: 300px;
+                object-fit: cover;
+                border-radius: 5px;
+                margin: 10px auto;
+            }
+            .showMoTa {
+                position: absolute;
+                width: 450px;
+                border-radius: 5px;
+                overflow-y: auto;
+                padding: 10px 20px;
+                top: 0;
+                right: 0;
+                background-color: rgb(187, 187, 168);
+                max-height: 400px;
+                box-shadow: 3px 2px 3px 3px #8a8a8a;
+                img {
+                }
+                p {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}

@@ -2,11 +2,12 @@ import classNames from "classnames/bind";
 import styles from "./TourManager.module.scss";
 import TourItem from "./TourItem/TourItem";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useEffect } from "react";
 import { async } from "@firebase/util";
 import requestAxios from "../../../../../api/axios";
 import CreateTour from "./CreateTour/CreateTour";
+import { useMemo } from "react";
 
 const cx = classNames.bind(styles);
 function TourManager() {
@@ -38,15 +39,17 @@ function TourManager() {
 
                 <TabPanel>
                     <div className={cx("tourList")}>
-                        {tourList.map((tour, index) => {
-                            return (
-                                <TourItem
-                                    data={tour}
-                                    key={index}
-                                    index={index + 1}
-                                />
-                            );
-                        })}
+                        {tourList.length > 0
+                            ? tourList.map((tour, index) => {
+                                  return (
+                                      <TourItem
+                                          data={tour}
+                                          key={index}
+                                          index={index + 1}
+                                      />
+                                  );
+                              })
+                            : "Ko co du lieu"}
                     </div>
                 </TabPanel>
                 <TabPanel>
@@ -58,4 +61,4 @@ function TourManager() {
     );
 }
 
-export default TourManager;
+export default memo(TourManager);

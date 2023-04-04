@@ -3,10 +3,18 @@ import styles from "./AdminContent.module.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+    faHeadset,
+    faRunning,
+    faTicket,
+    faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import UserManager from "./pages/UserManager";
 import TourManager from "./pages/TourManager";
 import { memo } from "react";
+import { useState } from "react";
+import { useMemo } from "react";
+import StaffManager from "./pages/StaffManager";
 
 const cx = classNames.bind(styles);
 const tab = [
@@ -16,25 +24,40 @@ const tab = [
         tabPanel: <UserManager />,
     },
     {
-        icon: <FontAwesomeIcon icon={faUser} />,
+        icon: <FontAwesomeIcon icon={faHeadset} />,
         tabList: `Nhân viên`,
-        tabPanel: <p>tabPanel2</p>,
+        tabPanel: <StaffManager />,
     },
     {
-        icon: <FontAwesomeIcon icon={faUser} />,
+        icon: <FontAwesomeIcon icon={faRunning} />,
         tabList: `Tour`,
         tabPanel: <TourManager />,
     },
     {
-        icon: <FontAwesomeIcon icon={faUser} />,
+        icon: <FontAwesomeIcon icon={faTicket} />,
         tabList: `Tour đã đặt`,
         tabPanel: <p>tabPanel4</p>,
     },
 ];
+
 function AdminContent() {
+    const [index, setIndex] = useState(0);
+    const abc = (index) => {
+        return index;
+    };
+
+    const testUseMemo = useMemo(() => abc(index), [index]);
+
     return (
         <div className={cx("adminContent")}>
-            <Tabs className={cx("tabs")} direction="ltr">
+            <Tabs
+                defaultIndex={testUseMemo}
+                onSelect={(index) => {
+                    setIndex(index);
+                }}
+                className={cx("tabs")}
+                direction="ltr"
+            >
                 <TabList className={cx("tabList")}>
                     {tab.map((tab, index) => {
                         return (
