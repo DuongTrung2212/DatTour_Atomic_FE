@@ -5,7 +5,14 @@
     .titleTour {
         font-weight: bold;
         font-size: 20px;
+        border-radius: 30px;
         padding: 20px;
+        background-image: linear-gradient(
+            to right,
+            #ffffffee,
+            #ffffff97,
+            #ffffff1d
+        );
     }
     .tourList {
         display: flex;
