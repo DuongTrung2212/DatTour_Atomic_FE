@@ -11,6 +11,16 @@
         object-fit: cover;
         z-index: -1;
     }
+    .changeInforForm {
+        width: fit-content;
+        position: absolute;
+        padding: 20px 40px;
+        background-color: rgb(150, 190, 190);
+        border-radius: 5px;
+        top: 10%;
+        left: 5%;
+        z-index: 3;
+    }
     .header {
         width: 100%;
         display: flex;
@@ -50,6 +60,7 @@
         .introduce {
             width: 40%;
             position: relative;
+
             .editInfor {
                 position: absolute;
                 top: 100%;

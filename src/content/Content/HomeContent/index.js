@@ -17,6 +17,7 @@ import TourItem from "../../../components/TourItem";
 import FormLogin from "../Form/FormLogin";
 import CategoryTour from "./CategoryTour/CategoryTour";
 import styles from "./HomeContent.module.scss";
+import { variableLocal } from "../../../varialeLocal";
 const cx = classNames.bind(styles);
 var fadeImages = [
     {
@@ -57,6 +58,10 @@ function HomeContent() {
 
     return (
         <div className={cx("homeContent")}>
+            <img
+                className={cx("background")}
+                src={variableLocal.mainBackground}
+            />
             <div className={cx("img")}>
                 <SlideImage />
             </div>

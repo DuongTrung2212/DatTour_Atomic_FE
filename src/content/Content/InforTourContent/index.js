@@ -134,7 +134,7 @@ function InforTourContent() {
                 closeOnClick
                 pauseOnFocusLoss
                 draggable
-                pauseOnHover
+                pauseOnHover={false}
                 theme="light"
             />
             <SlideImage slides={dataTour.HinhAnh} />

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function UserManager() {
     const [listUser, setListUser] = useState([]);
-    const [fetch, setFetch] = useState(false);
+    const [haveChange, setHaveChange] = useState(0);
     const fetchData = async () => {
         requestAxios
             .get("user/getAllUser")
@@ -17,13 +17,12 @@ function UserManager() {
             })
             .catch((err) => console.log("Err fetch list user"));
     };
-    const handleDelete = (boolean) => {
-        console.log(boolean);
-        setFetch(boolean);
+    const handleDelete = () => {
+        setHaveChange(haveChange + 1);
     };
     useEffect(() => {
         fetchData();
-    }, [fetch]);
+    }, [haveChange]);
 
     // const handleClickShowUser = (userId) => {
     //     setShowUser(true);

@@ -11,7 +11,10 @@ import DecriptionForm from "../DecriptionForm/DecriptionForm";
 import styles from "./CreateTour.module.scss";
 import Select from "react-select";
 import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
+import { variableLocal } from "../../../../../../varialeLocal";
+
 const cx = classNames.bind(styles);
+
 function CreateTour() {
     const [imgSlide, setImgSlide] = useState([]);
     const [imgView, setImgView] = useState([]);
@@ -21,7 +24,7 @@ function CreateTour() {
     const [gia, setGia] = useState(0);
     const [soLuong, setSoLuong] = useState(0);
     const [diemDi, setDiemDi] = useState(0);
-    const [loaiTour, setLoaiTour] = useState("");
+    const [loaiTour, setLoaiTour] = useState([]);
     const [sale, setSale] = useState("");
     const [diemDon, setDiemDon] = useState("");
     const [HDVien, setHDVien] = useState({});
@@ -63,9 +66,6 @@ function CreateTour() {
     };
     const onChangeSoLuong = (value) => {
         setSoLuong(value);
-    };
-    const onChangeLoaiTour = (value) => {
-        setLoaiTour(value);
     };
     const onChangeSale = (value) => {
         setSale(value);
@@ -124,7 +124,9 @@ function CreateTour() {
         imgSlide.forEach((item) => {
             formData.append("HinhAnh", item);
         });
-
+        loaiTour.forEach((item) => {
+            formData.append("LoaiTour", item.value);
+        });
         dataDecription.forEach((item) => {
             // console.log(item.dataDecription.title);
             formData.append("titleMoTa", item.dataDecription.title);
@@ -196,7 +198,12 @@ function CreateTour() {
                     notNull
                     label={"Tên tour"}
                 />
-                <Input onChangeValue={onChangeGia} notNull label={"Giá"} />
+                <Input
+                    onChangeValue={onChangeGia}
+                    type="number"
+                    notNull
+                    label={"Giá"}
+                />
 
                 {dataDecription.length > 0 ? (
                     <div>{`${dataDecription.length} được chọn`}</div>
@@ -224,11 +231,15 @@ function CreateTour() {
                     notNull
                     label={"Điểm đi"}
                 />
-                <Input
-                    onChangeValue={onChangeLoaiTour}
-                    notNull
-                    label={"Loại tour"}
+                <SelectCustom
+                    isMulti
+                    label={"Loại Tour"}
+                    options={variableLocal.dataLoaiTour}
+                    onChange={(e) => {
+                        setLoaiTour(e);
+                    }}
                 />
+
                 <Input
                     onChangeValue={onChangeSale}
                     notNull

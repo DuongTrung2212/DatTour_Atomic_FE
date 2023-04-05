@@ -24,7 +24,7 @@ import Tippy from "@tippyjs/react";
 import "react-toastify/dist/ReactToastify.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
 
-import { AdminContext, UserContext } from "../../App";
+import { AdminContext, DataUserChangeContext, UserContext } from "../../App";
 
 import MenuItem from "./MenuItem/MenuItem";
 const cx = classNames.bind(styles);
@@ -60,7 +60,9 @@ function Header(props) {
     const userLogin = useContext(UserContext);
     const isAdmin = useContext(AdminContext);
     const tourId = useContext(TourContext);
-
+    const { dataUserChange, setDataUserChange } = useContext(
+        DataUserChangeContext
+    );
     const handleLoginClick = () => {
         setSearchResult([]);
         formLogin ? setFormLogin(false) : setFormLogin(true);
@@ -92,7 +94,7 @@ function Header(props) {
                 .catch((err) => console.log("Err get user"));
         };
         if (userLogin) fetchData();
-    }, [userLogin]);
+    }, [userLogin, dataUserChange]);
     useEffect(() => {
         if (!debouncedValue.trim()) {
             setSearchResult([]);

@@ -6,9 +6,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UpdateForm from "../UpdateForm/UpdateForm";
 import styles from "./TourItem.module.scss";
+import { confirmCustom } from "../../../../../../components/ConfirmCustom";
+import requestAxios from "../../../../../../api/axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
-function TourItem({ data, ...props }) {
+function TourItem({ data, onDelete, ...props }) {
     const [formUpdate, setFormUpdate] = useState(false);
     let updateFormRef = useRef();
     const navigate = useNavigate();
@@ -28,9 +31,35 @@ function TourItem({ data, ...props }) {
         };
         if (handle) document.addEventListener("mousedown", handle);
     });
-
+    const onYes = async () => {
+        await requestAxios
+            .delete(`tour/${data.MaTour}`)
+            .then((res) => {
+                if (res.data.message == "OK") {
+                    if (onDelete) onDelete();
+                    toast.success(res.data.message);
+                } else {
+                    toast.error(res.data.message);
+                }
+            })
+            .catch((err) => console.log("Errr"));
+    };
+    const handleDelete = () => {
+        confirmCustom("Xác nhận xóa", "Bạn muốn xóa e này", onYes);
+    };
     return (
         <div className={cx("tourItem")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <p className={cx("stt")}>{props.index}</p>
             <p className={cx("tourId")}>{data.MaTour}</p>
             <p className={cx("tourName")}>{data.TenTour}</p>
@@ -50,7 +79,7 @@ function TourItem({ data, ...props }) {
             <div className={cx("action")}>
                 <button onClick={handleClickCheck}>Check</button>
                 <button onClick={handleClickUpdate}>Cập nhật</button>
-                <button>Xóa</button>
+                <button onClick={handleDelete}>Xóa</button>
             </div>
         </div>
     );
