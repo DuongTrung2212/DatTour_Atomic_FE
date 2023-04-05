@@ -10,6 +10,7 @@ import requestAxios from "../../../../../../api/axios";
 import Select from "react-select";
 import DecriptionForm from "../DecriptionForm/DecriptionForm";
 import { ToastContainer, toast } from "react-toastify";
+import { variableLocal } from "../../../../../../varialeLocal";
 
 const cx = classNames.bind(styles);
 
@@ -115,9 +116,8 @@ function UpdateForm(props) {
                     );
                     setDiemDon(res.data.tour.DiemDon);
                     setSale(res.data.tour.Sale);
-                    setLoaiTour(res.data.tour.LoaiTour);
                     setTinhTrang(res.data.tour.TinhTrang);
-                    setLoaiTour(res.data.tour.LoaiTour);
+
                     setHDVien({
                         value: res.data.HDVien.MaHDVien,
                         label: res.data.HDVien.TenHDVien,
@@ -209,7 +209,6 @@ function UpdateForm(props) {
     const handleSubmitUpdate = async () => {
         setShowBtn(false);
         let formData = new FormData();
-        const listLoaiTour = loaiTour[0].split(",");
         if (viewNewMoTa.length > 0) {
             moTa.forEach((item) => {
                 formData.append("titleMoTa", item.title);
@@ -239,8 +238,8 @@ function UpdateForm(props) {
         formData.append("MaHDVien", HDVien.value);
         formData.append("Sale", sale);
         formData.append("DiemDon", diemDon);
-        listLoaiTour.forEach((item) => {
-            formData.append("LoaiTour", item);
+        loaiTour.forEach((item) => {
+            formData.append("LoaiTour", item.value);
         });
 
         await requestAxios
@@ -457,21 +456,24 @@ function UpdateForm(props) {
                     <Select
                         isMulti
                         className={cx("select")}
-                        onChange={(e) => {
-                            let arrLoaiTour = [];
-                            e.forEach((item, index) => {
-                                arrLoaiTour.push(item.value);
-                            });
-                            setLoaiTour(arrLoaiTour);
+                        onChange={(item) => {
+                            var data = [];
+                            for (let index = 0; index < item.length; index++) {
+                                data.push(item[index].value);
+                            }
+                            dataTour.LoaiTour = data;
+                            setLoaiTour(item);
                         }}
-                        options={optionsLoaiTour}
+                        options={variableLocal.dataLoaiTour}
                     />
                 ) : (
-                    <Input disabled value={loaiTour} />
+                    <Input disabled value={dataTour.LoaiTour} />
                 )}
             </div>
 
-            <button onClick={showBtn ? handleSubmitUpdate : ""}> Submit</button>
+            <button onClick={showBtn ? handleSubmitUpdate : null}>
+                Submit
+            </button>
         </div>
     );
 }

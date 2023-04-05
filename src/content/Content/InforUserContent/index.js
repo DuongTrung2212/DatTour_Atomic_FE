@@ -12,19 +12,25 @@ import InforItem from "./InforItem";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import AllTour from "./pages/AllTour";
 import requestAxios from "../../../api/axios";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import Files from "react-files";
 import VerifyPass from "./VerifyPass";
 import { useRef } from "react";
+import ChangeInforForm from "./ChangeInforForm";
+import { DataUserChangeContext } from "../../../App";
 const cx = classNames.bind(styles);
 function InforUserContent() {
     const [user, setUser] = useState({});
     const [verified, setVerified] = useState(false);
     const [showVerify, setShowVerify] = useState(false);
+    const [showChangeForm, setShowChangeForm] = useState(false);
     const [change, setChange] = useState(0);
-
+    const { dataUserChange, setDataUserChange } = useContext(
+        DataUserChangeContext
+    );
     const verifyPassRef = useRef();
+    const changeInfoFormRef = useRef();
     const fetchDataUser = async () => {
         await requestAxios
             .get("/user")
@@ -40,11 +46,18 @@ function InforUserContent() {
                     setShowVerify(false);
             } catch {}
         };
+        const hanldeShowChangeInforForm = (e) => {
+            try {
+                if (!changeInfoFormRef.current.contains(e.target))
+                    setShowChangeForm(false);
+            } catch {}
+        };
         window.addEventListener("mousedown", hanlde);
+        window.addEventListener("mousedown", hanldeShowChangeInforForm);
     });
     useEffect(() => {
         fetchDataUser();
-    }, [change]);
+    }, [dataUserChange]);
     const hanldeChangeFile = async (files) => {
         let formData = new FormData();
         formData.append("Img", files[0]);
@@ -56,6 +69,7 @@ function InforUserContent() {
             })
             .then((res) => {
                 setChange(change + 1);
+                setDataUserChange(dataUserChange + 1);
                 console.log("OK");
             })
             .catch((err) => console.log("Err update avatar at infor user"));
@@ -65,6 +79,13 @@ function InforUserContent() {
             {showVerify && !verified ? (
                 <div ref={verifyPassRef}>
                     <VerifyPass onSuccess={() => setVerified(true)} />
+                </div>
+            ) : (
+                ""
+            )}
+            {showChangeForm ? (
+                <div className={cx("changeInforForm")} ref={changeInfoFormRef}>
+                    <ChangeInforForm />
                 </div>
             ) : (
                 ""
@@ -92,17 +113,24 @@ function InforUserContent() {
                         icon={<FontAwesomeIcon icon={faPhone} />}
                         text={user.DiaChi}
                     />
-                    <div className={cx("editInfor")}>
+                    <div
+                        onClick={(e) => {
+                            if (!verified) e.preventDefault();
+                            else setShowChangeForm(true);
+                            setShowVerify(true);
+                        }}
+                        className={cx("editInfor")}
+                    >
                         <FontAwesomeIcon icon={faEdit} />
                     </div>
                 </div>
                 <img
                     className={cx("imgIntroduce")}
-                    src={`${process.env.REACT_APP_API_IMG_URL}/${user.Img}`}
+                    src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                 />
                 <div className={cx("avatar")}>
                     <img
-                        src={`${process.env.REACT_APP_API_IMG_URL}/${user.Img}`}
+                        src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                     />
                     <b>Duơng Trung</b>
                     <div

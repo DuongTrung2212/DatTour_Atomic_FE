@@ -12,6 +12,7 @@ import { useMemo } from "react";
 const cx = classNames.bind(styles);
 function TourManager() {
     const [tourList, setTourList] = useState([]);
+    const [haveChange, setHaveChange] = useState(0);
 
     const fetchData = async () => [
         await requestAxios
@@ -26,8 +27,10 @@ function TourManager() {
 
     useEffect(() => {
         fetchData();
-    }, []);
-
+    }, [haveChange]);
+    const handleDelete = () => {
+        setHaveChange(haveChange + 1);
+    };
     return (
         <div className={cx("tourManager")}>
             <h1>Quản lí tour</h1>
@@ -43,6 +46,7 @@ function TourManager() {
                             ? tourList.map((tour, index) => {
                                   return (
                                       <TourItem
+                                          onDelete={handleDelete}
                                           data={tour}
                                           key={index}
                                           index={index + 1}

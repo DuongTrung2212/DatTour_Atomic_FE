@@ -45,7 +45,7 @@ function Input({
     }, [props.value]);
     return (
         <div className={cx("field", props.className)}>
-            <label className={cx("label",classNameLabel)}>{label}</label>
+            <label className={cx("label", classNameLabel)}>{label}</label>
             {!props.isNumber ? (
                 <input
                     {...props}

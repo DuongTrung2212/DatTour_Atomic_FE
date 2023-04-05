@@ -25,7 +25,7 @@ function TourUserItem({ img, date, quantity, price, name, status, ...props }) {
         <div className={cx("tourUserItem")}>
             <img
                 className={cx("background")}
-                src={`${process.env.REACT_APP_API_IMG_URL}/${img}`}
+                src={`${process.env.REACT_APP_API_IMG_URL}${img}`}
             />
             <div className={cx("content")}>
                 <div>

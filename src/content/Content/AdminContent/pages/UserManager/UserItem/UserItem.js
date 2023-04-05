@@ -3,6 +3,7 @@ import { memo, useEffect, useRef, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import requestAxios from "../../../../../../api/axios";
 import styles from "./UserItem.module.scss";
+import { confirmCustom } from "../../../../../../components/ConfirmCustom";
 const cx = classNames.bind(styles);
 function UserItem({ data, ...props }) {
     const [showUser, setShowUser] = useState(false);
@@ -31,18 +32,17 @@ function UserItem({ data, ...props }) {
         };
         fetchData();
     };
+    const onYes = async () => {
+        await requestAxios
+            .delete(`user/${props.userId}`)
+            .then((res) => {
+                if (props.onDelete) props.onDelete();
+                toast.success(res.data.message);
+            })
+            .catch((err) => toast.error("Lỗi rồi bạn"));
+    };
     const handleClickDeleteUser = async () => {
-        setShowUser(true);
-        const fetchData = async () => {
-            await requestAxios
-                .delete(`user/${props.userId}`)
-                .then((res) => {
-                    if (props.onDelete) props.onDelete(true);
-                    toast.success(res.data.message);
-                })
-                .catch((err) => toast.error("Lỗi rồi bạn"));
-        };
-        fetchData();
+        confirmCustom("Xác nhận xóa", "Bạn muốn xóa người dùng", onYes);
     };
     return (
         <div className={cx("userItem")}>
@@ -60,7 +60,7 @@ function UserItem({ data, ...props }) {
             <p className={cx("stt")}>{props.index}</p>
             <img
                 className={cx("img")}
-                src={`${process.env.REACT_APP_API_IMG_URL}/${data.Img}`}
+                src={`${process.env.REACT_APP_API_IMG_URL}${data.Img}`}
             />
             <p className={cx("name")}>{data.TenKH}</p>
             <p className={cx("sdt")}>{data.Sdt}</p>
@@ -82,7 +82,7 @@ function UserItem({ data, ...props }) {
                     <div>
                         <img
                             className={cx("imgUser")}
-                            src={`${process.env.REACT_APP_API_IMG_URL}/${dataUser.Img}`}
+                            src={`${process.env.REACT_APP_API_IMG_URL}${dataUser.Img}`}
                         />
                         <h3 className={cx("nameUser")}>{dataUser.TenKH}</h3>
                         <p>
