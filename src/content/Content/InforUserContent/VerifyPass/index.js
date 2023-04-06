@@ -5,6 +5,7 @@ import Input from "../../../../components/Input";
 import { Button } from "antd";
 import { useState } from "react";
 import requestAxios from "../../../../api/axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 function VerifyPass({ onSuccess, onErr, ...props }) {
@@ -20,13 +21,16 @@ function VerifyPass({ onSuccess, onErr, ...props }) {
                 MatKhau: pass,
             })
             .then((res) => {
-                if (res.data.message == "OK") onSuccess();
-                else {
+                if (res.data.message == "OK") {
+                    onSuccess();
+                } else {
                     onErr();
                     setShowBtn(true);
                 }
             })
-            .catch((err) => setShowBtn(true));
+            .catch((err) => {
+                setShowBtn(true);
+            });
     };
     return (
         <div className={cx("verifyPass")}>

@@ -5,14 +5,18 @@ import { useContext, useEffect, useState } from "react";
 import requestAxios from "../../../../api/axios";
 import { ToastContainer, toast } from "react-toastify";
 import { DataUserChangeContext } from "../../../../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import ChangePassForm from "./ChangPassForm";
 const cx = classNames.bind(styles);
 function ChangeInforForm() {
     const [nameUser, setNameUser] = useState("");
     const [emailUser, setEmailUser] = useState("");
     const [addressUser, setAddressUser] = useState("");
-    const [passUser, setPassUser] = useState("");
+
     const [showBtn, setShowBtn] = useState(true);
     const [dataUser, setDataUser] = useState("");
+    const [switchToChangePass, setSwitchToChangePass] = useState(false);
     const { dataUserChange, setDataUserChange } = useContext(
         DataUserChangeContext
     );
@@ -40,9 +44,7 @@ function ChangeInforForm() {
     const getAddressUser = (data) => {
         setAddressUser(data);
     };
-    const getPassUser = (data) => {
-        setPassUser(data);
-    };
+
     const handleSubmit = async () => {
         setShowBtn(false);
         var formData = new FormData();
@@ -54,6 +56,7 @@ function ChangeInforForm() {
             .patch("user", formData)
             .then((res) => {
                 if (res.data.message == "OK") toast.success("Đã đổi");
+                else toast.error("Vui lòng xem lại");
                 setShowBtn(true);
                 setDataUserChange(dataUserChange + 1);
             })
@@ -61,6 +64,11 @@ function ChangeInforForm() {
                 toast.error("Lỗi r bạn");
                 setShowBtn(true);
             });
+    };
+
+    const handleChangeForm = () => {
+        if (switchToChangePass) setSwitchToChangePass(false);
+        else setSwitchToChangePass(true);
     };
     return (
         <div className={cx("changeInforForm")}>
@@ -75,18 +83,39 @@ function ChangeInforForm() {
                 pauseOnHover={false}
                 theme="light"
             />
-            <Input value={nameUser} onChangeValue={getNameUser} label={"Tên"} />
-            <Input
-                value={emailUser}
-                onChangeValue={getEmailUser}
-                label={"Email"}
-            />
-            <Input
-                value={addressUser}
-                onChangeValue={getAddressUser}
-                label={"Địa chỉ"}
-            />
-            <button onClick={showBtn ? handleSubmit : null}>Xác nhận </button>
+            {switchToChangePass ? (
+                <div>
+                    <ChangePassForm />
+                </div>
+            ) : (
+                <div>
+                    <Input
+                        value={nameUser}
+                        onChangeValue={getNameUser}
+                        label={"Tên"}
+                    />
+                    <Input
+                        value={emailUser}
+                        onChangeValue={getEmailUser}
+                        label={"Email"}
+                    />
+                    <Input
+                        value={addressUser}
+                        onChangeValue={getAddressUser}
+                        label={"Địa chỉ"}
+                    />
+                    <button onClick={showBtn ? handleSubmit : null}>
+                        Xác nhận
+                    </button>
+                </div>
+            )}
+            <button onClick={handleChangeForm}>
+                {switchToChangePass ? (
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                ) : (
+                    <FontAwesomeIcon icon={faArrowRight} />
+                )}
+            </button>
         </div>
     );
 }

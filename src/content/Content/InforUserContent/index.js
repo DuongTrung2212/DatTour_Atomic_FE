@@ -19,6 +19,7 @@ import VerifyPass from "./VerifyPass";
 import { useRef } from "react";
 import ChangeInforForm from "./ChangeInforForm";
 import { DataUserChangeContext } from "../../../App";
+import { ToastContainer, toast } from "react-toastify";
 const cx = classNames.bind(styles);
 function InforUserContent() {
     const [user, setUser] = useState({});
@@ -76,9 +77,27 @@ function InforUserContent() {
     };
     return (
         <div className={cx("inforUserContent")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
             {showVerify && !verified ? (
                 <div ref={verifyPassRef}>
-                    <VerifyPass onSuccess={() => setVerified(true)} />
+                    <VerifyPass
+                        onSuccess={() => {
+                            setVerified(true);
+                        }}
+                        onErr={() => {
+                            toast.warning("Sai mật khẩu");
+                        }}
+                    />
                 </div>
             ) : (
                 ""
@@ -132,7 +151,7 @@ function InforUserContent() {
                     <img
                         src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                     />
-                    <b>Duơng Trung</b>
+                    <b>{user.TenKH}</b>
                     <div
                         onClick={(e) => {
                             setShowVerify(true);
