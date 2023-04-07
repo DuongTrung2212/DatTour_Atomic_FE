@@ -38,16 +38,6 @@ function TourContent() {
                         />
                     );
                 })}
-                <TourItem
-                    tourId={"ABC"}
-                    img={"ABC"}
-                    title={"ABC"}
-                    start={"ABC"}
-                    end={"ABC"}
-                    location={"ABC"}
-                    price={"ABC"}
-                    sale={"ABC"}
-                />
             </div>
         </div>
     );

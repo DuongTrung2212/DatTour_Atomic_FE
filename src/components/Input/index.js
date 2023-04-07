@@ -9,14 +9,15 @@ function Input({
     label,
     notNull,
     isEmail,
+    value,
     defaultValue,
     onChangeValue,
     classNameLabel,
     ...props
 }) {
-    const [value, setValue] = useState("");
+    const [dataChange, setDataChange] = useState("");
     const [message, setMessage] = useState("");
-    const valueDebounced = useDebounce(value, 1000);
+    const valueDebounced = useDebounce(dataChange, 1000);
     function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
@@ -24,7 +25,7 @@ function Input({
 
     const checkNull = (e) => {
         var txt = e.target.value;
-        setValue(txt);
+        setDataChange(txt);
         if (onChangeValue) {
             onChangeValue(txt);
         }
@@ -41,8 +42,8 @@ function Input({
         }
     };
     useEffect(() => {
-        if (props.value) setValue(props.value);
-    }, [props.value]);
+        if (value) setDataChange(value);
+    }, [value]);
     return (
         <div className={cx("field", props.className)}>
             <label className={cx("label", classNameLabel)}>{label}</label>
@@ -52,7 +53,7 @@ function Input({
                     max={props.max}
                     min={props.min}
                     onChange={checkNull}
-                    value={value}
+                    value={dataChange}
                     className={cx("input")}
                     type={props.type ? props.type : "text"}
                 />
@@ -63,7 +64,7 @@ function Input({
                     onChange={checkNull}
                     defaultValue={defaultValue || 1}
                     placeholder={props.placeholder}
-                    value={value}
+                    value={dataChange}
                 />
             )}
             <span className={cx("message")}>{message}</span>

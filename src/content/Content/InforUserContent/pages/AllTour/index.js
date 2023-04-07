@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import requestAxios from "../../../../../api/axios";
 import TourUserItem from "../../TourUserItem";
 import { useState } from "react";
+import { DataUserChangeContext } from "../../../../../App";
 
 function AllTour() {
     const [allTicket, setAllTicket] = useState([]);
+    const { dataUserChange } = useContext(DataUserChangeContext);
     const fetchDataTicket = async () => {
         await requestAxios
             .get(`datTour/filter/all`)
@@ -17,13 +19,14 @@ function AllTour() {
     };
     useEffect(() => {
         fetchDataTicket();
-    }, []);
+    }, [dataUserChange]);
 
     return (
         <div>
             {allTicket.map((ticket, index) => {
                 return (
                     <TourUserItem
+                        ticketId={ticket.ticket.MaVe}
                         key={index}
                         date={ticket.ticket.NgayDat}
                         quantity={ticket.ticket.SLNguoi}

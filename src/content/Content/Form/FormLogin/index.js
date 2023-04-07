@@ -37,6 +37,7 @@ function FormLogin() {
                     // window.location.reload();
                 } else {
                     toast.warn(res.data.message);
+                    setClickAbel(true);
                 }
             })
             .catch((err) => {

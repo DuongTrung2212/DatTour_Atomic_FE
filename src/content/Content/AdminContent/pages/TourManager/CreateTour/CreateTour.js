@@ -20,14 +20,14 @@ function CreateTour() {
     const [imgView, setImgView] = useState([]);
     const [decriptionForm, setDecriptionForm] = useState(false);
     const [dataDecription, setDataDecription] = useState([]);
-    const [tenTour, setTenTour] = useState(0);
+    const [tenTour, setTenTour] = useState("");
     const [gia, setGia] = useState(0);
     const [soLuong, setSoLuong] = useState(0);
-    const [diemDi, setDiemDi] = useState(0);
+    const [diemDi, setDiemDi] = useState("");
     const [loaiTour, setLoaiTour] = useState([]);
     const [sale, setSale] = useState("");
     const [diemDon, setDiemDon] = useState("");
-    const [HDVien, setHDVien] = useState({});
+    const [HDVien, setHDVien] = useState(null);
     const [dataOptionsNhanVien, setDataOptionsNhanVien] = useState([]);
     const [ngayKT, setNgayKT] = useState("");
     const [ngayBD, setNgayBD] = useState("");
@@ -116,6 +116,23 @@ function CreateTour() {
         setDecriptionForm(false);
     };
     const handleSubmit = async () => {
+        if (
+            imgSlide.length < 2 ||
+            loaiTour.length == 0 ||
+            dataDecription.length == 0 ||
+            tenTour.trim() == "" ||
+            gia == 0 ||
+            soLuong == 0 ||
+            diemDi.trim() == "" ||
+            diemDon.trim() == "" ||
+            loaiTour.length == 0 ||
+            HDVien == null ||
+            ngayBD == "" ||
+            ngayKT == ""
+        ) {
+            toast.warning("Bro vui lòng kiểm tra lại các trường");
+            return;
+        }
         setShowBtn(false);
         let formData = new FormData();
         // console.log(imgSlide);
@@ -169,7 +186,7 @@ function CreateTour() {
                 closeOnClick
                 pauseOnFocusLoss={false}
                 draggable
-                pauseOnHover
+                pauseOnHover={false}
                 theme="light"
             />
 

@@ -116,10 +116,13 @@ function InforTourContent() {
                     SLNguoi: soLuongDat,
                 })
                 .then((res) => {
-                    setSoLuongCon(res.data.SoLuongCon);
-                    setFormBuy(false);
-                    toast.success("Đã đặt");
-                    console.log(res.data.newTicket);
+                    if (res.data.message == "OK") {
+                        setSoLuongCon(res.data.SoLuongCon);
+                        setFormBuy(false);
+                        toast.success("Đã đặt");
+                    } else {
+                        toast.warning(res.data.message);
+                    }
                 })
                 .catch((err) => console.log("Err dat tour "));
         }
