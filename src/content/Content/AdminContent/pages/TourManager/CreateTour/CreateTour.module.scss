@@ -9,6 +9,20 @@
             object-fit: cover;
         }
     }
+    .ct{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .plus{
+        font-size: 20px;
+        margin-left: 20px;
+        background-color: rgb(218, 218, 218);
+        padding: 5px;
+        border: 1px solid black;
+        &:hover{
+            background-color: aquamarine;
+        }
+    }
     h2{
         text-align: center;
         color: rgb(12, 95, 95);
@@ -26,4 +40,5 @@
             background-color: rgb(242, 20, 109);
         }
     }
+    
 }

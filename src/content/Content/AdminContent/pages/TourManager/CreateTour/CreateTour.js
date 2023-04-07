@@ -235,7 +235,8 @@ function CreateTour() {
                 ) : (
                     ""
                 )}
-                <button onClick={() => setDecriptionForm(true)}>
+                <label className={cx("ct")}>Thêm nội dung</label>
+                <button onClick={() => setDecriptionForm(true)} className={cx("plus")}>
                     <FontAwesomeIcon icon={faAdd} />
                 </button>
                 <Input
