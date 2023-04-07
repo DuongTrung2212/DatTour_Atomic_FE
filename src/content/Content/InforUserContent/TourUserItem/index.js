@@ -36,7 +36,7 @@ function TourUserItem({
             default:
                 break;
         }
-    }, []);
+    }, [status]);
     const onYes = async () => {
         await requestAxios
             .delete(`datTour/${ticketId}`)
@@ -71,6 +71,7 @@ function TourUserItem({
             <img
                 className={cx("background")}
                 src={`${process.env.REACT_APP_API_IMG_URL}${img}`}
+                alt=""
             />
             <div className={cx("content")}>
                 <div>
@@ -83,7 +84,7 @@ function TourUserItem({
                         <p>Ngày đặt : {date}</p>
                     </div>
                     <b className={cx("status")}>{labelStatus}</b>
-                    {status == "CD" ? (
+                    {status === "CD" ? (
                         <button onClick={handleDeleteTicket}>Hủy vé</button>
                     ) : (
                         ""

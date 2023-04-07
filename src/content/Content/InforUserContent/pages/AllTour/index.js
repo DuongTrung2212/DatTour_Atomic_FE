@@ -6,9 +6,7 @@ import { DataUserChangeContext } from "../../../../../App";
 
 function AllTour() {
     const [allTicket, setAllTicket] = useState([]);
-    const { dataUserChange, setDataUserChange } = useContext(
-        DataUserChangeContext
-    );
+    const { dataUserChange } = useContext(DataUserChangeContext);
     const fetchDataTicket = async () => {
         await requestAxios
             .get(`datTour/filter/all`)

@@ -8,6 +8,8 @@ import { DataUserChangeContext } from "../../../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import ChangePassForm from "./ChangPassForm";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 const cx = classNames.bind(styles);
 function ChangeInforForm() {
     const [nameUser, setNameUser] = useState("");
@@ -109,13 +111,17 @@ function ChangeInforForm() {
                     </button>
                 </div>
             )}
-            <button onClick={handleChangeForm}>
-                {switchToChangePass ? (
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                ) : (
-                    <FontAwesomeIcon icon={faArrowRight} />
-                )}
-            </button>
+            <Tippy
+                content={<span className={cx("tippyLabel")}>Đổi mật khẩu</span>}
+            >
+                <button onClick={handleChangeForm}>
+                    {switchToChangePass ? (
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    ) : (
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    )}
+                </button>
+            </Tippy>
         </div>
     );
 }

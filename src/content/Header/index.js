@@ -21,7 +21,7 @@ import useDebounce from "../../hooks/useDebounce";
 import SearchItem from "../../components/SearchItem";
 import HeadlessTippy from "@tippyjs/react/headless";
 import Tippy from "@tippyjs/react";
-import "react-toastify/dist/ReactToastify.css";
+import "tippy.js/dist/tippy.css";
 import { TourContext } from "../../layouts/MainLayout/MainLayout";
 
 import { AdminContext, DataUserChangeContext, UserContext } from "../../App";
@@ -200,7 +200,9 @@ function Header(props) {
                         placeholder="Search here..."
                     />
                 </HeadlessTippy>
-                <Tippy content="Tim">
+                <Tippy
+                    content={<span className={cx("tippyLabel")}>Tìm kiếm</span>}
+                >
                     <FontAwesomeIcon
                         className={cx("iconSearch")}
                         icon={faMagnifyingGlass}

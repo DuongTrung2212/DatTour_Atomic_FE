@@ -3,6 +3,7 @@
 :root {
     --textColor: #ffffff;
     --backgroundColor: #c7c7c7;
+    --labelTippyColor: #ffff;
 }
 * {
     padding: 0;
@@ -11,6 +12,7 @@
     box-sizing: border-box;
     list-style: none;
     color: #000;
+
     button {
         border: none;
         outline: none;
@@ -26,6 +28,7 @@
         border-radius: 50%;
     }
 }
+
 .app {
     width: 100%;
 }
