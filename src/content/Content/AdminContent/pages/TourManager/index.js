@@ -18,7 +18,7 @@ function TourManager() {
         await requestAxios
             .get(`tour`)
             .then((res) => {
-                setTourList(res.data.listTour);
+                if (res.data.listTour) setTourList(res.data.listTour);
             })
             .catch((err) => {
                 console.log("Errr get all tour");
