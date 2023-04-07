@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import InforItem from "./InforItem";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import AllTour from "./pages/AllTour";
+import QueryTour from "./pages/QueryTour";
 import requestAxios from "../../../api/axios";
 import { useContext, useEffect } from "react";
 import { useState } from "react";
@@ -170,7 +170,7 @@ function InforUserContent() {
             </div>
             <div className={cx("content")}>
                 <Tabs>
-                    <TabList>
+                    <TabList className={cx("tabList")}>
                         <Tab>
                             <b>Tất cả vé</b>
                         </Tab>
@@ -184,14 +184,18 @@ function InforUserContent() {
 
                     <TabPanel>
                         <div>
-                            <AllTour />
+                            <QueryTour typeQuery={"all"} />
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div>BBBB</div>
+                        <div>
+                            <QueryTour typeQuery={"HT"} />
+                        </div>
                     </TabPanel>
                     <TabPanel>
-                        <div>CCCC</div>
+                        <div>
+                            <QueryTour typeQuery={"CD"} />
+                        </div>
                     </TabPanel>
                 </Tabs>
             </div>

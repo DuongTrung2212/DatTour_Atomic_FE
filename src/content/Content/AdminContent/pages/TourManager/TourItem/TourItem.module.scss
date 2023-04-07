@@ -3,16 +3,23 @@
     align-items: center;
     justify-content: space-between;
     width: 150%;
-    background-color: aquamarine;
+    background-color: rgb(226, 226, 226);
+    margin-top: 3px;
     border-radius: 5px;
     padding: 5px;
+    font-family: tahoma;
     p {
         padding: 5px 10px;
     }
     button {
-        padding: 5px 10px;
+        padding: 8px 10px;
         margin-right: 5px;
         border-radius: 5px;
+        font-size: 20px;
+        color: white;
+        &:hover{
+            background-color: rgb(202, 202, 202);
+        }
     }
     .updateForm {
         position: absolute;
@@ -34,5 +41,17 @@
     .soLuong {
     }
     .action {
+    }
+    .check{
+        background-color: rgba(170, 170, 170, 0.929);
+        color: black;
+        
+        
+    }
+    .update{
+        background-color: rgb(15, 153, 153);
+    }
+    .del{
+        background-color: rgb(228, 17, 17);
     }
 }

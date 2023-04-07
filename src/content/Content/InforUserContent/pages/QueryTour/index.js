@@ -1,15 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import requestAxios from "../../../../../api/axios";
 import TourUserItem from "../../TourUserItem";
-import { useState } from "react";
+
 import { DataUserChangeContext } from "../../../../../App";
 
-function AllTour() {
+function QueryTour({ typeQuery }) {
     const [allTicket, setAllTicket] = useState([]);
     const { dataUserChange } = useContext(DataUserChangeContext);
     const fetchDataTicket = async () => {
         await requestAxios
-            .get(`datTour/filter/all`)
+            .get(`datTour/filter/${typeQuery}`)
             .then((res) => {
                 if (res.data.data) setAllTicket(res.data.data);
             })
@@ -41,4 +41,4 @@ function AllTour() {
     );
 }
 
-export default AllTour;
+export default QueryTour;
