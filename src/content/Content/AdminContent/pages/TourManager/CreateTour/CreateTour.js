@@ -189,9 +189,10 @@ function CreateTour() {
                 pauseOnHover={false}
                 theme="light"
             />
-
+            <h2>THÊM TOUR</h2>
             <div>
-                <h3>Ảnh slide</h3>
+                
+                <h4>Ảnh slide</h4>
                 <div className={cx("slideList")}>
                     {imgView.map((src, index) => {
                         return (
@@ -289,7 +290,7 @@ function CreateTour() {
                     label={"Ngày kết thúc"}
                 />
 
-                {showBtn ? <button onClick={handleSubmit}>Submit</button> : ""}
+                {showBtn ? <button className={cx("btn")} onClick={handleSubmit}>Submit</button> : ""}
             </div>
         </div>
     );
