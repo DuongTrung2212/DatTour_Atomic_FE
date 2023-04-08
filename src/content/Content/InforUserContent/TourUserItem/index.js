@@ -14,6 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 function TourUserItem({
+    verifyPass,
+    verified,
     ticketId,
     img,
     date,
@@ -83,7 +85,9 @@ function TourUserItem({
             });
     };
     const handleDeleteTicket = () => {
-        confirmCustom("Xác nhận xóa", "Bro muốn xóa vé thật ak", onYes);
+        if (verified)
+            confirmCustom("Xác nhận xóa", "Bro muốn xóa vé thật ak", onYes);
+        else verifyPass();
     };
     return (
         <div className={cx("tourUserItem")}>

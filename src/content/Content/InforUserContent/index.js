@@ -77,6 +77,9 @@ function InforUserContent() {
             })
             .catch((err) => console.log("Err update avatar at infor user"));
     };
+    const showFormVerifyPass = () => {
+        setShowVerify(true);
+    };
     return (
         <div className={cx("inforUserContent")}>
             <ToastContainer
@@ -117,20 +120,17 @@ function InforUserContent() {
                 src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
-                
-                
-                <img 
+                <img
                     className={cx("imgIntroduce")}
                     src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                 />
-              
 
                 <div className={cx("avatar")}>
                     <img
                         src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                     />
                     <div className={cx("editavt")}>
-                        <div 
+                        <div
                             onClick={(e) => {
                                 setShowVerify(true);
                                 if (!verified) e.preventDefault();
@@ -146,42 +146,40 @@ function InforUserContent() {
                         </div>
                     </div>
                     <b> {user.TenKH} </b>
-                   
                 </div>
             </div>
-            
-            <div className={cx("introduce")}>
 
-                    <InforItem
-                        icon={<FontAwesomeIcon icon={faUser} />}
-                        text={user.TenKH}
-                    />
-                    <InforItem
-                        icon={<FontAwesomeIcon icon={faMailBulk} />}
-                        text={user.Email}
-                    />
-                    <InforItem
-                        icon={<FontAwesomeIcon icon={faPhone} />}
-                        text={user.Sdt}
-                    />
-                    <InforItem
-                        icon={<FontAwesomeIcon icon={faPhone} />}
-                        text={user.DiaChi}
-                    />
-                    <div
-                        onClick={(e) => {
-                            if (!verified) e.preventDefault();
-                            else setShowChangeForm(true);
-                            setShowVerify(true);
-                        }}
-                        className={cx("editInfor")}
-                    >
-                        <FontAwesomeIcon icon={faEdit} />
-                    </div>
+            <div className={cx("introduce")}>
+                <InforItem
+                    icon={<FontAwesomeIcon icon={faUser} />}
+                    text={user.TenKH}
+                />
+                <InforItem
+                    icon={<FontAwesomeIcon icon={faMailBulk} />}
+                    text={user.Email}
+                />
+                <InforItem
+                    icon={<FontAwesomeIcon icon={faPhone} />}
+                    text={user.Sdt}
+                />
+                <InforItem
+                    icon={<FontAwesomeIcon icon={faPhone} />}
+                    text={user.DiaChi}
+                />
+                <div
+                    onClick={(e) => {
+                        if (!verified) e.preventDefault();
+                        else setShowChangeForm(true);
+                        setShowVerify(true);
+                    }}
+                    className={cx("editInfor")}
+                >
+                    <FontAwesomeIcon icon={faEdit} />
                 </div>
+            </div>
 
             <div>
-                <hr/>
+                <hr />
             </div>
             <div className={cx("content")}>
                 <Tabs>
@@ -208,17 +206,29 @@ function InforUserContent() {
 
                     <TabPanel>
                         <div>
-                            <QueryTour typeQuery={"all"} />
+                            <QueryTour
+                                verifyPass={showFormVerifyPass}
+                                verified={verified}
+                                typeQuery={"all"}
+                            />
                         </div>
                     </TabPanel>
                     <TabPanel>
                         <div>
-                            <QueryTour typeQuery={"HT"} />
+                            <QueryTour
+                                verifyPass={showFormVerifyPass}
+                                verified={verified}
+                                typeQuery={"HT"}
+                            />
                         </div>
                     </TabPanel>
                     <TabPanel>
                         <div>
-                            <QueryTour typeQuery={"CD"} />
+                            <QueryTour
+                                verifyPass={showFormVerifyPass}
+                                verified={verified}
+                                typeQuery={"CD"}
+                            />
                         </div>
                     </TabPanel>
                 </Tabs>

@@ -34,7 +34,7 @@ function TourManager() {
     return (
         <div className={cx("tourManager")}>
             <h1>Quản lí tour</h1>
-            <Tabs>
+            <Tabs className={cx("tabs")}>
                 <TabList>
                     <Tab>Tour</Tab>
                     <Tab>Tạo tour</Tab>
@@ -57,7 +57,9 @@ function TourManager() {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <CreateTour />
+                    <div className={cx("createTour")}>
+                        <CreateTour />
+                    </div>
                 </TabPanel>
             </Tabs>
             <div></div>

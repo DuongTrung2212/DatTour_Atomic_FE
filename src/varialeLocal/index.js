@@ -7,7 +7,7 @@ const variableLocal = {
         },
         {
             value: "TTQ",
-            label: "Tour ttham quan",
+            label: "Tour tham quan",
         },
         {
             value: "TB",

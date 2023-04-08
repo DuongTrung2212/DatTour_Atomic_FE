@@ -129,7 +129,7 @@ function UpdateForm(props) {
     };
     const fetchDataAllStaff = async () => {
         await requestAxios
-            .get(`nhanVien`)
+            .get(`nhanVien/freetime`)
             .then((res) => {
                 if (res.data.message == "OK") {
                     setListStaff(res.data.listNhanVien);

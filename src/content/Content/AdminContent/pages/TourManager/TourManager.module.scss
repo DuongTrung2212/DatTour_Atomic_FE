@@ -2,6 +2,13 @@
     padding-left: 20px;
     width: 100%;
     position: relative;
+    .tabs {
+        width: 1200px;
+    }
+    .createTour {
+        width: fit-content;
+    }
     .tourList {
+        width: fit-content;
     }
 }

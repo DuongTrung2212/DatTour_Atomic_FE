@@ -35,7 +35,7 @@ function CreateTour() {
 
     const fetchDataStaff = async () => {
         await requestAxios
-            .get("nhanVien")
+            .get("nhanVien/freetime")
             .then((res) => {
                 if (res.data.message == "OK") {
                     const respon = res.data.listNhanVien;

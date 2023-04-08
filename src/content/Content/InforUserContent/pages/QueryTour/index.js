@@ -4,7 +4,7 @@ import TourUserItem from "../../TourUserItem";
 
 import { DataUserChangeContext } from "../../../../../App";
 
-function QueryTour({ typeQuery }) {
+function QueryTour({ verifyPass, verified, typeQuery }) {
     const [allTicket, setAllTicket] = useState([]);
     const { dataUserChange } = useContext(DataUserChangeContext);
     const fetchDataTicket = async () => {
@@ -26,6 +26,8 @@ function QueryTour({ typeQuery }) {
             {allTicket.map((ticket, index) => {
                 return (
                     <TourUserItem
+                        verifyPass={verifyPass}
+                        verified={verified}
                         ticketId={ticket.ticket.MaVe}
                         key={index}
                         date={ticket.ticket.NgayDat}
