@@ -27,7 +27,7 @@ function ChangeInforForm() {
             await requestAxios
                 .get("user")
                 .then((res) => {
-                    if (res.data.user) {
+                    if (res.data.message == "OK") {
                         setNameUser(res.data.user.TenKH);
                         setEmailUser(res.data.user.Email);
                         setAddressUser(res.data.user.DiaChi);

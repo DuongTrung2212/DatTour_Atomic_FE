@@ -44,10 +44,13 @@ function HomeContent() {
             await requestAxios
                 .get("tour/categoryTour")
                 .then((res) => {
-                    if (res.data.tourTN) setListTourTN(res.data.tourTN);
-                    if (res.data.tourTQ) setListTourTQ(res.data.tourTQ);
-                    if (res.data.tourBien) setListTourBien(res.data.tourBien);
-                    if (res.data) setListTour(res.data);
+                    if (res.data.message == "OK") {
+                        if (res.data.tourTN) setListTourTN(res.data.tourTN);
+                        if (res.data.tourTQ) setListTourTQ(res.data.tourTQ);
+                        if (res.data.tourBien)
+                            setListTourBien(res.data.tourBien);
+                        if (res.data) setListTour(res.data);
+                    }
                 })
                 .catch((err) => {
                     console.log("Err");

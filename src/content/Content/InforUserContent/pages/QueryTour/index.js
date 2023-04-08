@@ -11,7 +11,7 @@ function QueryTour({ typeQuery }) {
         await requestAxios
             .get(`datTour/filter/${typeQuery}`)
             .then((res) => {
-                if (res.data.data) setAllTicket(res.data.data);
+                if (res.data.message == "OK") setAllTicket(res.data.data);
             })
             .catch((err) => {
                 console.log("Err loi fetch data all ticket");

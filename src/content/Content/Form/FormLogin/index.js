@@ -75,7 +75,7 @@ function FormLogin() {
                 closeOnClick
                 pauseOnFocusLoss={false}
                 draggable
-                pauseOnHover
+                pauseOnHover={false}
                 theme="light"
             />
             <h2>Login</h2>

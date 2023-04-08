@@ -145,10 +145,12 @@ function FormSignUp() {
                         Email: email,
                     })
                     .then((res) => {
-                        toast.success(res.data.message);
-                        setStatus(true);
-                        setUserName(res.data.newUser.TenKH);
-                        console.log(res.data.data);
+                        if (res.data.message == "OK") {
+                            toast.success(res.data.message);
+                            setStatus(true);
+                            setUserName(res.data.newUser.TenKH);
+                            console.log(res.data.data);
+                        }
                     })
                     .catch((err) => {
                         setSignUpClickAble(true);

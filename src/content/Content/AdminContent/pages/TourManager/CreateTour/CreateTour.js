@@ -37,7 +37,7 @@ function CreateTour() {
         await requestAxios
             .get("nhanVien")
             .then((res) => {
-                if (res.data.listNhanVien) {
+                if (res.data.message == "OK") {
                     const respon = res.data.listNhanVien;
                     let dataOptions = [];
                     for (let index = 0; index < respon.length; index++) {
@@ -168,7 +168,7 @@ function CreateTour() {
                 },
             })
             .then((res) => {
-                toast.success("OK");
+                if (res.data.message == "OK") toast.success("OK");
                 setShowBtn(true);
             })
             .catch((err) => {
@@ -191,7 +191,6 @@ function CreateTour() {
             />
             <h2>THÊM TOUR</h2>
             <div>
-                
                 <h4>Ảnh slide</h4>
                 <div className={cx("slideList")}>
                     {imgView.map((src, index) => {
@@ -236,7 +235,10 @@ function CreateTour() {
                     ""
                 )}
                 <label className={cx("ct")}>Thêm nội dung</label>
-                <button onClick={() => setDecriptionForm(true)} className={cx("plus")}>
+                <button
+                    onClick={() => setDecriptionForm(true)}
+                    className={cx("plus")}
+                >
                     <FontAwesomeIcon icon={faAdd} />
                 </button>
                 <Input
@@ -291,7 +293,13 @@ function CreateTour() {
                     label={"Ngày kết thúc"}
                 />
 
-                {showBtn ? <button className={cx("btn")} onClick={handleSubmit}>Submit</button> : ""}
+                {showBtn ? (
+                    <button className={cx("btn")} onClick={handleSubmit}>
+                        Submit
+                    </button>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );

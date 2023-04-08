@@ -3,12 +3,14 @@ import { useState } from "react";
 import requestAxios from "../../../../../../api/axios";
 import Input from "../../../../../../components/Input";
 import styles from "./CreateStaff.module.scss";
+import { ToastContainer, toast } from "react-toastify";
 const cx = classNames.bind(styles);
 function CreateStaff() {
     const [nameStaff, setNameStaff] = useState("");
     const [genderStaff, setGenderStaff] = useState("");
     const [phoneStaff, setPhoneStaff] = useState("");
     const [emailStaff, setEmailStaff] = useState("");
+    const [showBtn, setShowBtn] = useState(true);
 
     const getValueName = (data) => {
         setNameStaff(data);
@@ -25,6 +27,7 @@ function CreateStaff() {
         setEmailStaff(data);
     };
     const handleSubmit = async () => {
+        setShowBtn(false);
         await requestAxios
             .post(`nhanVien`, {
                 TenHDVien: nameStaff,
@@ -32,12 +35,28 @@ function CreateStaff() {
                 SdtNV: phoneStaff,
                 Email: emailStaff,
             })
-            .then((res) => console.log("OK"))
-            .catch((err) => console.log("Err create staff"));
+            .then((res) => {
+                if (res.data.message == "OK") {
+                    toast.success("Thêm nhân viên thành công");
+                }
+            })
+            .catch((err) => toast.success("Lỗi"));
+        setShowBtn(true);
     };
 
     return (
         <div className={cx("createStaff")}>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
             <h3>Thêm Nhân viên</h3>
             <div>
                 <Input
@@ -46,10 +65,28 @@ function CreateStaff() {
                     label={"Tên nhân viên"}
                     classNameLabel={cx("labelGender")}
                 />
-                <Input onChangeValue={getValueGender} label={"Giới tính"} classNameLabel={cx("labelGender")} />
-                <Input onChangeValue={getValuePhone} notNull label={"Sdt"} classNameLabel={cx("labelGender")} />
-                <Input onChangeValue={getValueEmail} isEmail label={"Email"} classNameLabel={cx("labelGender")} />
-                <button onClick={handleSubmit}>Xác Nhận</button>
+                <Input
+                    onChangeValue={getValueGender}
+                    label={"Giới tính"}
+                    classNameLabel={cx("labelGender")}
+                />
+                <Input
+                    onChangeValue={getValuePhone}
+                    notNull
+                    label={"Sdt"}
+                    classNameLabel={cx("labelGender")}
+                />
+                <Input
+                    onChangeValue={getValueEmail}
+                    isEmail
+                    label={"Email"}
+                    classNameLabel={cx("labelGender")}
+                />
+                {showBtn ? (
+                    <button onClick={handleSubmit}>Xác Nhận</button>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );

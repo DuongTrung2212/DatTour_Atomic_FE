@@ -86,10 +86,12 @@ function Header(props) {
             await requestAxios
                 .get(`user`)
                 .then((res) => {
-                    setUserName(res.data.user.TenKH);
-                    setUserAvatar(
-                        `${process.env.REACT_APP_API_IMG_URL}${res.data.user.Img}`
-                    );
+                    if (res.data.message == "OK") {
+                        setUserName(res.data.user.TenKH);
+                        setUserAvatar(
+                            `${process.env.REACT_APP_API_IMG_URL}${res.data.user.Img}`
+                        );
+                    }
                 })
                 .catch((err) => console.log("Err get user"));
         };
@@ -105,11 +107,13 @@ function Header(props) {
             await requestAxios
                 .get(`tour/search/${debouncedValue}`)
                 .then((res) => {
-                    setFormLogin(false);
-                    setHideSearch(true);
-                    if (res.data.listSearch)
-                        setSearchResult(res.data.listSearch);
-                    else setSearchResult([]);
+                    if (res.data.message == "OK") {
+                        setFormLogin(false);
+                        setHideSearch(true);
+                        if (res.data.listSearch)
+                            setSearchResult(res.data.listSearch);
+                        else setSearchResult([]);
+                    }
                 })
                 .catch(() => console.log("Err"));
         };

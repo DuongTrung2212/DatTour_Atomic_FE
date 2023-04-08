@@ -94,7 +94,7 @@ function UpdateForm(props) {
         await requestAxios
             .get(`tour/${props.tourId}`)
             .then((res) => {
-                if (res.data.tour) {
+                if (res.data.message == "OK") {
                     setNameTour(res.data.tour.TenTour);
                     setPriceTour(res.data.tour.Gia);
                     setDataTour(res.data.tour);
@@ -131,16 +131,18 @@ function UpdateForm(props) {
         await requestAxios
             .get(`nhanVien`)
             .then((res) => {
-                if (res.data.listNhanVien) setListStaff(res.data.listNhanVien);
-                console.log(res.data.listNhanVien.length);
-                var listDataOptions = [];
-                for (var i = 0; i < res.data.listNhanVien.length; i++) {
-                    listDataOptions.push({
-                        value: res.data.listNhanVien[i].MaHDVien,
-                        label: res.data.listNhanVien[i].TenHDVien,
-                    });
+                if (res.data.message == "OK") {
+                    setListStaff(res.data.listNhanVien);
+                    console.log(res.data.listNhanVien.length);
+                    var listDataOptions = [];
+                    for (var i = 0; i < res.data.listNhanVien.length; i++) {
+                        listDataOptions.push({
+                            value: res.data.listNhanVien[i].MaHDVien,
+                            label: res.data.listNhanVien[i].TenHDVien,
+                        });
+                    }
+                    setOptionsStaff(listDataOptions);
                 }
-                setOptionsStaff(listDataOptions);
             })
             .catch(() => console.log("Loi fecth dat all staff"));
     };
@@ -249,8 +251,10 @@ function UpdateForm(props) {
                 },
             })
             .then((res) => {
-                setShowBtn(true);
-                toast.success("Thành công");
+                if (res.data.message == "OK") {
+                    setShowBtn(true);
+                    toast.success("Thành công");
+                }
             })
             .catch((err) => console.log("Err update tour"));
     };

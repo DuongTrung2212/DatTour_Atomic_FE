@@ -23,12 +23,11 @@ function ChangePassForm() {
                 } else {
                     toast.warning(res.data.message);
                 }
-                setShowBtn(true);
             })
             .catch((err) => {
                 console.log("Err chang pass user");
-                setShowBtn(true);
             });
+        setShowBtn(true);
     };
     return (
         <div>

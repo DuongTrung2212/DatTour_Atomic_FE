@@ -25,8 +25,9 @@ function UserItem({ data, ...props }) {
             await requestAxios
                 .get(`user/${props.userId}`)
                 .then((res) => {
-                    console.log(res.data);
-                    setDataUser(res.data.user);
+                    if (res.data.message == "OK") {
+                        setDataUser(res.data.user);
+                    }
                 })
                 .catch((err) => console.log("err get user"));
         };
@@ -36,8 +37,10 @@ function UserItem({ data, ...props }) {
         await requestAxios
             .delete(`user/${props.userId}`)
             .then((res) => {
-                if (props.onDelete) props.onDelete();
-                toast.success(res.data.message);
+                if (res.data.message == "OK") {
+                    if (props.onDelete) props.onDelete();
+                    toast.success(res.data.message);
+                }
             })
             .catch((err) => toast.error("Lỗi rồi bạn"));
     };

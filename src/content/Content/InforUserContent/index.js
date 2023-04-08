@@ -36,7 +36,7 @@ function InforUserContent() {
         await requestAxios
             .get("/user")
             .then((res) => {
-                if (res.data.user) setUser(res.data.user);
+                if (res.data.message == "OK") setUser(res.data.user);
             })
             .catch((err) => console.log("err fetch api at infor user conten"));
     };
@@ -69,9 +69,11 @@ function InforUserContent() {
                 },
             })
             .then((res) => {
-                setChange(change + 1);
-                setDataUserChange(dataUserChange + 1);
-                console.log("OK");
+                if (res.data.message == "OK") {
+                    setChange(change + 1);
+                    setDataUserChange(dataUserChange + 1);
+                    console.log("OK");
+                }
             })
             .catch((err) => console.log("Err update avatar at infor user"));
     };
