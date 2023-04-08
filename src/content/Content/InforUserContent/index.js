@@ -171,13 +171,22 @@ function InforUserContent() {
             <div className={cx("content")}>
                 <Tabs>
                     <TabList className={cx("tabList")}>
-                        <Tab>
+                        <Tab
+                            selectedClassName={cx("selectedTab")}
+                            className={cx("tab")}
+                        >
                             <b>Tất cả vé</b>
                         </Tab>
-                        <Tab>
+                        <Tab
+                            selectedClassName={cx("selectedTab")}
+                            className={cx("tab")}
+                        >
                             <b>Vé đã hoàn thành</b>
                         </Tab>
-                        <Tab>
+                        <Tab
+                            selectedClassName={cx("selectedTab")}
+                            className={cx("tab")}
+                        >
                             <b>Vé đang chờ</b>
                         </Tab>
                     </TabList>

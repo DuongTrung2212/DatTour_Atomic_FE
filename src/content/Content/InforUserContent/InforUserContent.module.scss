@@ -80,7 +80,20 @@
         margin: auto;
         margin-top: 100px;
         .tabList {
-            background-color: antiquewhite;
+            border-radius: 5px;
+            width: fit-content;
+            overflow: hidden;
+            .tab {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: rgb(199, 199, 199);
+                outline: none;
+            }
+            .selectedTab {
+                background-color: rgb(255, 255, 255);
+                padding: 15px 20px;
+                border-radius: 5px;
+            }
         }
     }
 }

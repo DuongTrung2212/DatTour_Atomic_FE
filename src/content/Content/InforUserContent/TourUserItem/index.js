@@ -6,6 +6,12 @@ import { confirmCustom } from "../../../../components/ConfirmCustom";
 import requestAxios from "../../../../api/axios";
 import { ToastContainer, toast } from "react-toastify";
 import { DataUserChangeContext } from "../../../../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCircleCheck,
+    faPersonCircleCheck,
+    faShieldHalved,
+} from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 function TourUserItem({
     ticketId,
@@ -18,19 +24,43 @@ function TourUserItem({
     ...props
 }) {
     const [labelStatus, setLabelStatus] = useState("");
+    const [classStatus, setClassStatus] = useState("");
+    const [iconStatus, setIconStatus] = useState(null);
     const { dataUserChange, setDataUserChange } = useContext(
         DataUserChangeContext
     );
+
     useEffect(() => {
         switch (status) {
             case "CD":
                 setLabelStatus("Đang chờ duyệt");
+                setClassStatus("waitApproval");
+                setIconStatus(
+                    <FontAwesomeIcon
+                        className={cx("icon")}
+                        icon={faShieldHalved}
+                    />
+                );
                 break;
             case "DD":
                 setLabelStatus("Đã duyệt");
+                setIconStatus(
+                    <FontAwesomeIcon
+                        className={cx("icon")}
+                        icon={faPersonCircleCheck}
+                    />
+                );
+                setClassStatus("approved");
                 break;
             case "HT":
                 setLabelStatus("Đã hoàn thành");
+                setIconStatus(
+                    <FontAwesomeIcon
+                        className={cx("icon")}
+                        icon={faCircleCheck}
+                    />
+                );
+                setClassStatus("completed");
                 break;
 
             default:
@@ -83,9 +113,16 @@ function TourUserItem({
                         <p>Số lượng : {quantity}</p>
                         <p>Ngày đặt : {date}</p>
                     </div>
-                    <b className={cx("status")}>{labelStatus}</b>
+                    <b className={cx("status", classStatus)}>
+                        {labelStatus} {iconStatus}
+                    </b>
                     {status === "CD" ? (
-                        <button onClick={handleDeleteTicket}>Hủy vé</button>
+                        <button
+                            className={cx("btnDeleteTicket")}
+                            onClick={handleDeleteTicket}
+                        >
+                            Hủy vé
+                        </button>
                     ) : (
                         ""
                     )}

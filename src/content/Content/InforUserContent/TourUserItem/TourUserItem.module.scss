@@ -8,7 +8,7 @@
 
     border-radius: 5px;
     .background {
-        width: 400px;
+        width: 30%;
         height: 200px;
         object-fit: cover;
         border-radius: 5px;
@@ -16,7 +16,7 @@
         z-index: 0;
     }
     .content {
-        width: 100%;
+        width: 70%;
         height: 80%;
         padding-left: 50px;
         background-color: rgba(255, 255, 255, 0.699);
@@ -26,13 +26,15 @@
         display: flex;
         align-items: center;
         div {
-            button {
+            .btnDeleteTicket {
                 position: absolute;
                 left: 90%;
                 top: 100%;
                 border-radius: 5px;
                 transform: translateY(-200%);
-                background-color: rgb(197, 77, 13);
+                background-color: rgb(170, 8, 8);
+                color: rgb(255, 255, 255);
+                font-weight: bold;
                 box-shadow: 2px 3px 4px #6c6b6b;
                 padding: 10px 20px;
             }
@@ -54,10 +56,34 @@
             .status {
                 font-size: 20px;
                 position: absolute;
+                display: flex;
+                align-items: center;
                 left: 80%;
                 top: 50%;
                 transform: translateY(-50%);
-                color: rgb(31, 212, 73);
+            }
+            .icon {
+                font-size: 30px;
+                margin-left: 20px;
+                color: inherit;
+            }
+            .waitApproval {
+                color: rgb(16, 43, 220);
+                path {
+                    color: rgb(16, 43, 220);
+                }
+            }
+            .approved {
+                color: rgb(200, 10, 207);
+                path {
+                    color: rgb(200, 10, 207);
+                }
+            }
+            .completed {
+                color: rgb(25, 179, 61);
+                path {
+                    color: rgb(25, 179, 61);
+                }
             }
         }
     }
