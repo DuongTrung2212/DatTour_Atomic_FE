@@ -1,0 +1,42 @@
+.staffItem {
+    width: 1000px;
+
+    background-color: rgb(181, 189, 186);
+    .infor {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span {
+            padding: 10px;
+        }
+        .index {
+            width: 3%;
+        }
+        .nameStaff {
+            width: 15%;
+        }
+        .genderStaff {
+            width: 5%;
+        }
+        .phoneStaff {
+            width: 15%;
+        }
+        .emailStaff {
+            width: 25%;
+        }
+        .workDate {
+            width: 17%;
+        }
+        .action {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            button {
+                padding: 5px 15px;
+                margin-left: 5px;
+                border-radius: 2px;
+            }
+        }
+    }
+}

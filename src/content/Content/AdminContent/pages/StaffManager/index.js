@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CreateStaff from "./CreateStaff";
 import styles from "./StaffManager.module.scss";
+import StaffList from "./StaffList";
 const cx = classNames.bind(styles);
 
 function StaffManager() {
@@ -15,7 +16,7 @@ function StaffManager() {
                 </TabList>
 
                 <TabPanel>
-                    <h3>Danh </h3>
+                    <StaffList />
                 </TabPanel>
                 <TabPanel>
                     <CreateStaff />

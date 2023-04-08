@@ -269,7 +269,7 @@ function UpdateForm(props) {
                 closeOnClick
                 pauseOnFocusLoss={false}
                 draggable
-                pauseOnHover
+                pauseOnHover={false}
                 theme="light"
             />
             <Input
