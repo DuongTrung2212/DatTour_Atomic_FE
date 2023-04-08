@@ -12,7 +12,7 @@
         z-index: -1;
     }
     .changeInforForm {
-        width: fit-content;
+        // width: fit-content;
         position: absolute;
         padding: 20px 40px;
         background-color: rgb(150, 190, 190);
@@ -20,6 +20,8 @@
         top: 10%;
         left: 5%;
         z-index: 3;
+        width: 1095px;
+        height: 406px;
     }
     .header {
         width: 100%;
@@ -27,35 +29,42 @@
         align-items: center;
         position: relative;
         .avatar {
-            top: 100%;
-            left: 40%;
+            
+            top: 120%;
+            left: 20%;
             transform: translate(-50%, -90%);
             position: absolute;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.852);
-            border-radius: 5px;
-            box-shadow: 3px 4px 5px #414141;
+            
+
+          
             img {
-                width: 100px;
-                height: 100px;
+                position: relative;
+                width: 168px;
+                height: 168px;
                 border-radius: 50%;
                 object-fit: cover;
-                box-shadow: 3px 4px 5px #aaaaaa;
+                box-shadow: 3px 4px 10px #135148;
+                border: 5px solid rgb(214, 109, 10);
+                
             }
-
+            .editavt{
+                position: relative;
+                .editAvatar {
+                    position: absolute;
+                     top: 300%;
+                    left: 100%;
+                    transform: translate(-100%, -100%);
+                    font-size: 20px;
+                }
+            }
             img,
             b {
                 text-align: center;
                 display: block;
                 margin: auto;
             }
-            .editAvatar {
-                position: absolute;
-                top: 100%;
-                left: 100%;
-                transform: translate(-100%, -100%);
-                font-size: 20px;
-            }
+           
         }
         .introduce {
             width: 40%;
@@ -69,7 +78,10 @@
             }
         }
         .imgIntroduce {
-            width: 60%;
+            margin-left: 100px;
+            margin-right: 100px;
+            height: 500px;
+            width: 100%;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 3px 4px 5px #9f979790;

@@ -117,7 +117,39 @@ function InforUserContent() {
                 src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
-                <div className={cx("introduce")}>
+                
+                
+                <img 
+                    className={cx("imgIntroduce")}
+                    src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
+                />
+              
+                <div className={cx("avatar")}>
+                    <img
+                        src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
+                    />
+                    <div className={cx("editavt")}>
+                        <div 
+                            onClick={(e) => {
+                                setShowVerify(true);
+                                if (!verified) e.preventDefault();
+                            }}
+                            className={cx("editAvatar")}
+                        >
+                            <Files
+                                accepts={["image/*"]}
+                                onChange={hanldeChangeFile}
+                            >
+                                <FontAwesomeIcon icon={faEdit} />
+                            </Files>
+                        </div>
+                    </div>
+                    <b>{user.TenKH}</b>
+                   
+                </div>
+            </div>
+            
+            <div className={cx("introduce")}>
                     <InforItem
                         icon={<FontAwesomeIcon icon={faUser} />}
                         text={user.TenKH}
@@ -145,31 +177,6 @@ function InforUserContent() {
                         <FontAwesomeIcon icon={faEdit} />
                     </div>
                 </div>
-                <img
-                    className={cx("imgIntroduce")}
-                    src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
-                />
-                <div className={cx("avatar")}>
-                    <img
-                        src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
-                    />
-                    <b>{user.TenKH}</b>
-                    <div
-                        onClick={(e) => {
-                            setShowVerify(true);
-                            if (!verified) e.preventDefault();
-                        }}
-                        className={cx("editAvatar")}
-                    >
-                        <Files
-                            accepts={["image/*"]}
-                            onChange={hanldeChangeFile}
-                        >
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Files>
-                    </div>
-                </div>
-            </div>
             <div className={cx("content")}>
                 <Tabs>
                     <TabList className={cx("tabList")}>
