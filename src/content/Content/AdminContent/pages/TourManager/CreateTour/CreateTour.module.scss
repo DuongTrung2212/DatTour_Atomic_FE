@@ -7,38 +7,38 @@
         .slideImg {
             width: 200px;
             object-fit: cover;
+            image-rendering: pixelated;
         }
     }
-    .ct{
+    .ct {
         font-size: 17px;
         font-weight: bold;
     }
-    .plus{
+    .plus {
         font-size: 20px;
         margin-left: 20px;
         background-color: rgb(218, 218, 218);
         padding: 5px;
         border: 1px solid black;
-        &:hover{
+        &:hover {
             background-color: aquamarine;
         }
     }
-    h2{
+    h2 {
         text-align: center;
         color: rgb(12, 95, 95);
         font-size: 30px;
-        margin: 20px 0;    
+        margin: 20px 0;
     }
-    .btn{
+    .btn {
         font-size: 20px;
         color: white;
         padding: 10px;
         background-color: rgb(9, 162, 197);
         display: block;
         margin: auto;
-        &:hover{
+        &:hover {
             background-color: rgb(242, 20, 109);
         }
     }
-    
 }

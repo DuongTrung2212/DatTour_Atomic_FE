@@ -35,9 +35,7 @@
             transform: translate(-50%, -90%);
             position: absolute;
             padding: 40px;
-            
 
-          
             img {
                 width: 200px;
                 height: 200px;
@@ -45,13 +43,13 @@
                 object-fit: cover;
                 box-shadow: 3px 4px 10px #135148;
                 border: 5px solid rgb(87, 124, 96);
-                
+                image-rendering: pixelated;
             }
-            .editavt{
+            .editavt {
                 position: relative;
                 .editAvatar {
                     position: absolute;
-                     top: 200%;
+                    top: 200%;
                     left: 90%;
                     transform: translate(-100%, -100%);
                     font-size: 20px;
@@ -63,33 +61,30 @@
                 display: block;
                 margin: auto;
                 font-size: 30px;
-
             }
-           
         }
-        
+
         .imgIntroduce {
             margin-left: 100px;
             margin-right: 100px;
             height: 500px;
             width: 100%;
             object-fit: cover;
+            image-rendering: pixelated;
             border-radius: 10px;
             box-shadow: 3px 4px 5px #9f979790;
         }
     }
     .introduce {
-       width: fit-content;
-        
+        width: fit-content;
+
         left: 400px;
         top: 10px;
         position: relative;
         // background-color: rgba(68, 74, 74, 0.544);
-        
-         border: 1px solid black;
-          
-        
-        
+
+        border: 1px solid black;
+
         border-radius: 5px;
         .editInfor {
             position: absolute;
@@ -102,12 +97,12 @@
         padding-top: 15px;
         border: none;
         border-bottom: 2px solid black;
-      }
+    }
     .content {
         width: 80%;
         margin: auto;
         margin-top: 20px;
-       
+
         .tabList {
             border-radius: 5px;
             width: fit-content;

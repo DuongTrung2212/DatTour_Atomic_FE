@@ -7,6 +7,7 @@
         height: 100%;
         filter: blur(0px);
         z-index: -1;
+        image-rendering: pixelated;
     }
     .introduce {
         display: flex;

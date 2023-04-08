@@ -14,6 +14,7 @@
                 object-fit: cover;
                 border-radius: 5px;
                 margin-bottom: 10px;
+                image-rendering: pixelated;
             }
             .showImgSlide {
                 position: absolute;
@@ -43,6 +44,8 @@
                 object-fit: cover;
                 border-radius: 5px;
                 margin: 10px auto;
+
+                image-rendering: pixelated;
             }
             .showMoTa {
                 position: absolute;
@@ -56,6 +59,7 @@
                 max-height: 400px;
                 box-shadow: 3px 2px 3px 3px #8a8a8a;
                 img {
+                    image-rendering: pixelated;
                 }
                 p {
                     width: 100%;
