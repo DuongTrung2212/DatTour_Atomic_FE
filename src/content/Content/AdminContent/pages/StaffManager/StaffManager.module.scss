@@ -1,8 +1,14 @@
 .staffManager {
     padding: 10px 20px;
-    h1{
+    .tabs {
+        width: 1200px;
+    }
+    .createStaff {
+        width: fit-content;
+        margin: auto;
+    }
+    h1 {
         color: rgb(5, 73, 82);
         padding-bottom: 20px;
     }
-   
 }

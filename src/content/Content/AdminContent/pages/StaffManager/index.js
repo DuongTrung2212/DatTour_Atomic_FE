@@ -9,7 +9,7 @@ function StaffManager() {
     return (
         <div className={cx("staffManager")}>
             <h1>Quản Lí Nhân Viên</h1>
-            <Tabs>
+            <Tabs className={cx("tabs")}>
                 <TabList>
                     <Tab>HD viên</Tab>
                     <Tab>Thêm HD Viên</Tab>
@@ -19,7 +19,9 @@ function StaffManager() {
                     <StaffList />
                 </TabPanel>
                 <TabPanel>
-                    <CreateStaff />
+                    <div className={cx("createStaff")}>
+                        <CreateStaff />
+                    </div>
                 </TabPanel>
             </Tabs>
         </div>
