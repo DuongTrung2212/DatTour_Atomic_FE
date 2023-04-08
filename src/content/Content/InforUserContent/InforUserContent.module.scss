@@ -1,6 +1,7 @@
 .inforUserContent {
     min-height: 1000px;
     position: relative;
+    padding-top: 100px;
     .background {
         width: 100%;
         height: 100%;
@@ -27,17 +28,18 @@
         align-items: center;
         position: relative;
         .avatar {
-            top: 100%;
-            left: 40%;
-            transform: translate(-50%, -90%);
-            position: absolute;
+            // top: 100%;
+            // left: 40%;
+            // transform: translate(-50%, -90%);
+            // position: absolute;
+            position: relative;
             padding: 40px;
             background-color: rgba(255, 255, 255, 0.852);
             border-radius: 5px;
             box-shadow: 3px 4px 5px #414141;
             img {
-                width: 100px;
-                height: 100px;
+                width: 200px;
+                height: 200px;
                 border-radius: 50%;
                 object-fit: cover;
                 box-shadow: 3px 4px 5px #aaaaaa;
@@ -60,7 +62,9 @@
         .introduce {
             width: 40%;
             position: relative;
-
+            background-color: rgb(197, 204, 204);
+            padding: 10px;
+            border-radius: 5px;
             .editInfor {
                 position: absolute;
                 top: 100%;

@@ -117,6 +117,26 @@ function InforUserContent() {
                 src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
+                <div className={cx("avatar")}>
+                    <img
+                        src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
+                    />
+                    <b>{user.TenKH}</b>
+                    <div
+                        onClick={(e) => {
+                            setShowVerify(true);
+                            if (!verified) e.preventDefault();
+                        }}
+                        className={cx("editAvatar")}
+                    >
+                        <Files
+                            accepts={["image/*"]}
+                            onChange={hanldeChangeFile}
+                        >
+                            <FontAwesomeIcon icon={faEdit} />
+                        </Files>
+                    </div>
+                </div>
                 <div className={cx("introduce")}>
                     <InforItem
                         icon={<FontAwesomeIcon icon={faUser} />}
@@ -145,30 +165,10 @@ function InforUserContent() {
                         <FontAwesomeIcon icon={faEdit} />
                     </div>
                 </div>
-                <img
+                {/* <img
                     className={cx("imgIntroduce")}
                     src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
-                />
-                <div className={cx("avatar")}>
-                    <img
-                        src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
-                    />
-                    <b>{user.TenKH}</b>
-                    <div
-                        onClick={(e) => {
-                            setShowVerify(true);
-                            if (!verified) e.preventDefault();
-                        }}
-                        className={cx("editAvatar")}
-                    >
-                        <Files
-                            accepts={["image/*"]}
-                            onChange={hanldeChangeFile}
-                        >
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Files>
-                    </div>
-                </div>
+                /> */}
             </div>
             <div className={cx("content")}>
                 <Tabs>
