@@ -58,7 +58,8 @@ function CreateStaff() {
                 theme="light"
             />
             <h3>Thêm Nhân viên</h3>
-            <div>
+
+            <div className={cx("formAddStaff")}>
                 <Input
                     onChangeValue={getValueName}
                     notNull
