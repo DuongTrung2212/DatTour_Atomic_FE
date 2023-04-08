@@ -117,7 +117,6 @@ function InforUserContent() {
                 src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
-<<<<<<< HEAD
                 
                 
                 <img 
@@ -125,13 +124,11 @@ function InforUserContent() {
                     src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                 />
               
-=======
->>>>>>> 14e35e3ba33a36e0605e73be633eb9c55700534f
+
                 <div className={cx("avatar")}>
                     <img
                         src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                     />
-<<<<<<< HEAD
                     <div className={cx("editavt")}>
                         <div 
                             onClick={(e) => {
@@ -148,31 +145,13 @@ function InforUserContent() {
                             </Files>
                         </div>
                     </div>
-                    <b>{user.TenKH}</b>
+                    <b> {user.TenKH} </b>
                    
                 </div>
             </div>
             
             <div className={cx("introduce")}>
-=======
-                    <b>{user.TenKH}</b>
-                    <div
-                        onClick={(e) => {
-                            setShowVerify(true);
-                            if (!verified) e.preventDefault();
-                        }}
-                        className={cx("editAvatar")}
-                    >
-                        <Files
-                            accepts={["image/*"]}
-                            onChange={hanldeChangeFile}
-                        >
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Files>
-                    </div>
-                </div>
-                <div className={cx("introduce")}>
->>>>>>> 14e35e3ba33a36e0605e73be633eb9c55700534f
+
                     <InforItem
                         icon={<FontAwesomeIcon icon={faUser} />}
                         text={user.TenKH}
@@ -200,14 +179,10 @@ function InforUserContent() {
                         <FontAwesomeIcon icon={faEdit} />
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
-                {/* <img
-                    className={cx("imgIntroduce")}
-                    src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
-                /> */}
+
+            <div>
+                <hr/>
             </div>
->>>>>>> 14e35e3ba33a36e0605e73be633eb9c55700534f
             <div className={cx("content")}>
                 <Tabs>
                     <TabList className={cx("tabList")}>
