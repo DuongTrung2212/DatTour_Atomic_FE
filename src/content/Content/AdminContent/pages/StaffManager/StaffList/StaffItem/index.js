@@ -55,8 +55,8 @@ function StaffItem({
                     {workDate.toLocaleString()}
                 </span>
                 <div className={cx("action")}>
-                    <button>Update</button>
-                    <button onClick={handleDeleteStaff}>Delete</button>
+                    <button className={cx("Update")}>Update</button>
+                    <button className={cx("Delete")} onClick={handleDeleteStaff}>Delete</button>
                 </div>
             </div>
         </div>

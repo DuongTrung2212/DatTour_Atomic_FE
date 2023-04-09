@@ -1,9 +1,11 @@
 .createTour {
+    margin-left: 320px;
     padding: 10px 100px;
     background-color: rgb(236, 236, 236);
     margin-top: 15px;
     box-shadow: 2px 2px 3px 3px rgb(181, 181, 181);
     .slideList {
+        padding: 5px;
         .slideImg {
             width: 200px;
             object-fit: cover;
@@ -31,14 +33,15 @@
         margin: 20px 0;
     }
     .btn {
+        border-radius: 9px;
         font-size: 20px;
         color: white;
         padding: 10px;
-        background-color: rgb(9, 162, 197);
+        background-color: rgba(123, 166, 175, 0.815);
         display: block;
         margin: auto;
         &:hover {
-            background-color: rgb(242, 20, 109);
+            background-color: rgb(3, 73, 34);
         }
     }
 }

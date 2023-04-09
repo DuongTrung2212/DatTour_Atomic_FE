@@ -33,7 +33,7 @@ function TourManager() {
     };
     return (
         <div className={cx("tourManager")}>
-            <h1>Quản lí tour</h1>
+            <h1>Quản Lí Tour</h1>
             <Tabs className={cx("tabs")}>
                 <TabList>
                     <Tab>Tour</Tab>
