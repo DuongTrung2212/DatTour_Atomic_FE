@@ -110,7 +110,7 @@ function InforTourContent() {
             await requestAxios
                 .post("datTour", {
                     MaTour: dataTour.MaTour,
-                    MaNV: dataTour.MaTour,
+                    MaHDVien: dataTour.MaTour,
                     NgayBD: dataTour.NgayBD,
                     NgayKT: dataTour.NgayKT,
                     SLNguoi: soLuongDat,
