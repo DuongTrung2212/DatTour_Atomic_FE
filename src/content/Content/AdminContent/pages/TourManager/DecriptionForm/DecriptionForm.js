@@ -74,7 +74,9 @@ function DecriptionForm(props) {
                 placeholder="Nhập nội dung"
             />
 
-            <Button className={cx("ok")} onClick={handleClickBtn}>OK</Button>
+            <Button className={cx("ok")} onClick={handleClickBtn}>
+                OK
+            </Button>
         </div>
     );
 }
