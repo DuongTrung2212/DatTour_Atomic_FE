@@ -77,9 +77,15 @@ function TourItem({ data, onDelete, ...props }) {
             )}
 
             <div className={cx("action")}>
-                <button className={cx("check")} onClick={handleClickCheck}>Check</button>
-                <button className={cx("update")} onClick={handleClickUpdate}>Cập nhật</button>
-                <button className={cx("del")} onClick={handleDelete}>Xóa</button>
+                <button className={cx("check")} onClick={handleClickCheck}>
+                    Check
+                </button>
+                <button className={cx("update")} onClick={handleClickUpdate}>
+                    Cập nhật
+                </button>
+                <button className={cx("del")} onClick={handleDelete}>
+                    Xóa
+                </button>
             </div>
         </div>
     );
