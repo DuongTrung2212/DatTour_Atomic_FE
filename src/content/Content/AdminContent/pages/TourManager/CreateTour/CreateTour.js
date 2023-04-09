@@ -141,7 +141,7 @@ function CreateTour() {
             formData.append("HinhAnh", item);
         });
         loaiTour.forEach((item, index) => {
-            formData.append("LoaiTour", loaiTour[index].value);
+            formData.append("LoaiTour", item.value);
         });
         dataDecription.forEach((item) => {
             // console.log(item.dataDecription.title);
