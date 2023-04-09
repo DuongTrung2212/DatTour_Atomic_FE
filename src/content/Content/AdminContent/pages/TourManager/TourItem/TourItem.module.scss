@@ -7,16 +7,17 @@
     margin-top: 3px;
     border-radius: 5px;
     padding: 5px;
-    font-family: tahoma;
+    
     p {
         padding: 5px 10px;
     }
     button {
-        padding: 8px 10px;
+        padding: 5px 8px;
         margin-right: 5px;
         border-radius: 5px;
-        font-size: 20px;
-        color: white;
+        font-size: 15px;
+        font-family: tahoma;
+        color: rgb(0, 0, 0);
         &:hover{
             background-color: rgb(202, 202, 202);
         }
@@ -45,14 +46,24 @@
     }
     .check{
         background-color: rgba(170, 170, 170, 0.929);
-        color: black;
-        
-        
+        &:hover{
+            background-color: rgba(11, 147, 43, 0.519);
+            color: white;
+        }
+               
     }
     .update{
-        background-color: rgb(15, 153, 153);
+        background-color: rgba(170, 170, 170, 0.929);
+        &:hover{
+            background-color: rgba(11, 147, 147, 0.519);
+            color: white;
+        }
     }
     .del{
-        background-color: rgb(228, 17, 17);
+        background-color: rgba(170, 170, 170, 0.929);
+        &:hover{
+            background-color: rgba(229, 12, 37, 0.519);
+            color: white;
+        }
     }
 }
