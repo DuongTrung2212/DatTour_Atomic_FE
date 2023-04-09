@@ -112,7 +112,7 @@ function CreateTour() {
     const handleAddDecription = (data) => {
         const newData = [...dataDecription, data];
         setDataDecription(newData);
-        // console.log(dataDecription);
+
         setDecriptionForm(false);
     };
     const handleSubmit = async () => {
@@ -149,7 +149,7 @@ function CreateTour() {
             formData.append("imgMoTa", item.dataDecription.file);
             formData.append("contentMoTa", item.dataDecription.content);
         });
-
+        console.log(formData.get("contentMoTa"));
         formData.append("TenTour", tenTour);
         formData.append("Gia", gia);
         formData.append("SoLuong", soLuong);

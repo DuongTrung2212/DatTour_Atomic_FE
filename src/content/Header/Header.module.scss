@@ -48,6 +48,7 @@
         display: flex;
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         font-size: 40px;
+        
     }
     .pages {
         display: flex;
@@ -59,6 +60,10 @@
             color: var(--textColor);
             padding: 20px;
             align-items: center;
+            &:hover {
+                transition: 2s;
+                background-color: rgb(127, 137, 211);
+            }
 
             path {
                 color: var(--textColor);
@@ -66,6 +71,7 @@
             p {
                 color: inherit;
                 margin-left: 10px;
+                
             }
         }
     }
