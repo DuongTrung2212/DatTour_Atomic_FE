@@ -118,7 +118,6 @@ function CreateTour() {
     const handleSubmit = async () => {
         if (
             imgSlide.length < 2 ||
-            loaiTour.length == 0 ||
             dataDecription.length == 0 ||
             tenTour.trim() == "" ||
             gia == 0 ||
@@ -141,8 +140,8 @@ function CreateTour() {
         imgSlide.forEach((item) => {
             formData.append("HinhAnh", item);
         });
-        loaiTour.forEach((item) => {
-            formData.append("LoaiTour", item.value);
+        loaiTour.forEach((item, index) => {
+            formData.append("LoaiTour", loaiTour[index].value);
         });
         dataDecription.forEach((item) => {
             // console.log(item.dataDecription.title);
@@ -156,7 +155,6 @@ function CreateTour() {
         formData.append("SoLuong", soLuong);
         formData.append("DiemDi", diemDi);
         formData.append("DiemDon", diemDon);
-        formData.append("LoaiTour", loaiTour);
         formData.append("Sale", sale);
         formData.append("MaHDVien", HDVien.value);
         formData.append("NgayBD", `${dateBD[2]}/${dateBD[1]}/${dateBD[0]}`);
