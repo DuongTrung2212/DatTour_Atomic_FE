@@ -1,7 +1,7 @@
 .tourItem {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    
     width: 150%;
     background-color: rgb(226, 226, 226);
     margin-top: 3px;
@@ -34,15 +34,20 @@
         background-color: rgb(213, 201, 186);
     }
     .stt {
-        width: 40px;
+        width: 5%;
     }
     .tourId {
+        width: 30%;
     }
     .tourName {
+        width: 35%;
     }
     .soLuong {
+        width: 5%;
     }
     .action {
+        width: 25%;
+        text-align: center;
     }
     .check{
         background-color: rgba(170, 170, 170, 0.929);
