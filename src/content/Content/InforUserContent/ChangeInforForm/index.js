@@ -86,11 +86,11 @@ function ChangeInforForm() {
                 theme="light"
             />
             {switchToChangePass ? (
-                <div>
+                <div className={cx("div1")}>
                     <ChangePassForm />
                 </div>
             ) : (
-                <div>
+                <div className={cx("div2")}>
                     <Input
                         value={nameUser}
                         onChangeValue={getNameUser}
@@ -106,11 +106,12 @@ function ChangeInforForm() {
                         onChangeValue={getAddressUser}
                         label={"Địa chỉ"}
                     />
-                    <button onClick={showBtn ? handleSubmit : null}>
+                    <button className={cx("btn")} onClick={showBtn ? handleSubmit : null}>
                         Xác nhận
                     </button>
                 </div>
             )}
+            <div className={cx("nextback")}>
             <Tippy
                 content={<span className={cx("tippyLabel")}>Đổi mật khẩu</span>}
             >
@@ -122,6 +123,7 @@ function ChangeInforForm() {
                     )}
                 </button>
             </Tippy>
+            </div>
         </div>
     );
 }
