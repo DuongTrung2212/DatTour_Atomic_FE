@@ -111,6 +111,7 @@ function ChangeInforForm() {
                     </button>
                 </div>
             )}
+            <div className={cx("nextback")}>
             <Tippy
                 content={<span className={cx("tippyLabel")}>Đổi mật khẩu</span>}
             >
@@ -122,6 +123,7 @@ function ChangeInforForm() {
                     )}
                 </button>
             </Tippy>
+            </div>
         </div>
     );
 }
