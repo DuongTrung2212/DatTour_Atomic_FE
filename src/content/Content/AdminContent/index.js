@@ -15,6 +15,7 @@ import { memo } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 import StaffManager from "./pages/StaffManager";
+import TicketManager from "./pages/TicketManager";
 
 const cx = classNames.bind(styles);
 const tab = [
@@ -36,7 +37,7 @@ const tab = [
     {
         icon: <FontAwesomeIcon icon={faTicket} />,
         tabList: `Tour đã đặt`,
-        tabPanel: <p>tabPanel4</p>,
+        tabPanel: <TicketManager />,
     },
 ];
 

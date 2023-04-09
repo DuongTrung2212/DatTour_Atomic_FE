@@ -112,7 +112,6 @@ function CreateTour() {
     const handleAddDecription = (data) => {
         const newData = [...dataDecription, data];
         setDataDecription(newData);
-
         setDecriptionForm(false);
     };
     const handleSubmit = async () => {

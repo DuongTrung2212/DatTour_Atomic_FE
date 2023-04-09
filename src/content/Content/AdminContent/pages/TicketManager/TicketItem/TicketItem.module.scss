@@ -1,0 +1,26 @@
+.ticketItem {
+    display: flex;
+    align-items: center;
+    span {
+        padding: 10px;
+    }
+    .index {
+        width: 30px;
+    }
+    .userName {
+        width: 150px;
+    }
+    .bookDate {
+        width: 150px;
+    }
+    .userSum {
+        width: 50px;
+    }
+    .action {
+        button {
+            padding: 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+    }
+}
