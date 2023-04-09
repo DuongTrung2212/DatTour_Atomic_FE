@@ -3,6 +3,7 @@
     background-color: rgb(236, 236, 236);
     margin-top: 15px;
     box-shadow: 2px 2px 3px 3px rgb(181, 181, 181);
+    border-radius:20px;
     .slideList {
         .slideImg {
             width: 200px;
@@ -38,7 +39,8 @@
         display: block;
         margin: auto;
         &:hover {
-            background-color: rgb(242, 20, 109);
+            background-color: rgb(237, 135, 174);
         }
+        border-radius:20px;
     }
 }
