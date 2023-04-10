@@ -1,7 +1,7 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -12,6 +12,7 @@ import styles from "./CreateTour.module.scss";
 import Select from "react-select";
 import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
 import { variableLocal } from "../../../../../../varialeLocal";
+import { DaTaChangeContext } from "../../..";
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +33,7 @@ function CreateTour() {
     const [ngayKT, setNgayKT] = useState("");
     const [ngayBD, setNgayBD] = useState("");
     const [showBtn, setShowBtn] = useState(true);
+    const { changed, setChanged } = useContext(DaTaChangeContext);
 
     const fetchDataStaff = async () => {
         await requestAxios
@@ -143,7 +145,6 @@ function CreateTour() {
             formData.append("LoaiTour", item.value);
         });
         dataDecription.forEach((item) => {
-            // console.log(item.dataDecription.title);
             formData.append("titleMoTa", item.dataDecription.title);
             formData.append("imgMoTa", item.dataDecription.file);
             formData.append("contentMoTa", item.dataDecription.content);
@@ -165,7 +166,11 @@ function CreateTour() {
                 },
             })
             .then((res) => {
-                if (res.data.message == "OK") toast.success("OK");
+                if (res.data.message == "OK") {
+                    toast.success("OK");
+                    console.log(res.data.tour);
+                    setChanged(changed + 1);
+                }
                 setShowBtn(true);
             })
             .catch((err) => {

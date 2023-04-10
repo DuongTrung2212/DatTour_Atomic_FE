@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useMemo } from "react";
 import StaffManager from "./pages/StaffManager";
 import TicketManager from "./pages/TicketManager";
+import { createContext } from "react";
 
 const cx = classNames.bind(styles);
 const tab = [
@@ -40,9 +41,10 @@ const tab = [
         tabPanel: <TicketManager />,
     },
 ];
-
+export const DaTaChangeContext = createContext();
 function AdminContent() {
     const [index, setIndex] = useState(0);
+    const [changed, setChanged] = useState(0);
     const abc = (index) => {
         return index;
     };
@@ -50,41 +52,47 @@ function AdminContent() {
     const testUseMemo = useMemo(() => abc(index), [index]);
 
     return (
-        <div className={cx("adminContent")}>
-            <Tabs
-                defaultIndex={testUseMemo}
-                onSelect={(index) => {
-                    setIndex(index);
-                }}
-                className={cx("tabs")}
-                direction="ltr"
-            >
-                <TabList className={cx("tabList")}>
+        <DaTaChangeContext.Provider value={{ changed, setChanged }}>
+            <div className={cx("adminContent")}>
+                <Tabs
+                    defaultIndex={testUseMemo}
+                    onSelect={(index) => {
+                        setIndex(index);
+                    }}
+                    className={cx("tabs")}
+                    direction="ltr"
+                >
+                    <TabList className={cx("tabList")}>
+                        {tab.map((tab, index) => {
+                            return (
+                                <Tab
+                                    selectedClassName={cx("onSelect")}
+                                    key={index}
+                                    className={cx("tab")}
+                                >
+                                    <div className={cx("tabItem")}>
+                                        <div className={cx("icon")}>
+                                            {tab.icon}
+                                        </div>
+                                        <b className={cx("title")}>
+                                            {tab.tabList}
+                                        </b>
+                                    </div>
+                                </Tab>
+                            );
+                        })}
+                    </TabList>
                     {tab.map((tab, index) => {
                         return (
-                            <Tab
-                                selectedClassName={cx("onSelect")}
-                                key={index}
-                                className={cx("tab")}
-                            >
-                                <div className={cx("tabItem")}>
-                                    <div className={cx("icon")}>{tab.icon}</div>
-                                    <b className={cx("title")}>{tab.tabList}</b>
-                                </div>
-                            </Tab>
+                            <TabPanel key={index}>
+                                <div>{tab.tabPanel}</div>
+                            </TabPanel>
                         );
                     })}
-                </TabList>
-                {tab.map((tab, index) => {
-                    return (
-                        <TabPanel key={index}>
-                            <div>{tab.tabPanel}</div>
-                        </TabPanel>
-                    );
-                })}
-            </Tabs>
-            <div className={cx("listMenu")}></div>
-        </div>
+                </Tabs>
+                <div className={cx("listMenu")}></div>
+            </div>
+        </DaTaChangeContext.Provider>
     );
 }
 
