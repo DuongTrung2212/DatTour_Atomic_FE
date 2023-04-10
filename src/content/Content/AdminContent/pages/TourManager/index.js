@@ -8,17 +8,23 @@ import { async } from "@firebase/util";
 import requestAxios from "../../../../../api/axios";
 import CreateTour from "./CreateTour/CreateTour";
 import { useMemo } from "react";
+import { DaTaChangeContext } from "../..";
+import { useContext } from "react";
 
 const cx = classNames.bind(styles);
 function TourManager() {
     const [tourList, setTourList] = useState([]);
     const [haveChange, setHaveChange] = useState(0);
+    const { changed, setChanged } = useContext(DaTaChangeContext);
 
     const fetchData = async () => [
         await requestAxios
             .get(`tour`)
             .then((res) => {
                 if (res.data.message == "OK") setTourList(res.data.listTour);
+                else {
+                    setTourList([]);
+                }
             })
             .catch((err) => {
                 console.log("Errr get all tour");
@@ -27,8 +33,9 @@ function TourManager() {
 
     useEffect(() => {
         fetchData();
-    }, [haveChange]);
+    }, [haveChange, changed]);
     const handleDelete = () => {
+        setChanged(changed + 1);
         setHaveChange(haveChange + 1);
     };
     return (

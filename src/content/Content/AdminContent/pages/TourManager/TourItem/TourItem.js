@@ -9,10 +9,13 @@ import styles from "./TourItem.module.scss";
 import { confirmCustom } from "../../../../../../components/ConfirmCustom";
 import requestAxios from "../../../../../../api/axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useContext } from "react";
+import { DaTaChangeContext } from "../../..";
 
 const cx = classNames.bind(styles);
 function TourItem({ data, onDelete, ...props }) {
     const [formUpdate, setFormUpdate] = useState(false);
+    const { changed, setChanged } = useContext(DaTaChangeContext);
     let updateFormRef = useRef();
     const navigate = useNavigate();
     const handleClickCheck = () => {
@@ -37,6 +40,7 @@ function TourItem({ data, onDelete, ...props }) {
             .then((res) => {
                 if (res.data.message == "OK") {
                     if (onDelete) onDelete();
+                    setChanged(changed + 1);
                     toast.success(res.data.message);
                 } else {
                     toast.error(res.data.message);

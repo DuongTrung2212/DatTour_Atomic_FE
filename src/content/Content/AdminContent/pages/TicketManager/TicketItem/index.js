@@ -3,10 +3,19 @@ import styles from "./TicketItem.module.scss";
 
 const cx = classNames.bind(styles);
 
-function TicketItem({ index, tourId, userId, userName, bookDate, userSum }) {
+function TicketItem({
+    index,
+    ticketId,
+    tourId,
+    userId,
+    userName,
+    bookDate,
+    userSum,
+}) {
     return (
         <div className={cx("ticketItem")}>
             <span className={cx("index")}>{index}</span>
+            <span className={cx("ticketId")}>{ticketId}</span>
             <span className={cx("userName")}>{userName}</span>
             <span className={cx("bookDate")}>{bookDate}</span>
             <span className={cx("userSum")}>{userSum}</span>

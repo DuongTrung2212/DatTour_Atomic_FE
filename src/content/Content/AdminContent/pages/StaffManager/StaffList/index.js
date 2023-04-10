@@ -16,7 +16,6 @@ function StaffList() {
             .get("nhanVien")
             .then((res) => {
                 if (res.data.message == "OK") {
-                    console.log(res.data.listNhanVien);
                     setListStaff(res.data.listNhanVien);
                 }
             })

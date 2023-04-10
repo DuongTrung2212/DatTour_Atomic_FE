@@ -5,7 +5,8 @@ import styles from "./TicketManager.module.scss";
 import TicketItem from "./TicketItem";
 import requestAxios from "../../../../../api/axios";
 import { useEffect, useState } from "react";
-import Item from "antd/es/list/Item";
+import TicketList from "./TicketList";
+
 const cx = classNames.bind(styles);
 
 function TicketManager() {
@@ -29,20 +30,11 @@ function TicketManager() {
             <div>
                 {dataTicket.map((data, index) => {
                     return (
-                        <div key={index}>
-                            <span>{data.tour.TenTour}</span>
-                            <div>
-                                <TicketItem
-                                    index={1}
-                                    tourId={1}
-                                    userId={1}
-                                    userName={"Abc"}
-                                    bookDate={"1021"}
-                                    userSum={3}
-                                />
-                                ;
-                            </div>
-                        </div>
+                        <TicketList
+                            key={index}
+                            tourData={data.tour}
+                            listTicketData={data.listTicket}
+                        />
                     );
                 })}
             </div>

@@ -60,7 +60,7 @@ function DecriptionForm(props) {
                 notNull={true}
                 label={"Tiêu đề"}
             />
-            <label>Chọn ảnh</label>
+            <span>Chọn ảnh</span>
             <input
                 onChange={handleFile}
                 className={cx("file")}

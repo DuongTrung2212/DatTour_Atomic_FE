@@ -38,9 +38,11 @@ function CreateStaff() {
             .then((res) => {
                 if (res.data.message == "OK") {
                     toast.success("Thêm nhân viên thành công");
+                } else {
+                    toast.error(res.data.message);
                 }
             })
-            .catch((err) => toast.success("Lỗi"));
+            .catch((err) => toast.error("Lỗi"));
         setShowBtn(true);
     };
 
