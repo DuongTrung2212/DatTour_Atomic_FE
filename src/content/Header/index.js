@@ -122,6 +122,7 @@ function Header(props) {
         // setSearchResult(result);
     }, [debouncedValue]);
     const handleSearch = (e) => {
+        setHideSearch(true);
         setSearchValue(e.target.value);
     };
     const handleHideSearch = () => {
@@ -191,7 +192,7 @@ function Header(props) {
                                 </div>
                             </div>
                         ) : (
-                            ""
+                            <p>Ko tìm thấy kết quả</p>
                         )
                     }
                 >

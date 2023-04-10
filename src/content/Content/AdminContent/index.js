@@ -45,12 +45,12 @@ export const DaTaChangeContext = createContext();
 function AdminContent() {
     const [index, setIndex] = useState(0);
     const [changed, setChanged] = useState(0);
+
     const abc = (index) => {
         return index;
     };
 
     const testUseMemo = useMemo(() => abc(index), [index]);
-
     return (
         <DaTaChangeContext.Provider value={{ changed, setChanged }}>
             <div className={cx("adminContent")}>

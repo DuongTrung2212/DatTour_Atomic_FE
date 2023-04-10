@@ -3,13 +3,15 @@ import styles from "./TicketList.module.scss";
 
 import { useEffect, useState } from "react";
 import TicketItem from "../TicketItem";
+import { useContext } from "react";
+import { DaTaChangeContext } from "../../..";
 
 const cx = classNames.bind(styles);
 function TicketList({ tourData, listTicketData }) {
     const [ticketList, seTicketList] = useState([]);
     useEffect(() => {
         seTicketList(listTicketData);
-    }, []);
+    });
     return (
         <div>
             <h2>{tourData.TenTour}</h2>
@@ -24,6 +26,7 @@ function TicketList({ tourData, listTicketData }) {
                             tourId={tourData.MaTour}
                             bookDate={ticket.ticket.NgayDat}
                             userSum={ticket.ticket.SLNguoi}
+                            status={ticket.ticket.TinhTrang}
                         />
                     );
                 })}

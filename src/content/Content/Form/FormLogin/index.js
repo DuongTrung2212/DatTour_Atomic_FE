@@ -56,6 +56,7 @@ function FormLogin() {
     return (
         <div className={cx("formLogin")}>
             <ReactjsAlert
+                autoCloseIn={2000}
                 status={status} // true or false
                 type={"success"} // success, warning, error, info
                 title={`Chào mừng ${userName}`}

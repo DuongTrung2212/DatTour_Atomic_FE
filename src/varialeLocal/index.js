@@ -14,6 +14,31 @@ const variableLocal = {
             label: "Tour biển",
         },
     ],
+    dataGender: [
+        {
+            value: "Nam",
+            label: "Nam",
+        },
+        {
+            value: "Nữ",
+            label: "Nữ",
+        },
+    ],
+    dataStatus: [
+        {
+            value: "CD",
+            label: "Đang chờ duyệt",
+        },
+        {
+            value: "DD",
+            label: "Đã duyệt",
+        },
+        {
+            value: "HT",
+            label: "Hoàn Thành",
+        },
+    ],
+
     mainBackground: img,
 };
 export { variableLocal };
