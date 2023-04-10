@@ -82,12 +82,6 @@ function AdminContent() {
                         </TabPanel>
                     );
                 })}
-                {/* <TabPanel>
-                    <h2>Any content 1</h2>
-                </TabPanel>
-                <TabPanel>
-                    <h2>Any content 2</h2>
-                </TabPanel> */}
             </Tabs>
             <div className={cx("listMenu")}></div>
         </div>

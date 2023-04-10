@@ -3,7 +3,8 @@ import Input from "../../../../../components/Input";
 import requestAxios from "../../../../../api/axios";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./ChangPassForm.scss";
-
+import classNames from "classnames/bind";
+const cx = classNames.bind(styles);
 function ChangePassForm() {
     const [passUser, setPassUser] = useState("");
     const [showBtn, setShowBtn] = useState(true);
@@ -31,7 +32,7 @@ function ChangePassForm() {
         setShowBtn(true);
     };
     return (
-        <div>
+        <div className={cx("changePassForm")}>
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
@@ -48,7 +49,7 @@ function ChangePassForm() {
                 onChangeValue={getPassUser}
                 label={"Mật khẩu mới"}
             />
-            <button  onClick={showBtn ? handleSubmitChangePass : null}>
+            <button onClick={showBtn ? handleSubmitChangePass : null}>
                 Xác nhận
             </button>
         </div>

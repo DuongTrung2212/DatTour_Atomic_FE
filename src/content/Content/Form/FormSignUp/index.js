@@ -149,6 +149,7 @@ function FormSignUp() {
                             toast.success(res.data.message);
                             setStatus(true);
                             setUserName(res.data.newUser.TenKH);
+
                             console.log(res.data.data);
                         }
                     })
