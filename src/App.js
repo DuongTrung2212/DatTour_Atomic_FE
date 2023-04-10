@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { createContext, useState } from "react";
 import Admin from "./pages/Admin";
 import InforUser from "./pages/InforUser";
+import { useEffect } from "react";
 const cx = classNames.bind(styles);
 export const UserContext = createContext();
 export const AdminContext = createContext();
@@ -18,7 +19,9 @@ function App() {
     const isAdmin = Cookies.get("isAdmin") ? true : false;
     const [dataUserChange, setDataUserChange] = useState(0);
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
-
+    useEffect(() => {
+        document.title = "Atomic";
+    }, []);
     // console.log(process.env.REACT_APP_API_BASE_URL);
     // console.log({ publicRoutes });
     return (
