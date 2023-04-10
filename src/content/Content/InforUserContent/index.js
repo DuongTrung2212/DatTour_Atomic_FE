@@ -173,8 +173,10 @@ function InforUserContent() {
                         setShowVerify(true);
                     }}
                     className={cx("editInfor")}
+                    // icon dong 179<FontAwesomeIcon icon={faEdit} />
                 >
-                    <FontAwesomeIcon icon={faEdit} />
+                    <button className={cx("editbutton")}>Sửa thông tin</button>
+                    
                 </div>
             </div>
 

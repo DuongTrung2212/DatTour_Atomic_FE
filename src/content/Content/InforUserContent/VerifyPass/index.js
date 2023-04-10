@@ -34,11 +34,11 @@ function VerifyPass({ onSuccess, onErr, ...props }) {
     };
     return (
         <div className={cx("verifyPass")}>
-            <h2>VerifyPass</h2>
+            <h2>Xác Thực</h2>
             <div>
-                <Input onChangeValue={getPass} label={"Xác nhận mật khẩu"} />
+                <Input onChangeValue={getPass} label={"Vui lòng nhập mật khẩu để tiếp tục :"} />
                 {showBtn ? (
-                    <Button className="btn" onClick={handleVerifyPass}>
+                    <Button className={cx("btn")} onClick={handleVerifyPass}>
                         OK
                     </Button>
                 ) : (
