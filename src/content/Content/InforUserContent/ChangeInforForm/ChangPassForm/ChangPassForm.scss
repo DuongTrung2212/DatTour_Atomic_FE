@@ -1,13 +1,14 @@
 .changePassForm {
     button {
-        background-color: rgb(35, 144, 144);
+        background-color: rgb(234, 242, 242);
         font-size: 20px;
-        color: white;
+        color: rgb(172, 167, 167);
         padding: 10px;
         display: block;
         border-radius: 20px;
         &:hover {
-            background-color: rgb(34, 137, 210);
+            color: aliceblue;
+            background-color: rgb(24, 109, 109);
         }
     }
 }
