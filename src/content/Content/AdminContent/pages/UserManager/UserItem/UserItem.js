@@ -39,7 +39,9 @@ function UserItem({ data, ...props }) {
             .then((res) => {
                 if (res.data.message == "OK") {
                     if (props.onDelete) props.onDelete();
-                    toast.success(res.data.message);
+                    toast.success("Đã xóa");
+                } else {
+                    toast.warning(res.data.message);
                 }
             })
             .catch((err) => toast.error("Lỗi rồi bạn"));

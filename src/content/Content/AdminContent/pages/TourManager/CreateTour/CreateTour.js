@@ -59,7 +59,7 @@ function CreateTour() {
 
     useEffect(() => {
         fetchDataStaff();
-    }, []);
+    }, [changed]);
     const onChangeTentour = (value) => {
         setTenTour(value);
     };
@@ -144,12 +144,14 @@ function CreateTour() {
         loaiTour.forEach((item, index) => {
             formData.append("LoaiTour", item.value);
         });
+
         dataDecription.forEach((item) => {
             formData.append("titleMoTa", item.dataDecription.title);
             formData.append("imgMoTa", item.dataDecription.file);
             formData.append("contentMoTa", item.dataDecription.content);
+            console.log(formData.get("contentMoTa"));
         });
-        console.log(formData.get("contentMoTa"));
+
         formData.append("TenTour", tenTour);
         formData.append("Gia", gia);
         formData.append("SoLuong", soLuong);
@@ -162,13 +164,14 @@ function CreateTour() {
         await requestAxios
             .post("tour", formData, {
                 headers: {
+                    Accept: "application/json",
                     "Content-Type": "multipart/form-data",
                 },
             })
             .then((res) => {
                 if (res.data.message == "OK") {
                     toast.success("OK");
-                    console.log(res.data.tour);
+
                     setChanged(changed + 1);
                 }
                 setShowBtn(true);
@@ -296,7 +299,7 @@ function CreateTour() {
                 />
 
                 {showBtn ? (
-                    <button className={cx("btn")} onClick={handleSubmit}>
+                    <button className={cx("btnSubmit")} onClick={handleSubmit}>
                         Submit
                     </button>
                 ) : (

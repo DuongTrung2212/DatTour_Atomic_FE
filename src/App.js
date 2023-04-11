@@ -15,7 +15,6 @@ export const AdminContext = createContext();
 export const DataUserChangeContext = createContext();
 function App() {
     const User = Cookies.get("access_token") ? true : false;
-
     const isAdmin = Cookies.get("isAdmin") ? true : false;
     const [dataUserChange, setDataUserChange] = useState(0);
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
