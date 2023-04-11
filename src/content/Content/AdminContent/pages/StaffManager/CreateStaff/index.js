@@ -4,19 +4,18 @@ import requestAxios from "../../../../../../api/axios";
 import Input from "../../../../../../components/Input";
 import styles from "./CreateStaff.module.scss";
 import { ToastContainer, toast } from "react-toastify";
+import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
+import { variableLocal } from "../../../../../../varialeLocal";
 const cx = classNames.bind(styles);
 function CreateStaff() {
     const [nameStaff, setNameStaff] = useState("");
-    const [genderStaff, setGenderStaff] = useState("");
+    const [genderStaff, setGenderStaff] = useState(null);
     const [phoneStaff, setPhoneStaff] = useState("");
     const [emailStaff, setEmailStaff] = useState("");
     const [showBtn, setShowBtn] = useState(true);
 
     const getValueName = (data) => {
         setNameStaff(data);
-    };
-    const getValueGender = (data) => {
-        setGenderStaff(data);
     };
 
     const getValuePhone = (data) => {
@@ -31,7 +30,7 @@ function CreateStaff() {
         await requestAxios
             .post(`nhanVien`, {
                 TenHDVien: nameStaff,
-                GioiTinh: genderStaff,
+                GioiTinh: genderStaff.value,
                 SdtNV: phoneStaff,
                 Email: emailStaff,
             })
@@ -68,10 +67,9 @@ function CreateStaff() {
                     label={"Tên nhân viên"}
                     classNameLabel={cx("labelGender")}
                 />
-                <Input
-                    onChangeValue={getValueGender}
-                    label={"Giới tính"}
-                    classNameLabel={cx("labelGender")}
+                <SelectCustom
+                    onChange={(e) => setGenderStaff(e)}
+                    options={variableLocal.dataGender}
                 />
                 <Input
                     onChangeValue={getValuePhone}
