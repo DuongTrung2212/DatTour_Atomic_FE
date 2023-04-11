@@ -10,9 +10,10 @@ function MainLayout({ children }) {
         setUserLogin(user);
     };
     const tourId = useParams();
+    const valueSearch = useParams();
     return (
         <div>
-            <TourContext.Provider value={tourId}>
+            <TourContext.Provider value={(tourId, valueSearch)}>
                 <Header getUser={getUser} />
 
                 {children}

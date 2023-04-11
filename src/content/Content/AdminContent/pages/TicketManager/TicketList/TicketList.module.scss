@@ -1,0 +1,14 @@
+.ticketList {
+    .tour {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        .btnHideList {
+            margin: 0px 10px;
+        }
+        button {
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    }
+}

@@ -223,6 +223,7 @@ function CreateTour() {
                 <Input
                     onChangeValue={onChangeGia}
                     type="number"
+                    min={0}
                     notNull
                     label={"Giá"}
                 />

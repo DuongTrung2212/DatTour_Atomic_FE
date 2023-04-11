@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Header.module.scss";
@@ -55,7 +55,7 @@ function Header(props) {
     const [userName, setUserName] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
     const debouncedValue = useDebounce(searchValue, 500);
-
+    const navigate = useNavigate();
     let formLoginRef = useRef();
     const userLogin = useContext(UserContext);
     const isAdmin = useContext(AdminContext);
@@ -113,6 +113,8 @@ function Header(props) {
                         if (res.data.listSearch)
                             setSearchResult(res.data.listSearch);
                         else setSearchResult([]);
+                    } else {
+                        setSearchResult([]);
                     }
                 })
                 .catch(() => console.log("Err"));
@@ -136,7 +138,14 @@ function Header(props) {
             })
             .catch((err) => console.log("err loi logout"));
     };
-
+    const handleEnter = (e) => {
+        if (e.keyCode == 13) {
+            navigate(`/search/${debouncedValue}`);
+        }
+    };
+    const handleClickSearch = () => {
+        navigate(`/search/${debouncedValue}`);
+    };
     return (
         <div className={cx("header")}>
             <div className={cx("logo")}>
@@ -198,6 +207,7 @@ function Header(props) {
                 >
                     <input
                         value={searchValue}
+                        onKeyDown={handleEnter}
                         onChange={handleSearch}
                         onFocus={() => setHideSearch(false)}
                         className={cx("input")}
@@ -209,6 +219,7 @@ function Header(props) {
                     content={<span className={cx("tippyLabel")}>Tìm kiếm</span>}
                 >
                     <FontAwesomeIcon
+                        onClick={handleClickSearch}
                         className={cx("iconSearch")}
                         icon={faMagnifyingGlass}
                     />
