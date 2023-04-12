@@ -29,7 +29,7 @@ function TicketList({ tourData, listTicketData }) {
                 <FontAwesomeIcon
                     className={cx("btnHideList")}
                     onClick={handleHideList}
-                    icon={showListTicket ? faSquareCaretDown : faSquareCaretUp}
+                    icon={showListTicket ? faSquareCaretUp : faSquareCaretDown}
                 />
 
                 <button>Xác nhận hoàn thành</button>
