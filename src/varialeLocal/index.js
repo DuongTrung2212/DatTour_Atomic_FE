@@ -38,6 +38,16 @@ const variableLocal = {
             label: "Hoàn Thành",
         },
     ],
+    dataStatusUpdateTour: [
+        {
+            value: "CD",
+            label: "Đang chờ duyệt",
+        },
+        {
+            value: "DD",
+            label: "Đã duyệt",
+        },
+    ],
 
     mainBackground: img,
 };

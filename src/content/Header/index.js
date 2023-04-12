@@ -54,7 +54,7 @@ function Header(props) {
     const [searchResult, setSearchResult] = useState([]);
     const [userName, setUserName] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
-    const debouncedValue = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 200);
     const navigate = useNavigate();
     let formLoginRef = useRef();
     const userLogin = useContext(UserContext);

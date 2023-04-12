@@ -3,6 +3,7 @@ import styles from "./InforUserContent.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faEdit,
+    faLocation,
     faMailBulk,
     faMailForward,
     faPhone,
@@ -163,7 +164,7 @@ function InforUserContent() {
                     text={user.Sdt}
                 />
                 <InforItem
-                    icon={<FontAwesomeIcon icon={faPhone} />}
+                    icon={<FontAwesomeIcon icon={faLocation} />}
                     text={user.DiaChi}
                 />
                 <div
@@ -176,7 +177,6 @@ function InforUserContent() {
                     // icon dong 179<FontAwesomeIcon icon={faEdit} />
                 >
                     <button className={cx("editbutton")}>Sửa thông tin</button>
-                    
                 </div>
             </div>
 

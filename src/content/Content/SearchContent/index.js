@@ -23,26 +23,28 @@ function SearchContent() {
     };
     useEffect(() => {
         fetchDataSearch();
-    });
+    }, [valueSearch]);
     return (
         <div className={cx("searchContent")}>
             <h2>Kết quả tìm kiếm : {valueSearch}</h2>
             <div className={cx("listSearch")}>
-                {resDataSearch.map((tour, index) => {
-                    return (
-                        <TourItem
-                            tourId={tour.MaTour}
-                            key={index}
-                            img={tour.HinhAnh[0]}
-                            title={tour.TenTour}
-                            start={tour.NgayBD}
-                            end={tour.NgayKT}
-                            location={tour.DiemDi}
-                            price={tour.Gia}
-                            sale={tour.Sale}
-                        />
-                    );
-                })}
+                {resDataSearch.length > 0
+                    ? resDataSearch.map((tour, index) => {
+                          return (
+                              <TourItem
+                                  tourId={tour.MaTour}
+                                  key={index}
+                                  img={tour.HinhAnh[0]}
+                                  title={tour.TenTour}
+                                  start={tour.NgayBD}
+                                  end={tour.NgayKT}
+                                  location={tour.DiemDi}
+                                  price={tour.Gia}
+                                  sale={tour.Sale}
+                              />
+                          );
+                      })
+                    : "Không tìm thấy kết quả"}
             </div>
         </div>
     );

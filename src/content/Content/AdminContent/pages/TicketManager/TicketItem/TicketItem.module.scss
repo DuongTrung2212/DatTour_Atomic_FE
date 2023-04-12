@@ -2,11 +2,12 @@
     display: flex;
     align-items: center;
     position: relative;
-    background-color: rgb(167, 177, 173);
+    background-color: rgb(169, 188, 180);
     padding: 5px 10px;
     border-radius: 2px;
     span {
         padding: 10px;
+        text-align: center;
     }
     .index {
         width: 30px;
@@ -17,20 +18,36 @@
     .userName {
         width: 150px;
     }
+    .userPhone {
+        width: 200px;
+    }
     .bookDate {
         width: 150px;
     }
     .userSum {
-        width: 50px;
+        width: 100px;
+    }
+    .priceSum {
+        width: 100px;
     }
     .labelStatus {
         width: 150px;
     }
+
     .action {
+        position: relative;
         button {
             padding: 5px 10px;
             margin-left: 10px;
             border-radius: 2px;
+        }
+        .selectCustom {
+            background-color: rgb(228, 228, 228);
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            right: 100%;
         }
     }
 }

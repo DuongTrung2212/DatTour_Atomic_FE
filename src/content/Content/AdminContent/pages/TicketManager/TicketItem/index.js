@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./TicketItem.module.scss";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
 import { variableLocal } from "../../../../../../varialeLocal";
@@ -18,13 +18,25 @@ function TicketItem({
     tourId,
     userId,
     userName,
+    userPhone,
     bookDate,
     userSum,
+    priceSum,
     status,
 }) {
     const [labelStatus, setLabelStatus] = useState("");
     const [showChangeStatusForm, setShowChangeStatusForm] = useState(false);
     const { changed, setChanged } = useContext(DaTaChangeContext);
+    const selectCustomRef = useRef();
+    useEffect(() => {
+        let handle = (e) => {
+            try {
+                if (!selectCustomRef.current.contains(e.target))
+                    setShowChangeStatusForm(false);
+            } catch {}
+        };
+        if (handle) document.addEventListener("mousedown", handle);
+    });
     useEffect(() => {
         switch (status) {
             case "DD":
@@ -79,6 +91,7 @@ function TicketItem({
             onYes
         );
     };
+
     return (
         <div className={cx("ticketItem")}>
             <ToastContainer
@@ -95,20 +108,11 @@ function TicketItem({
             <span className={cx("index")}>{index}</span>
             <span className={cx("ticketId")}>{ticketId}</span>
             <span className={cx("userName")}>{userName}</span>
+            <span className={cx("userPhone")}>{userPhone}</span>
             <span className={cx("bookDate")}>{bookDate}</span>
             <span className={cx("userSum")}>{userSum}</span>
+            <span className={cx("priceSum")}>{priceSum}</span>
             <span className={cx("labelStatus")}>{labelStatus}</span>
-
-            {showChangeStatusForm ? (
-                <div>
-                    <SelectCustom
-                        onChange={handleChange}
-                        options={variableLocal.dataStatus}
-                    />
-                </div>
-            ) : (
-                ""
-            )}
 
             <div className={cx("action")}>
                 <button onClick={handleChangeStatus} className={cx("update")}>
@@ -117,6 +121,17 @@ function TicketItem({
                 <button onClick={handleChangeDelete} className={cx("delete")}>
                     Delete
                 </button>
+                {showChangeStatusForm ? (
+                    <div ref={selectCustomRef} className={cx("selectCustom")}>
+                        <SelectCustom
+                            label={"Duyệt"}
+                            onChange={handleChange}
+                            options={variableLocal.dataStatusUpdateTour}
+                        />
+                    </div>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );

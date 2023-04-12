@@ -11,4 +11,41 @@
             border-radius: 5px;
         }
     }
+    .label {
+        display: flex;
+        align-items: center;
+        position: relative;
+        background-color: rgb(167, 177, 173);
+        padding: 5px 10px;
+        border-radius: 2px;
+        border-bottom: 1px solid #636363;
+        span {
+            padding: 10px;
+            text-align: center;
+        }
+        .index {
+            width: 30px;
+        }
+        .ticketId {
+            width: 250px;
+        }
+        .userName {
+            width: 150px;
+        }
+        .userPhone {
+            width: 200px;
+        }
+        .bookDate {
+            width: 150px;
+        }
+        .userSum {
+            width: 100px;
+        }
+        .priceSum {
+            width: 100px;
+        }
+        .labelStatus {
+            width: 150px;
+        }
+    }
 }
