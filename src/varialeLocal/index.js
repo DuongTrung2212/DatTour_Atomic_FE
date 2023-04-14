@@ -1,4 +1,5 @@
 import img from "../assets/img/bg.jpg";
+import imgNotFound from "../assets/img/imgNotFound.webp";
 const variableLocal = {
     dataLoaiTour: [
         {
@@ -50,5 +51,6 @@ const variableLocal = {
     ],
 
     mainBackground: img,
+    imgNotFound: imgNotFound,
 };
 export { variableLocal };
