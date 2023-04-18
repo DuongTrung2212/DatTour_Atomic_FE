@@ -96,9 +96,13 @@ function TicketList({ tourData, listTicketData }) {
                                 bookDate={ticket.ticket.NgayDat}
                                 userSum={ticket.ticket.SLNguoi}
                                 status={ticket.ticket.TinhTrang}
-                                priceSum={`${
-                                    ticket.ticket.SLNguoi * tourData.Gia
-                                } VND`}
+                                priceSum={`${(
+                                    ticket.ticket.SLNguoi * tourData.Gia -
+                                    (ticket.ticket.SLNguoi *
+                                        tourData.Gia *
+                                        tourData.Sale) /
+                                        100
+                                ).toLocaleString()} VND`}
                             />
                         );
                     })}
