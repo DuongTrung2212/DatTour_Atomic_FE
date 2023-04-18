@@ -1,9 +1,10 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import requestAxios from "../../../../../../../api/axios";
 import styles from "./StaffItem.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import { confirmCustom } from "../../../../../../../components/ConfirmCustom";
+import UpdateStaffForm from "../UpdateStaffForm";
 const cx = classNames.bind(styles);
 function StaffItem({
     deleted,
@@ -16,6 +17,17 @@ function StaffItem({
     emailStaff,
     workDate,
 }) {
+    const [showUpdateStaffForm, setShowUpdateStaffForm] = useState(false);
+    const updateStaffFormRef = useRef();
+    useEffect(() => {
+        let handle = (e) => {
+            try {
+                if (!updateStaffFormRef.current.contains(e.target))
+                    setShowUpdateStaffForm(false);
+            } catch {}
+        };
+        if (handle) document.addEventListener("mousedown", handle);
+    });
     const onYes = async () => {
         await requestAxios
             .delete(`nhanVien/${staffId}`)
@@ -24,10 +36,14 @@ function StaffItem({
                     toast.success("Đã xóa");
                     if (deleted) deleted();
                 } else {
-                    toast.success(res.data.message);
+                    toast.warning(res.data.message);
                 }
             })
             .catch((err) => toast.error("Lỗi xóa nhân viên"));
+    };
+    const handleClickUpdate = () => {
+        if (showUpdateStaffForm) setShowUpdateStaffForm(false);
+        else setShowUpdateStaffForm(true);
     };
     const handleDeleteStaff = () => {
         confirmCustom("Xác nhận xóa", "Bạn muốn xóa nhân viên", onYes);
@@ -45,6 +61,19 @@ function StaffItem({
                 pauseOnHover={false}
                 theme="light"
             />
+            {showUpdateStaffForm ? (
+                <div ref={updateStaffFormRef} className={cx("formUpdate")}>
+                    <UpdateStaffForm
+                        staffId={staffId}
+                        emailStaff={emailStaff}
+                        nameStaff={nameStaff}
+                        phoneStaff={phoneStaff}
+                        genderStaff={genderStaff}
+                    />
+                </div>
+            ) : (
+                ""
+            )}
             <div className={cx("infor")}>
                 <span className={cx("index")}>{index}</span>
                 <span className={cx("nameStaff")}>{nameStaff}</span>
@@ -55,8 +84,18 @@ function StaffItem({
                     {workDate.toLocaleString()}
                 </span>
                 <div className={cx("action")}>
-                    <button className={cx("Update")}>Update</button>
-                    <button className={cx("Delete")} onClick={handleDeleteStaff}>Delete</button>
+                    <button
+                        className={cx("Update")}
+                        onClick={handleClickUpdate}
+                    >
+                        Update
+                    </button>
+                    <button
+                        className={cx("Delete")}
+                        onClick={handleDeleteStaff}
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>

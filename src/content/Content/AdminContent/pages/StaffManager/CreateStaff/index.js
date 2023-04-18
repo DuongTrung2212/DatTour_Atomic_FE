@@ -68,6 +68,7 @@ function CreateStaff() {
                     classNameLabel={cx("labelGender")}
                 />
                 <SelectCustom
+                    label={"Giới tính"}
                     onChange={(e) => setGenderStaff(e)}
                     options={variableLocal.dataGender}
                 />

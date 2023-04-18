@@ -61,7 +61,7 @@ function TourItem({ data, onDelete, ...props }) {
                 closeOnClick
                 pauseOnFocusLoss={false}
                 draggable
-                pauseOnHover
+                pauseOnHover={false}
                 theme="light"
             />
             <p className={cx("stt")}>{props.index}</p>

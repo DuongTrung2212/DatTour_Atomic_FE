@@ -1,13 +1,15 @@
 import classNames from "classnames/bind";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./StaffList.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import StaffItem from "./StaffItem";
 import requestAxios from "../../../../../../api/axios";
+import { DaTaChangeContext } from "../../..";
 const cx = classNames.bind(styles);
 function StaffList() {
     const [listStaff, setListStaff] = useState([]);
     const [haveChange, setHaveChange] = useState(0);
+    const { changed, setChanged } = useContext(DaTaChangeContext);
     const deleted = () => {
         setHaveChange(haveChange + 1);
     };
@@ -23,7 +25,7 @@ function StaffList() {
     };
     useEffect(() => {
         fetchDataAllStaff();
-    }, [haveChange]);
+    }, [haveChange, changed]);
     return (
         <div className={cx("staffList")}>
             <h1>Danh sách nhân viên</h1>

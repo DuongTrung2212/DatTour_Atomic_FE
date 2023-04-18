@@ -4,45 +4,53 @@
     border-radius: 3px;
     width: fit-content;
     padding: 10px;
+    .formUpdate {
+        position: fixed;
+        background-color: rgb(143, 143, 143);
+        width: fit-content;
+        transform: translate(-50%, -50%);
+        padding: 30px 50px;
+        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+    }
     .infor {
         display: flex;
         align-items: center;
         font-weight: bold;
-        
+
         span {
             padding: 10px;
             text-align: left;
-            
         }
         .index {
-            
             width: 30px;
-            text-align:center ;
+            text-align: center;
             background-color: rgba(48, 210, 64, 0.573);
             border-radius: 10px;
         }
         .nameStaff {
             width: 100px;
-            
-            text-align:center ;
+
+            text-align: center;
         }
         .genderStaff {
             width: 150px;
-           
-            text-align:center ;
+
+            text-align: center;
         }
         .phoneStaff {
             width: 150px;
-            
-            text-align:center ;
+
+            text-align: center;
         }
         .emailStaff {
             width: 250px;
-            text-align:center ;
+            text-align: center;
         }
         .workDate {
             width: 120px;
-            text-align:center ;
+            text-align: center;
         }
         .action {
             // width: 10%;
@@ -52,8 +60,8 @@
             justify-content: space-around;
             border-radius: 90px;
             font-weight: bold;
-            
-            .Update{
+
+            .Update {
                 padding: 5px 15px;
                 border-radius: 10px;
                 background-color: #0c62121c;
@@ -63,7 +71,7 @@
                     background-color: rgba(8, 101, 44, 0.581);
                 }
             }
-            .Delete{
+            .Delete {
                 padding: 5px 15px;
                 border-radius: 10px;
                 background-color: #3d15061c;
@@ -72,8 +80,6 @@
                     background-color: rgb(101, 27, 8);
                 }
             }
-
-
         }
     }
 }

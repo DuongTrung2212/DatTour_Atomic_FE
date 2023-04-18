@@ -28,7 +28,7 @@ function FormSignUp() {
     const [status, setStatus] = useState(false);
     const [userName, setUserName] = useState("");
     const [otp, setOtp] = useState("");
-    const [recaptcha, setRecaptcha] = useState("");
+    const [recaptcha, setRecaptcha] = useState();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -88,20 +88,19 @@ function FormSignUp() {
             });
         }
 
-        verifier = new RecaptchaVerifier(
-            "recaptcha-container",
-            {
-                size: "invisible",
-                callback: (response) => {
-                    // setStep("");
-                    // reCAPTCHA solved, allow signInWithPhoneNumber.
+        if (!recaptcha) {
+            const verifier = new RecaptchaVerifier(
+                "recaptcha-container",
+                {
+                    size: "invisible",
                 },
-            },
-            auth
-        );
+                auth
+            );
+            await verifier.verify().then(() => setRecaptcha(verifier));
+        }
 
         const sendOTP = async () => {
-            await signInWithPhoneNumber(auth, valuePhone, verifier)
+            await signInWithPhoneNumber(auth, valuePhone, recaptcha)
                 .then((confirmationResult) => {
                     console.log("OK");
                     window.confirmationResult = confirmationResult;
@@ -165,6 +164,7 @@ function FormSignUp() {
     };
     return (
         <div className={cx("formSignUp")}>
+            <div id="recaptcha-container"></div>
             <ReactjsAlert
                 status={status} // true or false
                 type={"success"} // success, warning, error, info
@@ -250,7 +250,6 @@ function FormSignUp() {
             ) : (
                 ""
             )}
-            <div id="recaptcha-container"></div>
         </div>
     );
 }

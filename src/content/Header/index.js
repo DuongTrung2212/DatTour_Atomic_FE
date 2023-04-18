@@ -134,6 +134,7 @@ function Header(props) {
         requestAxios
             .get(`auth/logout`)
             .then((res) => {
+                if (res.data.message == "OK") navigate("/");
                 window.location.reload();
             })
             .catch((err) => console.log("err loi logout"));
