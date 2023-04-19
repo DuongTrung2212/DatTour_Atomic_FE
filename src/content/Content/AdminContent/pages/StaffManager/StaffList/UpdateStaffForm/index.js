@@ -85,7 +85,7 @@ function UpdateStaffForm({ staffId }) {
                 value={email}
                 label={"Email"}
             />
-            <button onClick={handleSubmit}>Xác nhận</button>
+            <button className={cx("btn")}  onClick={handleSubmit}>Xác nhận</button>
         </div>
     );
 }

@@ -19,6 +19,7 @@
         padding: 5px 10px;
         border-radius: 2px;
         border-bottom: 1px solid #636363;
+        font-weight: bold;
         span {
             padding: 10px;
             text-align: center;
@@ -47,5 +48,14 @@
         .labelStatus {
             width: 150px;
         }
+    }
+    .btn{
+        background-color: rgba(90, 63, 71, 0.527);
+       
+        &:hover{
+            background-color: rgba(18, 54, 54, 0.563);
+            color: rgb(253, 253, 253);
+        }
+
     }
 }

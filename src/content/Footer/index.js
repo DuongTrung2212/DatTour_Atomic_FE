@@ -43,6 +43,19 @@ function Footer() {
                         <li>
                             <Link>Dương Trung</Link>
                         </li>
+                        <li>
+                            <Link>Tấn Quốc</Link>
+                        </li>
+                        <li>
+                            <Link>Anh Thiên</Link>
+                        </li>
+
+                        <li>
+                            <Link>Quang Huy</Link>
+                        </li>
+                        <li>
+                            <Link> Chính Đức</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className={cx("logo")}>
@@ -51,14 +64,7 @@ function Footer() {
                 </div>
             </div>
             <div className={cx("bot")}>
-                <div>
-                    <p>@@@atomic.com</p>
-                    <p>adasdsad</p>
-                    <p>asdad</p>
-                </div>
-                <div>
-                    <h3>Ket noi</h3>
-                </div>
+               
             </div>
         </div>
     );

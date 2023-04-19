@@ -1,2 +1,17 @@
 .updateUserForm {
+
+    .btn{
+        background-color: rgba(13, 88, 28, 0.49);
+        font-size: 15px;
+        padding: 5px;
+        display: block;
+        margin: auto;
+        border-radius: 10px;
+        
+        &:hover{
+            color: red;
+            background-color: rgb(10, 228, 72);
+        }
+    
+    }
 }

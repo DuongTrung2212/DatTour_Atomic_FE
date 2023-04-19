@@ -66,7 +66,7 @@ function TicketList({ tourData, listTicketData }) {
                     icon={showListTicket ? faSquareCaretUp : faSquareCaretDown}
                 />
 
-                <button onClick={handleComplete}>Xác nhận hoàn thành</button>
+                <button className={cx("btn")} onClick={handleComplete}>Xác nhận hoàn thành</button>
             </div>
             {showListTicket ? (
                 <div className={cx("label")}>
