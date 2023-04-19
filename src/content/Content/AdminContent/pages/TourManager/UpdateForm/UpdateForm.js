@@ -11,6 +11,8 @@ import Select from "react-select";
 import DecriptionForm from "../DecriptionForm/DecriptionForm";
 import { ToastContainer, toast } from "react-toastify";
 import { variableLocal } from "../../../../../../varialeLocal";
+import { useContext } from "react";
+import { DaTaChangeContext } from "../../..";
 
 const cx = classNames.bind(styles);
 
@@ -53,6 +55,7 @@ function UpdateForm(props) {
     const [listStaff, setListStaff] = useState([]);
     const [optionsStaff, setOptionsStaff] = useState([]);
     const [showBtn, setShowBtn] = useState(true);
+    const { changed, setChanged } = useContext(DaTaChangeContext);
 
     const handleSlideFileChange = (files) => {
         let view = [];
@@ -95,6 +98,7 @@ function UpdateForm(props) {
             .get(`tour/${props.tourId}`)
             .then((res) => {
                 if (res.data.message == "OK") {
+                    var dataLoaiTour = [];
                     setNameTour(res.data.tour.TenTour);
                     setPriceTour(res.data.tour.Gia);
                     setDataTour(res.data.tour);
@@ -114,9 +118,51 @@ function UpdateForm(props) {
                             .toString()
                             .replace(/,/g, "-")
                     );
+                    for (
+                        let index = 0;
+                        index < res.data.tour.LoaiTour.length;
+                        index++
+                    ) {
+                        var label = "";
+                        switch (res.data.tour.LoaiTour[index]) {
+                            case "TTN":
+                                label = "Tour tự nhiên";
+                                break;
+                            case "TB":
+                                label = "Tour biển";
+                                break;
+                            case "TTQ":
+                                label = "Tour tham quan";
+                                break;
+
+                            default:
+                                break;
+                        }
+                        dataLoaiTour.push({
+                            value: res.data.tour.LoaiTour[index],
+                            label: label,
+                        });
+                    }
+                    var labelTinhTrang = "";
+                    switch (res.data.tour.TinhTrang) {
+                        case true:
+                            labelTinhTrang = "Mở";
+                            break;
+                        case false:
+                            labelTinhTrang = "Đóng";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    setLoaiTour(dataLoaiTour);
                     setDiemDon(res.data.tour.DiemDon);
                     setSale(res.data.tour.Sale);
-                    setTinhTrang(res.data.tour.TinhTrang);
+
+                    setTinhTrang({
+                        value: res.data.tour.TinhTrang,
+                        label: labelTinhTrang,
+                    });
 
                     setHDVien({
                         value: res.data.HDVien.MaHDVien,
@@ -149,7 +195,7 @@ function UpdateForm(props) {
     useEffect(() => {
         fetchData();
         fetchDataAllStaff();
-    }, []);
+    }, [changed]);
     // useEffect(() => {
 
     // }, []);
@@ -226,6 +272,7 @@ function UpdateForm(props) {
         }
 
         formData.append("TenTour", nameTour);
+        formData.append("TinhTrang", tinhTrang.value);
         formData.append("Gia", priceTour);
         formData.append("SoLuong", soLuong);
         formData.append("DiemDi", diemDi);
@@ -254,6 +301,7 @@ function UpdateForm(props) {
                 if (res.data.message == "OK") {
                     setShowBtn(true);
                     toast.success("Thành công");
+                    setChanged(changed + 1);
                 }
             })
             .catch((err) => console.log("Err update tour"));
@@ -378,20 +426,17 @@ function UpdateForm(props) {
                 />
             </b>
 
-            {showSelectedTinhTrang ? (
-                <Select
-                    className={cx("select")}
-                    defaultValue={selectedOption}
-                    onChange={(e) => {
-                        setShowSelectedTinhTrang(false);
-                        setSelectedOption(e);
-                        setTinhTrang(e.value);
-                    }}
-                    options={options}
-                />
-            ) : (
-                <Input disabled value={tinhTrang ? "Mở" : "Đóng"} />
-            )}
+            <Select
+                className={cx("select")}
+                value={tinhTrang}
+                onChange={(e) => {
+                    setShowSelectedTinhTrang(false);
+                    // setSelectedOption(e);
+                    setTinhTrang(e);
+                }}
+                options={options}
+            />
+
             <Input
                 onChangeValue={getSoLuongTour}
                 value={soLuong}
@@ -415,26 +460,15 @@ function UpdateForm(props) {
                 label={"Ngày kết thúc"}
             />
             <div>
-                <b>
-                    HD Viên
-                    <FontAwesomeIcon
-                        onClick={handleClickShowNhanVien}
-                        icon={faPen}
-                    />
-                </b>
-                {showSelectedStaff ? (
-                    <Select
-                        className={cx("select")}
-                        defaultValue={selectedHDVien}
-                        onChange={(e) => {
-                            setSelectedHDVien(e);
-                            setHDVien(e);
-                        }}
-                        options={optionsStaff}
-                    />
-                ) : (
-                    <Input disabled value={HDVien.label} />
-                )}
+                <Select
+                    className={cx("select")}
+                    value={HDVien}
+                    onChange={(e) => {
+                        // setSelectedHDVien(e);
+                        setHDVien(e);
+                    }}
+                    options={optionsStaff}
+                />
             </div>
             <Input
                 onChangeValue={getDiemDonTour}
@@ -456,23 +490,20 @@ function UpdateForm(props) {
                 />
             </b>
             <div>
-                {showSelectedLoaiTour ? (
-                    <Select
-                        isMulti
-                        className={cx("select")}
-                        onChange={(item) => {
-                            var data = [];
-                            for (let index = 0; index < item.length; index++) {
-                                data.push(item[index].value);
-                            }
-                            dataTour.LoaiTour = data;
-                            setLoaiTour(item);
-                        }}
-                        options={variableLocal.dataLoaiTour}
-                    />
-                ) : (
-                    <Input disabled value={dataTour.LoaiTour} />
-                )}
+                <Select
+                    isMulti
+                    className={cx("select")}
+                    value={loaiTour}
+                    onChange={(item) => {
+                        // var data = [];
+                        // for (let index = 0; index < item.length; index++) {
+                        //     data.push(item[index].value);
+                        // }
+                        // dataTour.LoaiTour = data;
+                        setLoaiTour(item);
+                    }}
+                    options={variableLocal.dataLoaiTour}
+                />
             </div>
 
             <button onClick={showBtn ? handleSubmitUpdate : null}>

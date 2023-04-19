@@ -20,6 +20,8 @@ function App() {
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
     useEffect(() => {
         document.title = "Atomic";
+        Cookies.get("access_token") ? setUser(true) : setUser(false);
+        Cookies.get("isAdmin") ? setIsAdmin(true) : setIsAdmin(false);
     }, []);
     setInterval(() => {
         Cookies.get("access_token") ? setUser(true) : setUser(false);
