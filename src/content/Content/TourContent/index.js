@@ -10,7 +10,7 @@ function TourContent() {
     useEffect(() => {
         const fetchData = async () => {
             await requestAxios
-                .get("tour")
+                .get("tour/open")
                 .then((res) => {
                     if (res.data.message == "OK")
                         setListTour(res.data.listTour);
@@ -22,7 +22,7 @@ function TourContent() {
     return (
         <div className={cx("tourContent")}>
             <SlideImage className={cx("slide")} classNameImg={cx("img")} />
-            <h1>Tour</h1>
+            <h1>Tour đang hoạt động</h1>
             <div className={cx("content")}>
                 {listTour.map((tour, index) => {
                     return (

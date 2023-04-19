@@ -40,11 +40,11 @@ const listMenuItem = [
         to: "/infor-user",
         title: "Thông tin",
     },
-    {
-        icon: <FontAwesomeIcon icon={faTicket} />,
-        to: "/infor-user/ve",
-        title: "Vé",
-    },
+    // {
+    //     icon: <FontAwesomeIcon icon={faTicket} />,
+    //     to: "/infor-user/ve",
+    //     title: "Vé",
+    // },
 ];
 
 function Header(props) {
