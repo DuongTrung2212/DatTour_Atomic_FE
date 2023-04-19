@@ -14,13 +14,20 @@ export const UserContext = createContext();
 export const AdminContext = createContext();
 export const DataUserChangeContext = createContext();
 function App() {
-    const User = Cookies.get("access_token") ? true : false;
-    const isAdmin = Cookies.get("isAdmin") ? true : false;
+    const [User, setUser] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [dataUserChange, setDataUserChange] = useState(0);
     // if (Admin) publicRoutes.push({ path: "/admin", page: <Admin /> });
     useEffect(() => {
         document.title = "Atomic";
+        Cookies.get("access_token") ? setUser(true) : setUser(false);
+        Cookies.get("isAdmin") ? setIsAdmin(true) : setIsAdmin(false);
     }, []);
+    setInterval(() => {
+        Cookies.get("access_token") ? setUser(true) : setUser(false);
+        Cookies.get("isAdmin") ? setIsAdmin(true) : setIsAdmin(false);
+    }, 5000);
+
     // console.log(process.env.REACT_APP_API_BASE_URL);
     // console.log({ publicRoutes });
     return (
