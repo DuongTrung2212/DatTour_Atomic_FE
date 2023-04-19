@@ -45,8 +45,6 @@ function UpdateForm(props) {
     const [moTa, setMoTa] = useState([]);
     const [viewNewMoTa, setViewNewMoTa] = useState([]);
     const [HDVien, setHDVien] = useState({});
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [selectedHDVien, setSelectedHDVien] = useState(null);
     const [showSelectedTinhTrang, setShowSelectedTinhTrang] = useState(false);
     const [showSelectedLoaiTour, setShowSelectedLoaiTour] = useState(false);
     const [showFormDecription, setShowFormDecription] = useState(false);
