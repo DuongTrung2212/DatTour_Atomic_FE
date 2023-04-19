@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     position: relative;
-    background-color: rgb(169, 188, 180);
+    background-color: white;
     padding: 5px 10px;
     border-radius: 2px;
+    box-shadow: 1px 2px 3px rgb(133, 133, 133);
     span {
         padding: 10px;
         text-align: center;
@@ -51,7 +52,7 @@
         }
     }
     .delete{
-        background-color: rgba(115, 26, 26, 0.447);
+        background-color: rgba(130, 119, 119, 0.447);
         border-radius: 10px;
         &:hover{
             background-color: rgba(107, 9, 9, 0.855);
@@ -59,7 +60,7 @@
         }
     }
     .update{
-        background-color: rgba(48, 46, 79, 0.426);
+        background-color: rgba(130, 119, 119, 0.447);
         border-radius: 10px;
         &:hover{
             background-color: rgba(34, 30, 94, 0.607);

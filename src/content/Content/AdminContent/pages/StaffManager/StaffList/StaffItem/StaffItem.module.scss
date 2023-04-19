@@ -1,9 +1,11 @@
 .staffItem {
-    background-color: rgb(181, 189, 186);
+    background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #a4a4a4;
     border-radius: 3px;
     width: fit-content;
     padding: 10px;
+    box-shadow: 1px 2px 3px rgb(133, 133, 133);
+    margin-bottom: 3px;
     .formUpdate {
         position: fixed;
         background-color: rgb(143, 143, 143);
@@ -26,7 +28,7 @@
         .index {
             width: 30px;
             text-align: center;
-            background-color: rgba(48, 210, 64, 0.573);
+            background-color: rgba(145, 139, 140, 0.573);
             border-radius: 10px;
         }
         .nameStaff {

@@ -1,21 +1,25 @@
 .ticketList {
     .tour {
+        min-width: 1000px;
         display: flex;
+        
         align-items: center;
         padding: 5px 10px;
         .btnHideList {
             margin: 0px 10px;
         }
         button {
+            
             padding: 5px 10px;
             border-radius: 5px;
+            margin-right: 0;
         }
     }
     .label {
         display: flex;
         align-items: center;
         position: relative;
-        background-color: rgb(167, 177, 173);
+        background-color: rgb(193, 198, 196);
         padding: 5px 10px;
         border-radius: 2px;
         border-bottom: 1px solid #636363;
@@ -51,7 +55,7 @@
     }
     .btn{
         background-color: rgba(90, 63, 71, 0.527);
-       
+       margin-right: 0px;
         &:hover{
             background-color: rgba(18, 54, 54, 0.563);
             color: rgb(253, 253, 253);
