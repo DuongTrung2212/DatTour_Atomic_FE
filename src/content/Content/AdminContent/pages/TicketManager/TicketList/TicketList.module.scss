@@ -1,18 +1,23 @@
 .ticketList {
+    padding: 10px 0px;
     .tour {
-        min-width: 1000px;
         display: flex;
-        
         align-items: center;
         padding: 5px 10px;
+        width: fit-content;
+        border-bottom: 0.5px solid #d1d1d1;
+        border-radius: 1px;
         .btnHideList {
             margin: 0px 10px;
+            font-size: 30px;
+            path {
+                color: #bababa;
+            }
         }
-        button {
-            
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-right: 0;
+        .up {
+            path {
+                color: #68ce6f;
+            }
         }
     }
     .label {
@@ -52,14 +57,18 @@
         .labelStatus {
             width: 150px;
         }
-    }
-    .btn{
-        background-color: rgba(90, 63, 71, 0.527);
-       margin-right: 0px;
-        &:hover{
-            background-color: rgba(18, 54, 54, 0.563);
-            color: rgb(253, 253, 253);
+        button {
         }
-
+        .btn {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 0;
+            background-color: rgba(253, 253, 253, 0.905);
+            margin-right: 0px;
+            box-shadow: 1px 2px 3px #d8d8d8;
+            &:hover {
+                background-color: rgba(145, 236, 145, 0.908);
+            }
+        }
     }
 }

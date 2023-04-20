@@ -41,31 +41,57 @@ function Footer() {
                             <Link>Shadow Garden</Link>
                         </li>
                         <li>
-                            <Link>Dương Trung</Link>
+                            <Link
+                                to={
+                                    "https://www.facebook.com/duong.trung.122001/"
+                                }
+                            >
+                                Dương Trung
+                            </Link>
                         </li>
                         <li>
-                            <Link>Tấn Quốc</Link>
+                            <Link
+                                to={
+                                    "https://www.facebook.com/profile.php?id=100026817915033"
+                                }
+                            >
+                                Tấn Quốc
+                            </Link>
                         </li>
                         <li>
-                            <Link>Anh Thiên</Link>
+                            <Link to={"https://www.facebook.com/aanhthien96"}>
+                                Anh Thiên
+                            </Link>
                         </li>
 
                         <li>
-                            <Link>Quang Huy</Link>
+                            <Link
+                                to={
+                                    "https://www.facebook.com/profile.php?id=100010904075188"
+                                }
+                            >
+                                Quang Huy
+                            </Link>
                         </li>
                         <li>
-                            <Link> Chính Đức</Link>
+                            <Link
+                                to={"https://www.facebook.com/truongquangtron"}
+                            >
+                                Chính Đức
+                            </Link>
                         </li>
                     </ul>
                 </div>
                 <div className={cx("logo")}>
                     <h3>ĐƯỢC CHỨNG NHẬN</h3>
-                    <img src="https://webmedia.com.vn/images/2021/09/logo-da-thong-bao-bo-cong-thuong-mau-xanh.png" width={150}/>
+                    <img
+                        src="https://webmedia.com.vn/images/2021/09/logo-da-thong-bao-bo-cong-thuong-mau-xanh.png"
+                        alt=""
+                        width={150}
+                    />
                 </div>
             </div>
-            <div className={cx("bot")}>
-               
-            </div>
+            <div className={cx("bot")}></div>
         </div>
     );
 }

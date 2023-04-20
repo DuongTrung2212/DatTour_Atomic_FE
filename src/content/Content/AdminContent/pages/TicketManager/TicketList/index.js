@@ -21,7 +21,7 @@ function TicketList({ tourData, listTicketData }) {
     const { changed, setChanged } = useContext(DaTaChangeContext);
     useEffect(() => {
         setTicketList(listTicketData);
-    });
+    }, [listTicketData]);
     const handleHideList = () => {
         showListTicket ? setShowListTicket(false) : setShowListTicket(true);
     };
@@ -32,7 +32,7 @@ function TicketList({ tourData, listTicketData }) {
                 TinhTrang: "HT",
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Thành công");
                     setChanged(changed + 1);
                 } else {
@@ -59,14 +59,11 @@ function TicketList({ tourData, listTicketData }) {
             />
             <div className={cx("tour")}>
                 <h2>{tourData.TenTour}</h2>
-
                 <FontAwesomeIcon
-                    className={cx("btnHideList")}
+                    className={cx("btnHideList", showListTicket ? "up" : "")}
                     onClick={handleHideList}
                     icon={showListTicket ? faSquareCaretUp : faSquareCaretDown}
                 />
-
-                <button className={cx("btn")} onClick={handleComplete}>Xác nhận hoàn thành</button>
             </div>
             {showListTicket ? (
                 <div className={cx("label")}>
@@ -78,6 +75,9 @@ function TicketList({ tourData, listTicketData }) {
                     <span className={cx("userSum")}>Số lượng</span>
                     <span className={cx("priceSum")}>Tổng tiền</span>
                     <span className={cx("labelStatus")}>Tình trạng</span>
+                    <button className={cx("btn")} onClick={handleComplete}>
+                        Xác nhận hoàn thành
+                    </button>
                 </div>
             ) : (
                 ""

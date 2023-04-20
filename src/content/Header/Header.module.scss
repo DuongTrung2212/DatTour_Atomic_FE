@@ -48,7 +48,6 @@
         display: flex;
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         font-size: 40px;
-        
     }
     .pages {
         display: flex;
@@ -71,7 +70,6 @@
             p {
                 color: inherit;
                 margin-left: 10px;
-                
             }
         }
     }
@@ -95,7 +93,9 @@
             background-color: rgb(242, 242, 242);
             border-radius: 5px;
             max-width: 500px;
-
+            .notResult {
+                padding: 10px 30px;
+            }
             .titleSearch {
                 padding: 10px;
                 font-weight: bold;

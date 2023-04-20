@@ -3,7 +3,6 @@ import {
     faMagnifyingGlass,
     faPlane,
     faSignOut,
-    faTicket,
     faUser,
     faUserGear,
     faWalking,
@@ -11,7 +10,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Header.module.scss";
 import { memo, useContext, useEffect, useRef, useState } from "react";
@@ -60,9 +58,7 @@ function Header(props) {
     const userLogin = useContext(UserContext);
     const isAdmin = useContext(AdminContext);
     const tourId = useContext(TourContext);
-    const { dataUserChange, setDataUserChange } = useContext(
-        DataUserChangeContext
-    );
+    const { dataUserChange } = useContext(DataUserChangeContext);
     const handleLoginClick = () => {
         setSearchResult([]);
         formLogin ? setFormLogin(false) : setFormLogin(true);
@@ -86,7 +82,7 @@ function Header(props) {
             await requestAxios
                 .get(`user`)
                 .then((res) => {
-                    if (res.data.message == "OK") {
+                    if (res.data.message === "OK") {
                         setUserName(res.data.user.TenKH);
                         setUserAvatar(
                             `${process.env.REACT_APP_API_IMG_URL}${res.data.user.Img}`
@@ -107,7 +103,7 @@ function Header(props) {
             await requestAxios
                 .get(`tour/search/${debouncedValue}`)
                 .then((res) => {
-                    if (res.data.message == "OK") {
+                    if (res.data.message === "OK") {
                         setFormLogin(false);
                         setHideSearch(true);
                         if (res.data.listSearch)
@@ -134,13 +130,13 @@ function Header(props) {
         requestAxios
             .get(`auth/logout`)
             .then((res) => {
-                if (res.data.message == "OK") navigate("/");
+                if (res.data.message === "OK") navigate("/");
                 window.location.reload();
             })
             .catch((err) => console.log("err loi logout"));
     };
     const handleEnter = (e) => {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             navigate(`/search/${debouncedValue}`);
         }
     };
@@ -202,7 +198,9 @@ function Header(props) {
                                 </div>
                             </div>
                         ) : (
-                            <p>Ko tìm thấy kết quả</p>
+                            <p className={cx("notResult")}>
+                                Ko tìm thấy kết quả
+                            </p>
                         )
                     }
                 >

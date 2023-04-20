@@ -5,7 +5,6 @@ import {
     faEdit,
     faLocation,
     faMailBulk,
-    faMailForward,
     faPhone,
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +36,7 @@ function InforUserContent() {
         await requestAxios
             .get("/user")
             .then((res) => {
-                if (res.data.message == "OK") setUser(res.data.user);
+                if (res.data.message === "OK") setUser(res.data.user);
             })
             .catch((err) => console.log("err fetch api at infor user conten"));
     };
@@ -70,7 +69,7 @@ function InforUserContent() {
                 },
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setChange(change + 1);
                     setDataUserChange(dataUserChange + 1);
                     console.log("OK");
@@ -116,18 +115,21 @@ function InforUserContent() {
                 ""
             )}
             <img
+                alt=""
                 draggable={false}
                 className={cx("background")}
                 src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
             />
             <div className={cx("header")}>
                 <img
+                    alt=""
                     className={cx("imgIntroduce")}
                     src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                 />
 
                 <div className={cx("avatar")}>
                     <img
+                        alt=""
                         src={`${process.env.REACT_APP_API_IMG_URL}${user.Img}`}
                     />
                     <div className={cx("editavt")}>
@@ -204,6 +206,12 @@ function InforUserContent() {
                         >
                             <b>Vé đang chờ</b>
                         </Tab>
+                        <Tab
+                            selectedClassName={cx("selectedTab")}
+                            className={cx("tab")}
+                        >
+                            <b>Vé đã được duyệt</b>
+                        </Tab>
                     </TabList>
 
                     <TabPanel>
@@ -230,6 +238,15 @@ function InforUserContent() {
                                 verifyPass={showFormVerifyPass}
                                 verified={verified}
                                 typeQuery={"CD"}
+                            />
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div>
+                            <QueryTour
+                                verifyPass={showFormVerifyPass}
+                                verified={verified}
+                                typeQuery={"DD"}
                             />
                         </div>
                     </TabPanel>
