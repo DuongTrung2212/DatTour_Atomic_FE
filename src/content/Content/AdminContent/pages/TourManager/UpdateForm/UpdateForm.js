@@ -344,7 +344,7 @@ function UpdateForm(props) {
                     >
                         <FontAwesomeIcon icon={faPen} />
                     </Files>
-                    <div onClick={handleClickShowImgSlide}>
+                    <div className={cx("icon")} onClick={handleClickShowImgSlide}>
                         <FontAwesomeIcon icon={faEye} />
                     </div>
                     {showImgSlide ? (
@@ -380,7 +380,7 @@ function UpdateForm(props) {
                         onClick={handleClickShowAddMoTa}
                         icon={faPen}
                     />
-                    <div onClick={handleClickShowMoTa}>
+                    <div className={cx("icon2")} onClick={handleClickShowMoTa}>
                         <FontAwesomeIcon icon={faEye} />
                     </div>
                     {showMoTa ? (
@@ -417,7 +417,7 @@ function UpdateForm(props) {
                 )}
             </div>
             <b>
-                Tình trạng
+                Tình trạng_
                 <FontAwesomeIcon
                     onClick={handleClickShowTinhTrang}
                     icon={faPen}

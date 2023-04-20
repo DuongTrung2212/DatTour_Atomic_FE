@@ -12,6 +12,9 @@
         .action {
             display: flex;
             align-items: center;
+            .icon{
+                margin-left: 7px;
+            }
             img {
                 display: block;
                 width: 300px;
@@ -41,7 +44,9 @@
         .action {
             display: flex;
             align-items: center;
-
+            .icon2{
+                margin-left: 7px;
+            }
             img {
                 display: block;
                 width: 300px;
