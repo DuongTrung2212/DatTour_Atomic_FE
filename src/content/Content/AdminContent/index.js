@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import UserManager from "./pages/UserManager";
 import TourManager from "./pages/TourManager";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 import StaffManager from "./pages/StaffManager";
@@ -46,6 +46,7 @@ function AdminContent() {
     const [index, setIndex] = useState(0);
     const [changed, setChanged] = useState(0);
 
+    useEffect(() => {});
     const abc = (index) => {
         return index;
     };

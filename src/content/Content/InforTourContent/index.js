@@ -192,7 +192,7 @@ function InforTourContent() {
 
                     <Input
                         onChangeValue={getValueSoLuong}
-                        min={0}
+                        min={1}
                         max={dataTour.SoLuong}
                         type="number"
                         notNull={true}

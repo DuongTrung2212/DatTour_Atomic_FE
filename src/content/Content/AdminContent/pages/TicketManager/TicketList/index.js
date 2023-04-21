@@ -27,7 +27,7 @@ function TicketList({ tourData, listTicketData }) {
     };
     const onYes = async () => {
         await requestAxios
-            .post(`datTour/manager`, {
+            .post(`datTour/completeAll`, {
                 MaTour: tourData.MaTour,
                 TinhTrang: "HT",
             })

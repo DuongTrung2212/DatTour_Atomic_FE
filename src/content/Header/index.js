@@ -143,6 +143,19 @@ function Header(props) {
     const handleClickSearch = () => {
         navigate(`/search/${debouncedValue}`);
     };
+    const handleToAdmin = async (e) => {
+        e.preventDefault();
+        await requestAxios
+            .get("auth/checkAdmin")
+            .then((res) => {
+                if (res.data.message === "OK") {
+                    navigate("/admin");
+                } else {
+                    navigate("/");
+                }
+            })
+            .catch((err) => navigate("/"));
+    };
     return (
         <div className={cx("header")}>
             <div className={cx("logo")}>
@@ -254,6 +267,7 @@ function Header(props) {
 
                                     {isAdmin ? (
                                         <MenuItem
+                                            onClick={handleToAdmin}
                                             to={`/admin`}
                                             icon={
                                                 <FontAwesomeIcon

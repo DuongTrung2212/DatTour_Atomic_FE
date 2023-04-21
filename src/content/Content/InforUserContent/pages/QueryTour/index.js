@@ -29,14 +29,14 @@ function QueryTour({ verifyPass, verified, typeQuery }) {
                     <TourUserItem
                         verifyPass={verifyPass}
                         verified={verified}
-                        ticketId={ticket.ticket.MaVe}
+                        ticketId={ticket.MaVe}
                         key={index}
-                        date={ticket.ticket.NgayDat}
-                        quantity={ticket.ticket.SLNguoi}
-                        price={ticket.tour.Gia}
-                        name={ticket.tour.TenTour}
-                        img={ticket.tour.HinhAnh[0]}
-                        status={ticket.ticket.TinhTrang}
+                        date={ticket.NgayDat}
+                        quantity={ticket.SLNguoi}
+                        price={ticket.Tour.Gia}
+                        name={ticket.Tour.TenTour}
+                        img={ticket.Tour.HinhAnh[0]}
+                        status={ticket.TinhTrang}
                     />
                 );
             })}

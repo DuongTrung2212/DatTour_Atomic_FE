@@ -9,6 +9,7 @@ import { DataUserChangeContext } from "../../../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCircleCheck,
+    faCircleXmark,
     faPersonCircleCheck,
     faShieldHalved,
 } from "@fortawesome/free-solid-svg-icons";
@@ -63,6 +64,16 @@ function TourUserItem({
                     />
                 );
                 setClassStatus("completed");
+                break;
+            case "TC":
+                setLabelStatus("Từ chối");
+                setIconStatus(
+                    <FontAwesomeIcon
+                        className={cx("icon")}
+                        icon={faCircleXmark}
+                    />
+                );
+                setClassStatus("refuse");
                 break;
 
             default:
@@ -120,7 +131,7 @@ function TourUserItem({
                     <b className={cx("status", classStatus)}>
                         {labelStatus} {iconStatus}
                     </b>
-                    {status === "CD" ? (
+                    {status === "CD" || status === "TC" ? (
                         <button
                             className={cx("btnDeleteTicket")}
                             onClick={handleDeleteTicket}

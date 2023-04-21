@@ -48,6 +48,10 @@ const variableLocal = {
             value: "DD",
             label: "Đã duyệt",
         },
+        {
+            value: "TC",
+            label: "Từ chối",
+        },
     ],
 
     mainBackground: img,

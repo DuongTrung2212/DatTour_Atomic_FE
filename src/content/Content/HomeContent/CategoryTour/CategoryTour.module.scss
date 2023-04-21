@@ -2,11 +2,12 @@
     padding: 20px;
     margin: 0 auto;
     width: 70%;
-    
+
     .titleTour {
         font-weight: bold;
         font-size: 20px;
-        border-radius: 30px;
+        border-radius: 20px;
+        margin: 5px 0px;
         padding: 20px;
         background-image: linear-gradient(
             to right,
@@ -14,12 +15,10 @@
             #ffffff97,
             #ffffff1d
         );
-       
     }
     .tourList {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        
     }
 }
