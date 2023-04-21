@@ -1,8 +1,5 @@
 import classNames from "classnames/bind";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import styles from "./TicketManager.module.scss";
-
-import TicketItem from "./TicketItem";
 import requestAxios from "../../../../../api/axios";
 import { useEffect, useState } from "react";
 import TicketList from "./TicketList";
@@ -21,7 +18,7 @@ function TicketManager() {
         await requestAxios
             .get("datTour")
             .then((res) => {
-                if (res.data.message == "OK") setDataTicket(res.data.data);
+                if (res.data.message === "OK") setDataTicket(res.data.data);
                 else setDataTicket([]);
             })
             .catch((err) => {

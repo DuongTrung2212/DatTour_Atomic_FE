@@ -4,10 +4,8 @@ import TourItem from "./TourItem/TourItem";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { memo, useState } from "react";
 import { useEffect } from "react";
-import { async } from "@firebase/util";
 import requestAxios from "../../../../../api/axios";
 import CreateTour from "./CreateTour/CreateTour";
-import { useMemo } from "react";
 import { DaTaChangeContext } from "../..";
 import { useContext } from "react";
 
@@ -21,7 +19,7 @@ function TourManager() {
         await requestAxios
             .get(`tour`)
             .then((res) => {
-                if (res.data.message == "OK") setTourList(res.data.listTour);
+                if (res.data.message === "OK") setTourList(res.data.listTour);
                 else {
                     setTourList([]);
                 }

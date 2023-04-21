@@ -16,9 +16,6 @@ function FormLogin() {
     const [pass, setPass] = useState("");
     const [clickAble, setClickAbel] = useState(true);
 
-    const getNumber = (value) => {
-        setNumber(value);
-    };
     const getPass = (value) => {
         setPass(value);
     };
@@ -30,7 +27,7 @@ function FormLogin() {
                 MatKhau: pass,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setClickAbel(true);
                     setStatus(true);
                     setUserName(res.data.data.TenKH);
@@ -46,7 +43,7 @@ function FormLogin() {
             });
     };
     const handleLogin = () => {
-        if (number.trim() != "" && pass.trim() != "") {
+        if (number.trim() !== "" && pass.trim() !== "") {
             fetchData();
         } else {
             toast.warn("Vui lòng nhập đầy đủ");

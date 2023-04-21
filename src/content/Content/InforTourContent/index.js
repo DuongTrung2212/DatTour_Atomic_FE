@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import styles from "./InforTourContent.module.scss";
 import { useContext, useEffect, useRef, useState } from "react";
 import { TourContext } from "../../../layouts/MainLayout/MainLayout";
-import { useParams, useSearchParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import requestAxios from "../../../api/axios";
@@ -11,7 +10,6 @@ import { UserContext } from "../../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUndo } from "@fortawesome/free-solid-svg-icons";
 import Input from "../../../components/Input";
-import { InputNumber } from "antd";
 
 const cx = classNames.bind(styles);
 
@@ -114,9 +112,10 @@ function InforTourContent() {
                     NgayBD: dataTour.NgayBD,
                     NgayKT: dataTour.NgayKT,
                     SLNguoi: soLuongDat,
+                    CCCD,
                 })
                 .then((res) => {
-                    if (res.data.message == "OK") {
+                    if (res.data.message === "OK") {
                         setSoLuongCon(res.data.SoLuongCon);
                         setFormBuy(false);
                         toast.success("Đã đặt");
@@ -151,7 +150,6 @@ function InforTourContent() {
                                 <p className={cx("content")}>{item.content}</p>
                                 <img
                                     src={`${process.env.REACT_APP_API_IMG_URL}${item.img}`}
-                                    // src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/moscow.jpg"
                                     alt=""
                                 />
                             </div>

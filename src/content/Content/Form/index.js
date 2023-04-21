@@ -1,16 +1,11 @@
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
 import styles from "./Form.module.scss";
-import {
-    getAuth,
-    RecaptchaVerifier,
-    signInWithPhoneNumber,
-} from "firebase/auth";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import FormLogin from "./FormLogin";
 import FormSignUp from "./FormSignUp";
 import { memo } from "react";
 import Input from "../../../components/Input";
-import { app } from "../../../config/configFirebase";
 import { auth } from "../../../config/configFirebase";
 import PhoneInput from "react-phone-number-input";
 import requestAxios from "../../../api/axios";
@@ -51,7 +46,7 @@ function Form() {
         setValuePass(value);
     };
     const handleChangeForm = () => {
-        login == true ? setLogin(false) : setLogin(true);
+        login === true ? setLogin(false) : setLogin(true);
     };
     const handleForgetPass = () => {
         showFormPhone ? setShowFormPhone(false) : setShowFormPhone(true);
@@ -97,7 +92,7 @@ function Form() {
                 MatKhau: valuePass,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Đã đổi mật khẩu");
                     console.log("OK");
                 } else {

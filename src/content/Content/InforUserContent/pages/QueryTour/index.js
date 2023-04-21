@@ -7,19 +7,20 @@ import { DataUserChangeContext } from "../../../../../App";
 function QueryTour({ verifyPass, verified, typeQuery }) {
     const [allTicket, setAllTicket] = useState([]);
     const { dataUserChange } = useContext(DataUserChangeContext);
-    const fetchDataTicket = async () => {
-        await requestAxios
-            .get(`datTour/filter/${typeQuery}`)
-            .then((res) => {
-                if (res.data.message == "OK") setAllTicket(res.data.data);
-            })
-            .catch((err) => {
-                console.log("Err loi fetch data all ticket");
-            });
-    };
+
     useEffect(() => {
+        const fetchDataTicket = async () => {
+            await requestAxios
+                .get(`datTour/filter/${typeQuery}`)
+                .then((res) => {
+                    if (res.data.message === "OK") setAllTicket(res.data.data);
+                })
+                .catch((err) => {
+                    console.log("Err loi fetch data all ticket");
+                });
+        };
         fetchDataTicket();
-    }, [dataUserChange]);
+    }, [dataUserChange, typeQuery]);
 
     return (
         <div>

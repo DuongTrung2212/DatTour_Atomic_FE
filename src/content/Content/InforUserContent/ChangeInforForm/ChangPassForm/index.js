@@ -12,7 +12,7 @@ function ChangePassForm() {
         setPassUser(data);
     };
     const handleSubmitChangePass = async () => {
-        if (passUser == "") return;
+        if (passUser === "") return;
         setShowBtn(false);
 
         await requestAxios
@@ -20,7 +20,7 @@ function ChangePassForm() {
                 MatKhau: passUser,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Đã đổi mật khẩu");
                 } else {
                     toast.warning(res.data.message);

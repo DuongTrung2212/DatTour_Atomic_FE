@@ -3,17 +3,12 @@ import classNames from "classnames/bind";
 import styles from "./FormSignUp.module.scss";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import {
-    getAuth,
-    signInWithPhoneNumber,
-    RecaptchaVerifier,
-} from "firebase/auth";
-import { useEffect, useState } from "react";
-import { auth, app, analytics } from "../../../../config/configFirebase";
+import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "../../../../config/configFirebase";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { async } from "@firebase/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faWarning } from "@fortawesome/free-solid-svg-icons";
 import ReactjsAlert from "reactjs-alert";
@@ -34,7 +29,6 @@ function FormSignUp() {
     const [pass, setPass] = useState("");
     const [rePass, setRePass] = useState("");
     const [step, setStep] = useState("INPUT_PHONE_NUMBER");
-    const [result, setResult] = useState("");
     const [message, setMessage] = useState("");
     const [signUpClickAble, setSignUpClickAble] = useState(true);
 
@@ -71,16 +65,15 @@ function FormSignUp() {
     //         verifier.clear();
     //     };
     // });
-    var verifier;
 
     const handleSendOTP = async () => {
         setSignUpClickAble(false);
         if (
             valuePhone.length < 5 ||
-            name == "" ||
-            email == "" ||
-            pass == "" ||
-            pass != rePass
+            name === "" ||
+            email === "" ||
+            pass === "" ||
+            pass !== rePass
         ) {
             setSignUpClickAble(true);
             return toast.warn("Vui lòng kiểm tra lại dữ liệu", {
@@ -118,7 +111,7 @@ function FormSignUp() {
                 Sdt: valuePhone,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setSignUpClickAble(true);
                     sendOTP();
                 } else
@@ -144,7 +137,7 @@ function FormSignUp() {
                         Email: email,
                     })
                     .then((res) => {
-                        if (res.data.message == "OK") {
+                        if (res.data.message === "OK") {
                             toast.success(res.data.message);
                             setStatus(true);
                             setUserName(res.data.newUser.TenKH);

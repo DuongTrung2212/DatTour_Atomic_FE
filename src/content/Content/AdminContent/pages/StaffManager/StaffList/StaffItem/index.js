@@ -32,7 +32,7 @@ function StaffItem({
         await requestAxios
             .delete(`nhanVien/${staffId}`)
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Đã xóa");
                     if (deleted) deleted();
                 } else {

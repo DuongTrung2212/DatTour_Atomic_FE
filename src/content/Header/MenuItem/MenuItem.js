@@ -1,5 +1,3 @@
-import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import styles from "./MenuItem.module.scss";

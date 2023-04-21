@@ -1,28 +1,23 @@
 .tourManager {
     padding-top: 15px;
     padding-left: 200px;
-   
-   
-    
     width: 100%;
     position: relative;
-   
+
     .tabs {
-        width: 1200px;
-        background-color: rgba(71, 71, 81, 0.105);
-        padding-top: 5px;
+        width: 1000px;
+        background-color: rgba(228, 228, 228, 0.762);
+        border-radius: 5px;
+        padding: 5px 20px;
     }
     .createTour {
-
         width: fit-content;
         padding-bottom: 10px;
-
     }
     .tourList {
         width: fit-content;
-        
     }
-    h1{
+    h1 {
         text-align: center;
     }
 }

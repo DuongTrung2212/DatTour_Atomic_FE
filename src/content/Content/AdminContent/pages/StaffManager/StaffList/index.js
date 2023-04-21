@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import { useContext, useEffect, useState } from "react";
 import styles from "./StaffList.module.scss";
-import { ToastContainer, toast } from "react-toastify";
 import StaffItem from "./StaffItem";
 import requestAxios from "../../../../../../api/axios";
 import { DaTaChangeContext } from "../../..";
@@ -9,7 +8,7 @@ const cx = classNames.bind(styles);
 function StaffList() {
     const [listStaff, setListStaff] = useState([]);
     const [haveChange, setHaveChange] = useState(0);
-    const { changed, setChanged } = useContext(DaTaChangeContext);
+    const { changed } = useContext(DaTaChangeContext);
     const deleted = () => {
         setHaveChange(haveChange + 1);
     };
@@ -17,7 +16,7 @@ function StaffList() {
         await requestAxios
             .get("nhanVien")
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setListStaff(res.data.listNhanVien);
                 }
             })

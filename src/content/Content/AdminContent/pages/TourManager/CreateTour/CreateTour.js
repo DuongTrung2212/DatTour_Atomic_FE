@@ -9,7 +9,6 @@ import requestAxios from "../../../../../../api/axios";
 import Input from "../../../../../../components/Input";
 import DecriptionForm from "../DecriptionForm/DecriptionForm";
 import styles from "./CreateTour.module.scss";
-import Select from "react-select";
 import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
 import { variableLocal } from "../../../../../../varialeLocal";
 import { DaTaChangeContext } from "../../..";
@@ -39,7 +38,7 @@ function CreateTour() {
         await requestAxios
             .get("nhanVien/freetime")
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     const respon = res.data.listNhanVien;
                     let dataOptions = [];
                     for (let index = 0; index < respon.length; index++) {
@@ -78,9 +77,7 @@ function CreateTour() {
     const onChangeDiemDon = (value) => {
         setDiemDon(value);
     };
-    const onChangeMaHDVien = (value) => {
-        setHDVien(value);
-    };
+
     const onChangeNgayKT = (value) => {
         setNgayKT(value);
     };
@@ -119,16 +116,16 @@ function CreateTour() {
     const handleSubmit = async () => {
         if (
             imgSlide.length < 2 ||
-            dataDecription.length == 0 ||
-            tenTour.trim() == "" ||
-            gia == 0 ||
-            soLuong == 0 ||
-            diemDi.trim() == "" ||
-            diemDon.trim() == "" ||
-            loaiTour.length == 0 ||
-            HDVien == null ||
-            ngayBD == "" ||
-            ngayKT == ""
+            dataDecription.length === 0 ||
+            tenTour.trim() === "" ||
+            gia === 0 ||
+            soLuong === 0 ||
+            diemDi.trim() === "" ||
+            diemDon.trim() === "" ||
+            loaiTour.length === 0 ||
+            HDVien === null ||
+            ngayBD === "" ||
+            ngayKT === ""
         ) {
             toast.warning("Bro vui lòng kiểm tra lại các trường");
             return;
@@ -169,7 +166,7 @@ function CreateTour() {
                 },
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("OK");
 
                     setChanged(changed + 1);
@@ -201,6 +198,7 @@ function CreateTour() {
                     {imgView.map((src, index) => {
                         return (
                             <img
+                                alt=""
                                 key={index}
                                 className={cx("slideImg")}
                                 src={src}

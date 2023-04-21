@@ -1,4 +1,4 @@
-import { faAdd, faEye, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { variableLocal } from "../../../../../../varialeLocal";
 import { useContext } from "react";
 import { DaTaChangeContext } from "../../..";
+import SelectCustom from "../../../../../../components/SelectCustom/SelectCustom";
 
 const cx = classNames.bind(styles);
 
@@ -20,18 +21,12 @@ let options = [
     { value: true, label: "Mở" },
     { value: false, label: "Đóng" },
 ];
-let optionsLoaiTour = [
-    { value: "TTN", label: "Tour thiên nhiên" },
-    { value: "TTQ", label: "Tour thiên quan" },
-    { value: "TB", label: "Tour biển" },
-];
 
-function UpdateForm(props) {
+function UpdateForm({ tourId }) {
     const [nameTour, setNameTour] = useState("");
     const [priceTour, setPriceTour] = useState(0);
     const [showImgSlide, setShowImgSlide] = useState(false);
     const [showMoTa, setShowMoTa] = useState(false);
-    const [dataTour, setDataTour] = useState({});
     const [imgSlide, setImgSlide] = useState([]);
     const [viewNewSlide, setViewNewSlide] = useState([]);
     const [soLuong, setSoLuong] = useState(0);
@@ -45,12 +40,9 @@ function UpdateForm(props) {
     const [moTa, setMoTa] = useState([]);
     const [viewNewMoTa, setViewNewMoTa] = useState([]);
     const [HDVien, setHDVien] = useState({});
-    const [showSelectedTinhTrang, setShowSelectedTinhTrang] = useState(false);
     const [showSelectedLoaiTour, setShowSelectedLoaiTour] = useState(false);
     const [showFormDecription, setShowFormDecription] = useState(false);
-    const [showSelectedStaff, setShowSelectedStaff] = useState(false);
     const [dataDecription, setDataDecription] = useState([]);
-    const [listStaff, setListStaff] = useState([]);
     const [optionsStaff, setOptionsStaff] = useState([]);
     const [showBtn, setShowBtn] = useState(true);
     const { changed, setChanged } = useContext(DaTaChangeContext);
@@ -91,92 +83,12 @@ function UpdateForm(props) {
     const getSaleTour = (data) => {
         setSale(data);
     };
-    const fetchData = async () => {
-        await requestAxios
-            .get(`tour/${props.tourId}`)
-            .then((res) => {
-                if (res.data.message == "OK") {
-                    var dataLoaiTour = [];
-                    setNameTour(res.data.tour.TenTour);
-                    setPriceTour(res.data.tour.Gia);
-                    setDataTour(res.data.tour);
-                    setImgSlide(res.data.tour.HinhAnh);
-                    setMoTa(res.data.tour.MoTa);
-                    setSoLuong(res.data.tour.SoLuong);
-                    setDiemDi(res.data.tour.DiemDi);
-                    setNgayBD(
-                        res.data.tour.NgayBD.split("/")
-                            .reverse()
-                            .toString()
-                            .replace(/,/g, "-")
-                    );
-                    setNgayKT(
-                        res.data.tour.NgayKT.split("/")
-                            .reverse()
-                            .toString()
-                            .replace(/,/g, "-")
-                    );
-                    for (
-                        let index = 0;
-                        index < res.data.tour.LoaiTour.length;
-                        index++
-                    ) {
-                        var label = "";
-                        switch (res.data.tour.LoaiTour[index]) {
-                            case "TTN":
-                                label = "Tour tự nhiên";
-                                break;
-                            case "TB":
-                                label = "Tour biển";
-                                break;
-                            case "TTQ":
-                                label = "Tour tham quan";
-                                break;
 
-                            default:
-                                break;
-                        }
-                        dataLoaiTour.push({
-                            value: res.data.tour.LoaiTour[index],
-                            label: label,
-                        });
-                    }
-                    var labelTinhTrang = "";
-                    switch (res.data.tour.TinhTrang) {
-                        case true:
-                            labelTinhTrang = "Mở";
-                            break;
-                        case false:
-                            labelTinhTrang = "Đóng";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    setLoaiTour(dataLoaiTour);
-                    setDiemDon(res.data.tour.DiemDon);
-                    setSale(res.data.tour.Sale);
-
-                    setTinhTrang({
-                        value: res.data.tour.TinhTrang,
-                        label: labelTinhTrang,
-                    });
-
-                    setHDVien({
-                        value: res.data.HDVien.MaHDVien,
-                        label: res.data.HDVien.TenHDVien,
-                    });
-                    // setIdHDVien(res.data.tour.MaHDVien);
-                }
-            })
-            .catch((err) => console.log("Err fetch data Updateform"));
-    };
     const fetchDataAllStaff = async () => {
         await requestAxios
             .get(`nhanVien/freetime`)
             .then((res) => {
-                if (res.data.message == "OK") {
-                    setListStaff(res.data.listNhanVien);
+                if (res.data.message === "OK") {
                     console.log(res.data.listNhanVien.length);
                     var listDataOptions = [];
                     for (var i = 0; i < res.data.listNhanVien.length; i++) {
@@ -188,15 +100,91 @@ function UpdateForm(props) {
                     setOptionsStaff(listDataOptions);
                 }
             })
-            .catch(() => console.log("Loi fecth dat all staff"));
+            .catch((err) => console.log("Loi fecth dat all staff"));
     };
     useEffect(() => {
+        const fetchData = async () => {
+            await requestAxios
+                .get(`tour/${tourId}`)
+                .then((res) => {
+                    if (res.data.message === "OK") {
+                        var dataLoaiTour = [];
+                        setNameTour(res.data.tour.TenTour);
+                        setPriceTour(res.data.tour.Gia);
+                        setImgSlide(res.data.tour.HinhAnh);
+                        setMoTa(res.data.tour.MoTa);
+                        setSoLuong(res.data.tour.SoLuong);
+                        setDiemDi(res.data.tour.DiemDi);
+                        setNgayBD(
+                            res.data.tour.NgayBD.split("/")
+                                .reverse()
+                                .toString()
+                                .replace(/,/g, "-")
+                        );
+                        setNgayKT(
+                            res.data.tour.NgayKT.split("/")
+                                .reverse()
+                                .toString()
+                                .replace(/,/g, "-")
+                        );
+                        for (
+                            let index = 0;
+                            index < res.data.tour.LoaiTour.length;
+                            index++
+                        ) {
+                            var label = "";
+                            switch (res.data.tour.LoaiTour[index]) {
+                                case "TTN":
+                                    label = "Tour tự nhiên";
+                                    break;
+                                case "TB":
+                                    label = "Tour biển";
+                                    break;
+                                case "TTQ":
+                                    label = "Tour tham quan";
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                            dataLoaiTour.push({
+                                value: res.data.tour.LoaiTour[index],
+                                label: label,
+                            });
+                        }
+                        var labelTinhTrang = "";
+                        switch (res.data.tour.TinhTrang) {
+                            case true:
+                                labelTinhTrang = "Mở";
+                                break;
+                            case false:
+                                labelTinhTrang = "Đóng";
+                                break;
+                            default:
+                                break;
+                        }
+
+                        setLoaiTour(dataLoaiTour);
+                        setDiemDon(res.data.tour.DiemDon);
+                        setSale(res.data.tour.Sale);
+
+                        setTinhTrang({
+                            value: res.data.tour.TinhTrang,
+                            label: labelTinhTrang,
+                        });
+
+                        setHDVien({
+                            value: res.data.HDVien.MaHDVien,
+                            label: res.data.HDVien.TenHDVien,
+                        });
+                        // setIdHDVien(res.data.tour.MaHDVien);
+                    }
+                })
+                .catch((err) => console.log("Err fetch data Updateform"));
+        };
         fetchData();
         fetchDataAllStaff();
-    }, [changed]);
-    // useEffect(() => {
-
-    // }, []);
+    }, [changed, tourId]);
 
     useEffect(() => {
         let handleSlide = (e) => {
@@ -221,10 +209,7 @@ function UpdateForm(props) {
         if (showImgSlide) setShowMoTa(false);
         else setShowMoTa(true);
     };
-    const handleClickShowTinhTrang = () => {
-        if (showSelectedTinhTrang) setShowSelectedTinhTrang(false);
-        else setShowSelectedTinhTrang(true);
-    };
+
     const handleClickShowLoaiTour = () => {
         if (showSelectedLoaiTour) setShowSelectedLoaiTour(false);
         else setShowSelectedLoaiTour(true);
@@ -233,10 +218,7 @@ function UpdateForm(props) {
         if (showFormDecription) setShowFormDecription(false);
         else setShowFormDecription(true);
     };
-    const handleClickShowNhanVien = () => {
-        if (showSelectedStaff) setShowSelectedStaff(false);
-        else setShowSelectedStaff(true);
-    };
+
     const handleAddMoTa = (data) => {
         const newData = [...dataDecription, data];
         const newMoTa = [];
@@ -290,13 +272,13 @@ function UpdateForm(props) {
         });
 
         await requestAxios
-            .patch(`tour/${props.tourId}`, formData, {
+            .patch(`tour/${tourId}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setShowBtn(true);
                     toast.success("Thành công");
                     setChanged(changed + 1);
@@ -344,7 +326,10 @@ function UpdateForm(props) {
                     >
                         <FontAwesomeIcon icon={faPen} />
                     </Files>
-                    <div className={cx("icon")} onClick={handleClickShowImgSlide}>
+                    <div
+                        className={cx("icon")}
+                        onClick={handleClickShowImgSlide}
+                    >
                         <FontAwesomeIcon icon={faEye} />
                     </div>
                     {showImgSlide ? (
@@ -416,20 +401,12 @@ function UpdateForm(props) {
                     ""
                 )}
             </div>
-            <b>
-                Tình trạng_
-                <FontAwesomeIcon
-                    onClick={handleClickShowTinhTrang}
-                    icon={faPen}
-                />
-            </b>
 
-            <Select
+            <SelectCustom
+                label={"Tình trạng"}
                 className={cx("select")}
                 value={tinhTrang}
                 onChange={(e) => {
-                    setShowSelectedTinhTrang(false);
-                    // setSelectedOption(e);
                     setTinhTrang(e);
                 }}
                 options={options}

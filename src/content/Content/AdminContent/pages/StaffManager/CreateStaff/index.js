@@ -35,7 +35,7 @@ function CreateStaff() {
                 Email: emailStaff,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Thêm nhân viên thành công");
                 } else {
                     toast.error(res.data.message);

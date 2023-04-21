@@ -17,7 +17,6 @@ function ChangeInforForm() {
     const [addressUser, setAddressUser] = useState("");
 
     const [showBtn, setShowBtn] = useState(true);
-    const [dataUser, setDataUser] = useState("");
     const [switchToChangePass, setSwitchToChangePass] = useState(false);
     const { dataUserChange, setDataUserChange } = useContext(
         DataUserChangeContext
@@ -27,7 +26,7 @@ function ChangeInforForm() {
             await requestAxios
                 .get("user")
                 .then((res) => {
-                    if (res.data.message == "OK") {
+                    if (res.data.message === "OK") {
                         setNameUser(res.data.user.TenKH);
                         setEmailUser(res.data.user.Email);
                         setAddressUser(res.data.user.DiaChi);
@@ -57,7 +56,7 @@ function ChangeInforForm() {
         await requestAxios
             .patch("user", formData)
             .then((res) => {
-                if (res.data.message == "OK") toast.success("Đã đổi");
+                if (res.data.message === "OK") toast.success("Đã đổi");
                 else toast.error("Vui lòng xem lại");
                 setShowBtn(true);
                 setDataUserChange(dataUserChange + 1);
@@ -106,23 +105,28 @@ function ChangeInforForm() {
                         onChangeValue={getAddressUser}
                         label={"Địa chỉ"}
                     />
-                    <button className={cx("btn")} onClick={showBtn ? handleSubmit : null}>
+                    <button
+                        className={cx("btn")}
+                        onClick={showBtn ? handleSubmit : null}
+                    >
                         Xác nhận
                     </button>
                 </div>
             )}
             <div className={cx("nextback")}>
-            <Tippy
-                content={<span className={cx("tippyLabel")}>Đổi mật khẩu</span>}
-            >
-                <button onClick={handleChangeForm}>
-                    {switchToChangePass ? (
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    ) : (
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    )}
-                </button>
-            </Tippy>
+                <Tippy
+                    content={
+                        <span className={cx("tippyLabel")}>Đổi mật khẩu</span>
+                    }
+                >
+                    <button onClick={handleChangeForm}>
+                        {switchToChangePass ? (
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                        ) : (
+                            <FontAwesomeIcon icon={faArrowRight} />
+                        )}
+                    </button>
+                </Tippy>
             </div>
         </div>
     );

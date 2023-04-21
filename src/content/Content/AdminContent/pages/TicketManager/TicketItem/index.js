@@ -52,7 +52,7 @@ function TicketItem({
             default:
                 break;
         }
-    });
+    }, [status]);
     const handleChangeStatus = () => {
         if (showChangeStatusForm) setShowChangeStatusForm(false);
         else setShowChangeStatusForm(true);
@@ -63,7 +63,7 @@ function TicketItem({
                 TinhTrang: e.value,
             })
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     setChanged(changed + 1);
                     console.log("OK");
                 }
@@ -77,7 +77,7 @@ function TicketItem({
         await requestAxios
             .delete(`datTour/manager/${ticketId}`)
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     toast.success("Đã xóa");
                     setChanged(changed + 1);
                 } else console.log("Loi");

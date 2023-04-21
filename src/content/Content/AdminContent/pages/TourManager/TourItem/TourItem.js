@@ -38,7 +38,7 @@ function TourItem({ data, onDelete, ...props }) {
         await requestAxios
             .delete(`tour/${data.MaTour}`)
             .then((res) => {
-                if (res.data.message == "OK") {
+                if (res.data.message === "OK") {
                     if (onDelete) onDelete();
                     setChanged(changed + 1);
                     toast.success(res.data.message);
