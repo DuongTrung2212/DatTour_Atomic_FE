@@ -76,7 +76,7 @@ function FormSignUp() {
             );
             setRecaptcha(window.recaptchaVerifier);
         }
-    }, []);
+    }, [recaptcha]);
     const handleSendOTP = async () => {
         setSignUpClickAble(false);
         if (
@@ -101,7 +101,7 @@ function FormSignUp() {
                     setMessage("");
                 })
                 .catch((error) => {
-                    setMessage("Lỗi hệ thống");
+                    setMessage("Vui lòng thử lại");
                     console.log("Error" + error);
                 });
         };
