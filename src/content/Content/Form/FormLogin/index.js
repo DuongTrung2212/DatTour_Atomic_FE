@@ -49,7 +49,11 @@ function FormLogin() {
             toast.warn("Vui lòng nhập đầy đủ");
         }
     };
-
+    const handleEnter = (e) => {
+        if (e.keyCode === 13) {
+            handleLogin();
+        }
+    };
     return (
         <div className={cx("formLogin")}>
             <ReactjsAlert
@@ -79,6 +83,7 @@ function FormLogin() {
             <h2>Login</h2>
             <label>Số điện thoại</label>
             <PhoneInput
+                onKeyDown={handleEnter}
                 className={cx("phoneInput")}
                 international
                 defaultCountry="VN"
@@ -86,6 +91,7 @@ function FormLogin() {
                 onChange={setNumber}
             />
             <Input
+                onKeyDown={handleEnter}
                 onChangeValue={getPass}
                 notNull={true}
                 label="Password"

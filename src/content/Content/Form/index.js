@@ -51,19 +51,24 @@ function Form() {
     const handleForgetPass = () => {
         showFormPhone ? setShowFormPhone(false) : setShowFormPhone(true);
     };
-
-    const handleSendOTP = async () => {
+    var verifier;
+    useEffect(() => {
         if (!recaptcha) {
-            const verifier = new RecaptchaVerifier(
+            window.recaptchaVerifier = new RecaptchaVerifier(
                 "sign-in-button",
                 {
                     size: "invisible",
                 },
                 auth
             );
-            verifier.verify().then(() => setRecaptcha(verifier));
+            setRecaptcha(window.recaptchaVerifier);
         }
-        await signInWithPhoneNumber(auth, valuePhone, recaptcha)
+    }, []);
+    const handleSendOTP = async () => {
+        // if (!recaptcha) {
+        //     verifier.verify().then(() => setRecaptcha(verifier));
+        // }
+        signInWithPhoneNumber(auth, valuePhone, recaptcha)
             .then((confirmationResult) => {
                 window.confirmationResult = confirmationResult;
                 setShowFormOTP(true);

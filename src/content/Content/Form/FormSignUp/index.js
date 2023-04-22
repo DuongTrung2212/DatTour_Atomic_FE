@@ -4,7 +4,7 @@ import styles from "./FormSignUp.module.scss";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../../../../config/configFirebase";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -23,7 +23,7 @@ function FormSignUp() {
     const [status, setStatus] = useState(false);
     const [userName, setUserName] = useState("");
     const [otp, setOtp] = useState("");
-    const [recaptcha, setRecaptcha] = useState();
+    const [recaptcha, setRecaptcha] = useState(null);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -65,7 +65,18 @@ function FormSignUp() {
     //         verifier.clear();
     //     };
     // });
-
+    useEffect(() => {
+        if (!recaptcha) {
+            window.recaptchaVerifier = new RecaptchaVerifier(
+                "recaptcha-container",
+                {
+                    size: "invisible",
+                },
+                auth
+            );
+            setRecaptcha(window.recaptchaVerifier);
+        }
+    }, []);
     const handleSendOTP = async () => {
         setSignUpClickAble(false);
         if (
@@ -81,19 +92,8 @@ function FormSignUp() {
             });
         }
 
-        if (!recaptcha) {
-            const verifier = new RecaptchaVerifier(
-                "recaptcha-container",
-                {
-                    size: "invisible",
-                },
-                auth
-            );
-            await verifier.verify().then(() => setRecaptcha(verifier));
-        }
-
         const sendOTP = async () => {
-            await signInWithPhoneNumber(auth, valuePhone, recaptcha)
+            signInWithPhoneNumber(auth, valuePhone, recaptcha)
                 .then((confirmationResult) => {
                     console.log("OK");
                     window.confirmationResult = confirmationResult;

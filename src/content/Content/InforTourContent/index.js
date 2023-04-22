@@ -126,6 +126,7 @@ function InforTourContent() {
                 .catch((err) => console.log("Err dat tour "));
         }
     };
+
     return (
         <div className={cx("infoTourContent")}>
             <ToastContainer
