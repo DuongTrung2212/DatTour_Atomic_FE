@@ -25,21 +25,24 @@
         box-shadow: 3px 4px 5px #646464;
         display: flex;
         align-items: center;
-        div {
-            .btnDeleteTicket {
-                position: absolute;
-                left: 90%;
-                top: 100%;
-                border-radius: 5px;
-                transform: translateY(-200%);
-                background-color: rgb(170, 8, 8);
-                color: rgb(255, 255, 255);
-                font-weight: bold;
-                box-shadow: 2px 3px 4px #6c6b6b;
-                padding: 10px 20px;
-            }
+
+        .btnDeleteTicket {
+            position: absolute;
+            left: 90%;
+            top: 100%;
+            border-radius: 5px;
+            transform: translateY(-200%);
+            background-color: rgb(170, 8, 8);
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            box-shadow: 2px 3px 4px #6c6b6b;
+            padding: 10px 20px;
+        }
+        .nameAndPrice {
             .nameTour {
                 font-size: 30px;
+                display: block;
+                padding: 10px 0px;
             }
             .priceTour {
                 font-size: 22px;
@@ -49,47 +52,51 @@
             .quantity {
                 display: flex;
                 align-items: center;
-                p {
+                .num {
+                    padding: 10px 50px 0px 0px;
+                }
+                .dateBook {
                     padding: 10px 50px 0px 0px;
                 }
             }
-            .status {
-                font-size: 20px;
-                position: absolute;
-                display: flex;
-                align-items: center;
-                right: 2%;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            .icon {
-                font-size: 30px;
-                margin-left: 20px;
-                color: inherit;
-            }
-            .waitApproval {
+        }
+
+        .status {
+            font-size: 20px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            right: 2%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .icon {
+            font-size: 30px;
+            margin-left: 20px;
+            color: inherit;
+        }
+        .waitApproval {
+            color: rgb(16, 43, 220);
+            path {
                 color: rgb(16, 43, 220);
-                path {
-                    color: rgb(16, 43, 220);
-                }
             }
-            .approved {
+        }
+        .approved {
+            color: rgb(200, 10, 207);
+            path {
                 color: rgb(200, 10, 207);
-                path {
-                    color: rgb(200, 10, 207);
-                }
             }
-            .completed {
+        }
+        .completed {
+            color: rgb(25, 179, 61);
+            path {
                 color: rgb(25, 179, 61);
-                path {
-                    color: rgb(25, 179, 61);
-                }
             }
-            .refuse {
+        }
+        .refuse {
+            color: rgb(223, 55, 21);
+            path {
                 color: rgb(223, 55, 21);
-                path {
-                    color: rgb(223, 55, 21);
-                }
             }
         }
     }

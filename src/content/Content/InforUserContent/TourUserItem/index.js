@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
 function TourUserItem({
+    sale,
     verifyPass,
     verified,
     ticketId,
@@ -119,29 +120,34 @@ function TourUserItem({
                 alt=""
             />
             <div className={cx("content")}>
-                <div>
+                <div className={cx("nameAndPrice")}>
                     <b className={cx("nameTour")}>{name}</b>
                     <b className={cx("priceTour")}>
-                        {parseInt(price).toLocaleString()} VND
+                        {(
+                            (price - (price * sale) / 100) *
+                            quantity
+                        ).toLocaleString()}
+                        {" VND"}
                     </b>
                     <div className={cx("quantity")}>
-                        <p>Số lượng : {quantity}</p>
-                        <p>Ngày đặt : {date}</p>
+                        <p className={cx("num")}>Số lượng : {quantity}</p>
+                        <p className={cx("dateBook")}>Ngày đặt : {date}</p>
                     </div>
-                    <b className={cx("status", classStatus)}>
-                        {labelStatus} {iconStatus}
-                    </b>
-                    {status === "CD" || status === "TC" ? (
-                        <button
-                            className={cx("btnDeleteTicket")}
-                            onClick={handleDeleteTicket}
-                        >
-                            Hủy vé
-                        </button>
-                    ) : (
-                        ""
-                    )}
                 </div>
+
+                <b className={cx("status", classStatus)}>
+                    {labelStatus} {iconStatus}
+                </b>
+                {status === "CD" || status === "TC" ? (
+                    <button
+                        className={cx("btnDeleteTicket")}
+                        onClick={handleDeleteTicket}
+                    >
+                        Hủy vé
+                    </button>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );
