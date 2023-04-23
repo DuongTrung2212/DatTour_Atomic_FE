@@ -1,5 +1,7 @@
 import img from "../assets/img/bg.jpg";
 import imgNotFound from "../assets/img/imgNotFound.webp";
+import logoAtomic from "../assets/img/logoAtomic.png";
+import iconRaiden from "../assets/img/iconRaiden.png";
 const variableLocal = {
     dataLoaiTour: [
         {
@@ -56,5 +58,7 @@ const variableLocal = {
 
     mainBackground: img,
     imgNotFound: imgNotFound,
+    logoAtomic,
+    iconRaiden,
 };
 export { variableLocal };

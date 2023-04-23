@@ -16,6 +16,36 @@
     }
     .tourList {
         width: fit-content;
+        align-items: center;
+        margin-top: 20px;
+        .title {
+            display: flex;
+            p {
+                text-align: center;
+                font-weight: bold;
+            }
+            .stt {
+                width: 60px;
+            }
+            .sale {
+                width: 80px;
+            }
+            .tinhTrang {
+                width: 100px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .tourName {
+                width: 400px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .soLuong {
+                width: 60px;
+            }
+        }
     }
     h1 {
         text-align: center;

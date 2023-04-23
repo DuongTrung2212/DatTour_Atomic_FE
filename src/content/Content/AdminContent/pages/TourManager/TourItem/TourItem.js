@@ -64,10 +64,23 @@ function TourItem({ data, onDelete, ...props }) {
                 pauseOnHover={false}
                 theme="light"
             />
-            <p className={cx("stt")}>{props.index}</p>
-            <p className={cx("tourId")}>{data.MaTour}</p>
-            <p className={cx("tourName")}>{data.TenTour}</p>
-            <p className={cx("soLuong")}>{data.SoLuong}</p>
+            <div className={cx("data")}>
+                <p className={cx("stt")}>{props.index}</p>
+                <p className={cx("tourName")}>{data.TenTour}</p>
+                <p className={cx("soLuong")}>{data.SoLuong}</p>
+                <p className={cx("sale")}>
+                    {data.Sale}
+                    {" %"}
+                </p>
+                <p
+                    className={cx(
+                        "tinhTrang",
+                        data.TinhTrang ? "openStatus" : ""
+                    )}
+                >
+                    {data.TinhTrang ? "Đang mở" : "Đã đóng"}
+                </p>
+            </div>
 
             {formUpdate ? (
                 <>

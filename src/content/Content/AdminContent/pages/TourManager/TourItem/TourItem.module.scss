@@ -1,5 +1,4 @@
 .tourItem {
-
     display: flex;
     align-items: center;
 
@@ -12,9 +11,7 @@
     padding-top: 5px;
     padding-bottom: 10px;
     box-shadow: 1px 2px 3px rgb(133, 133, 133);
-    
-   
-    
+
     p {
         padding: 5px 10px;
     }
@@ -25,7 +22,7 @@
         font-size: 15px;
         font-family: tahoma;
         color: rgb(0, 0, 0);
-        &:hover{
+        &:hover {
             background-color: rgb(202, 202, 202);
         }
     }
@@ -34,36 +31,45 @@
         width: fit-content;
         border-radius: 5px;
         top: 10%;
-         //left: 50%;
-         margin: auto;
+        //left: 50%;
+        margin: auto;
         padding: 20px 50px;
         overflow-y: auto;
         max-height: 500px;
         background-color: rgb(154, 175, 174);
     }
+    .data {
+        display: flex;
+        p {
+            text-align: center;
+        }
+    }
     .stt {
         width: 60px;
-        font-weight: bold;
     }
-    .tourId {
-        width: 300px;
+    .sale {
+        width: 80px;
+    }
+    .tinhTrang {
+        width: 100px;
         font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
     }
     .tourName {
-        width: 200px;
+        width: 400px;
 
-        font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis; 
-        
+        text-overflow: ellipsis;
+    }
+
+    .openStatus {
+        color: #00ba3b;
     }
     .soLuong {
         width: 60px;
-        font-weight: bold;
     }
     .action {
         text-align: center;
@@ -71,26 +77,24 @@
         width: 220px;
         font-weight: bold;
         padding-right: 10px;
-
     }
-    .check{
+    .check {
         background-color: rgba(170, 170, 170, 0.929);
-        &:hover{
+        &:hover {
             background-color: rgba(11, 147, 43, 0.519);
             color: white;
         }
-               
     }
-    .update{
+    .update {
         background-color: rgba(170, 170, 170, 0.929);
-        &:hover{
+        &:hover {
             background-color: rgba(11, 147, 147, 0.519);
             color: white;
         }
     }
-    .del{
+    .del {
         background-color: rgba(170, 170, 170, 0.929);
-        &:hover{
+        &:hover {
             background-color: rgba(229, 12, 37, 0.519);
             color: white;
         }

@@ -1,6 +1,9 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { variableLocal } from "../../varialeLocal";
 const cx = classNames.bind(styles);
 function Footer() {
     return (
@@ -92,6 +95,15 @@ function Footer() {
                 </div>
             </div>
             <div className={cx("bot")}></div>
+            <Link to={"https://www.facebook.com/messages/t/100008085704696"}>
+                <div className={cx("help")}>
+                    <div className={cx("message")}>
+                        <FontAwesomeIcon icon={faMessage} flip="horizontal" />
+                        <p className={cx("helpText")}>Bạn cần hỗ trợ ?</p>
+                    </div>
+                    <img src={variableLocal.iconRaiden} alt="" />
+                </div>
+            </Link>
         </div>
     );
 }

@@ -25,6 +25,7 @@ import { TourContext } from "../../layouts/MainLayout/MainLayout";
 import { AdminContext, DataUserChangeContext, UserContext } from "../../App";
 
 import MenuItem from "./MenuItem/MenuItem";
+import { variableLocal } from "../../varialeLocal";
 const cx = classNames.bind(styles);
 
 const listMenuItem = [
@@ -158,8 +159,12 @@ function Header(props) {
     };
     return (
         <div className={cx("header")}>
-            <div className={cx("logo")}>
-                <img src={"./"} alt="" />
+            <div>
+                <img
+                    className={cx("logo")}
+                    src={variableLocal.logoAtomic}
+                    alt=""
+                />
             </div>
             <div className={cx("pages")}>
                 <Link className={cx("home")} to="/">
@@ -206,7 +211,9 @@ function Header(props) {
                                             );
                                         })
                                     ) : (
-                                        <p>"Ko tìm thấy kết quả"</p>
+                                        <p className={cx("noResult")}>
+                                            "Ko tìm thấy kết quả"
+                                        </p>
                                     )}
                                 </div>
                             </div>

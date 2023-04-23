@@ -47,6 +47,13 @@ function TourManager() {
 
                 <TabPanel>
                     <div className={cx("tourList")}>
+                        <div className={cx("title")}>
+                            <p className={cx("stt")}>STT</p>
+                            <p className={cx("tourName")}>Tên tour</p>
+                            <p className={cx("soLuong")}>Còn</p>
+                            <p className={cx("sale")}>Sale</p>
+                            <p className={cx("tinhTrang")}>Tình Trạng</p>
+                        </div>
                         {tourList.length > 0
                             ? tourList.map((tour, index) => {
                                   return (
