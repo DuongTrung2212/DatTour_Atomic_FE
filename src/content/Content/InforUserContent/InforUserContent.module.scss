@@ -15,16 +15,16 @@
     .changeInforForm {
         // width: fit-content;
         position: absolute;
-        padding: 5px 40px;
+        padding: 40px 50px;
         background-color: rgb(150, 190, 190);
         border-radius: 5px;
         top: 50%;
         left: 50%;
         z-index: 3;
-        transform: translate(-50%,-50%);
-       // margin: auto;
+        transform: translate(-50%, -50%);
+        // margin: auto;
         width: fit-content;
-        height: 406px;
+        height: fit-content;
     }
     .header {
         width: 100%;
@@ -83,25 +83,25 @@
         left: 500px;
         top: 10px;
         position: relative;
-         background-color: rgba(245, 245, 245, 0.807);
+        background-color: rgba(245, 245, 245, 0.807);
 
-       // border: 1px solid rgb(14, 3, 3);
+        // border: 1px solid rgb(14, 3, 3);
 
-        border-radius: 5px;      
+        border-radius: 5px;
         .editInfor {
             position: absolute;
             top: 80%;
             left: 88%;
             font-size: 30px;
         }
-        .editbutton{
-                padding: 5px 10px;
-                border-radius: 10px;
-               background-color: rgb(249, 250, 250);
-               &:hover{
-               // color: aliceblue;
+        .editbutton {
+            padding: 5px 10px;
+            border-radius: 10px;
+            background-color: rgb(249, 250, 250);
+            &:hover {
+                // color: aliceblue;
                 background-color: rgb(74, 166, 197);
-               } 
+            }
         }
     }
     hr {

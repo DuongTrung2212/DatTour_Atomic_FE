@@ -1,11 +1,13 @@
 .changePassForm {
-    button {
+    .btn {
         background-color: rgb(234, 242, 242);
         font-size: 20px;
-        color: rgb(172, 167, 167);
+        color: rgb(89, 89, 89);
         padding: 10px;
         display: block;
-        border-radius: 20px;
+        margin: auto;
+        margin-top: 30px;
+        border-radius: 10px;
         &:hover {
             color: aliceblue;
             background-color: rgb(24, 109, 109);

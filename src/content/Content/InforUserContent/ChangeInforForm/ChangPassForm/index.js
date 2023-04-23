@@ -49,7 +49,10 @@ function ChangePassForm() {
                 onChangeValue={getPassUser}
                 label={"Mật khẩu mới"}
             />
-            <button onClick={showBtn ? handleSubmitChangePass : null}>
+            <button
+                className={cx("btn")}
+                onClick={showBtn ? handleSubmitChangePass : null}
+            >
                 Xác nhận
             </button>
         </div>

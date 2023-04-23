@@ -119,7 +119,10 @@ function ChangeInforForm() {
                         <span className={cx("tippyLabel")}>Đổi mật khẩu</span>
                     }
                 >
-                    <button onClick={handleChangeForm}>
+                    <button
+                        className={cx("btnSwitch")}
+                        onClick={handleChangeForm}
+                    >
                         {switchToChangePass ? (
                             <FontAwesomeIcon icon={faArrowLeft} />
                         ) : (
