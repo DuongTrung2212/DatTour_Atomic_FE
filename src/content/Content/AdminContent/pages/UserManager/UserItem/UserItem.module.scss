@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
-    width: inherit;
+    width: 1300px;
     background-color: rgba(205, 213, 213, 0.74);
     border-bottom: 1px solid #bcbcbcc2;
     p {
@@ -68,10 +68,12 @@
         padding: 10px;
         position: absolute;
         width: 290px;
+       left: 40%;
+       top: 50%;
+        //transform: translate(-50%,-50%);
         border-radius: 5px;
         background-color: rgb(176, 189, 189);
-        top: 30%;
-        left: 101%;
+        
 
         h2 {
             color: rgb(58, 58, 58);
