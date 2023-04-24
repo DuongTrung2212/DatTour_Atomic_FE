@@ -36,6 +36,7 @@ function VerifyPass({ onSuccess, onErr, ...props }) {
             <h2>Xác Thực</h2>
             <div>
                 <Input
+                    type={"password"}
                     onChangeValue={getPass}
                     label={"Vui lòng nhập mật khẩu để tiếp tục :"}
                 />

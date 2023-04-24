@@ -31,7 +31,10 @@ function FormSignUp() {
     const [step, setStep] = useState("INPUT_PHONE_NUMBER");
     const [message, setMessage] = useState("");
     const [signUpClickAble, setSignUpClickAble] = useState(true);
-
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
     const getValueOTP = (value) => {
         setOtp(value);
     };
@@ -84,7 +87,8 @@ function FormSignUp() {
             name === "" ||
             email === "" ||
             pass === "" ||
-            pass !== rePass
+            pass !== rePass ||
+            !validateEmail(email)
         ) {
             setSignUpClickAble(true);
             return toast.warn("Vui lòng kiểm tra lại dữ liệu", {
@@ -115,16 +119,17 @@ function FormSignUp() {
                     setSignUpClickAble(true);
                     sendOTP();
                 } else
-                    return toast(res.data.message, {
+                    toast.success(res.data.message, {
                         icon: <FontAwesomeIcon icon={faPhone} />,
                     });
             })
             .catch((err) => {
                 setSignUpClickAble(true);
-                toast("Lỗi xử lí");
+                toast.error("Lỗi xử lí");
             });
     };
     const handleValidOTP = async () => {
+        console.log(otp);
         setSignUpClickAble(false);
         window.confirmationResult
             .confirm(otp)

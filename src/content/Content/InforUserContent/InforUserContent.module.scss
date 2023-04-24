@@ -2,6 +2,14 @@
     min-height: 1000px;
     position: relative;
     padding-top: 20px;
+    .verifyPass {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        background-color: rgba(60, 60, 60, 0.471);
+        z-index: 1;
+    }
     .background {
         width: 100%;
         height: 100%;

@@ -3,6 +3,8 @@
     padding: 50px;
     background-image: linear-gradient(#f8f8f8, #ececec, #e0dfdf);
     position: relative;
+    margin-top: 230px;
+
     .top {
         display: flex;
         justify-content: space-around;
@@ -26,14 +28,25 @@
         position: absolute;
         top: 0;
         right: 0;
+        width: 220px;
         transform: translateY(-100%);
+        @keyframes example {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
         .message {
             position: relative;
             padding-right: 50px;
+            animation: 0.5s infinite alternate example;
+            width: fit-content;
             svg {
                 font-size: 150px !important;
                 path {
-                    color: rgb(255, 255, 255);
+                    color: rgb(221, 221, 221);
                     text-shadow: 1px 2px 3px #636363 !important;
                 }
             }

@@ -59,6 +59,17 @@ function InforUserContent() {
     useEffect(() => {
         fetchDataUser();
     }, [dataUserChange]);
+    useEffect(() => {
+        if (showVerify && !verified) {
+            var x = window.scrollX;
+            var y = window.scrollY;
+            window.onscroll = function () {
+                window.scrollTo(x, y);
+            };
+        } else {
+            window.onscroll = function () {};
+        }
+    }, [showVerify]);
     const hanldeChangeFile = async (files) => {
         let formData = new FormData();
         formData.append("Img", files[0]);
@@ -94,15 +105,17 @@ function InforUserContent() {
                 theme="light"
             />
             {showVerify && !verified ? (
-                <div ref={verifyPassRef}>
-                    <VerifyPass
-                        onSuccess={() => {
-                            setVerified(true);
-                        }}
-                        onErr={() => {
-                            toast.warning("Sai mật khẩu");
-                        }}
-                    />
+                <div className={cx("verifyPass")}>
+                    <div ref={verifyPassRef}>
+                        <VerifyPass
+                            onSuccess={() => {
+                                setVerified(true);
+                            }}
+                            onErr={() => {
+                                toast.warning("Sai mật khẩu");
+                            }}
+                        />
+                    </div>
                 </div>
             ) : (
                 ""
