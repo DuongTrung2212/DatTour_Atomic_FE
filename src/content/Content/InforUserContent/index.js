@@ -69,7 +69,7 @@ function InforUserContent() {
         } else {
             window.onscroll = function () {};
         }
-    }, [showVerify]);
+    }, [showVerify, verified]);
     const hanldeChangeFile = async (files) => {
         let formData = new FormData();
         formData.append("Img", files[0]);
@@ -109,6 +109,7 @@ function InforUserContent() {
                     <div ref={verifyPassRef}>
                         <VerifyPass
                             onSuccess={() => {
+                                window.onscroll = function () {};
                                 setVerified(true);
                             }}
                             onErr={() => {
