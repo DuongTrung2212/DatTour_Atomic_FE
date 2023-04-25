@@ -162,7 +162,7 @@ function InforUserContent() {
                             </Files>
                         </div>
                     </div>
-                    <b> {user.TenKH} </b>
+                    <b className={cx("userName")}> {user.TenKH} </b>
                 </div>
             </div>
 

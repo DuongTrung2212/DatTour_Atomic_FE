@@ -56,8 +56,9 @@ function ChangeInforForm() {
         await requestAxios
             .patch("user", formData)
             .then((res) => {
-                if (res.data.message === "OK") toast.success("Đã đổi");
-                else toast.error("Vui lòng xem lại");
+                if (res.data.message === "OK") {
+                    toast.success("Đã đổi");
+                } else toast.error("Vui lòng xem lại");
                 setShowBtn(true);
                 setDataUserChange(dataUserChange + 1);
             })
@@ -73,7 +74,7 @@ function ChangeInforForm() {
     };
     return (
         <div className={cx("changeInforForm")}>
-            <ToastContainer
+            {/* <ToastContainer
                 position="top-center"
                 autoClose={3000}
                 hideProgressBar={false}
@@ -83,7 +84,7 @@ function ChangeInforForm() {
                 draggable
                 pauseOnHover={false}
                 theme="light"
-            />
+            /> */}
             {switchToChangePass ? (
                 <div className={cx("div1")}>
                     <ChangePassForm />
@@ -92,6 +93,7 @@ function ChangeInforForm() {
                 <div className={cx("div2")}>
                     <Input
                         value={nameUser}
+                        maxLength={20}
                         onChangeValue={getNameUser}
                         label={"Tên"}
                     />

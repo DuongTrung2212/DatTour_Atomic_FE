@@ -66,10 +66,12 @@
                 }
             }
             img,
-            b {
+            .userName {
                 text-align: center;
                 display: block;
                 margin: auto;
+                margin-top: 20px;
+                text-shadow: 1px 2px 3px #636363fa;
                 font-size: 30px;
             }
         }
